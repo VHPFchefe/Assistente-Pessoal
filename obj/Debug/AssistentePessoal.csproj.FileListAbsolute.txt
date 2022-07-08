@@ -1,0 +1,34 @@
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\AssistentePessoal.exe.config
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\AssistentePessoal.exe
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\AssistentePessoal.pdb
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.Properties.Resources.resources
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.csproj.GenerateResource.cache
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.csproj.CoreCompileInputs.cache
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.exe
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.pdb
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.FormRegistroEntrada.resources
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\ForLogic.License.dll
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\ForLogic.Persistence.dll
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\ForLogic2.Util.dll
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\ForLogic2.WinForms.dll
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\ForLogic3.Ajax.dll
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\LinqBridge.dll
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.csproj.CopyComplete
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.csproj.AssemblyReference.cache
+C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePessoal.Form1.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.exe.config
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.exe
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.pdb
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormSystem.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistroEntrada.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.Properties.Resources.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.csproj.GenerateResource.cache
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.csproj.CoreCompileInputs.cache
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.csproj.CopyComplete
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.exe
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.pdb
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.csproj.AssemblyReference.cache
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistros.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormSender.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormCarteira.resources
