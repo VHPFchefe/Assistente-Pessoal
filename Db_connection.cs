@@ -17,7 +17,7 @@ namespace AssistentePessoal
         );
         private SqlDataReader reader = null;
 
-        public void SqlInsert(string sql, string[] param_sql_nome, string[] param_nome)
+        public bool SqlScript(string sql, string[] param_sql_nome, string[] param_nome)
         {
             SqlCommand cmd = new SqlCommand(sql, con);
             for (int i = 0; i < param_nome.Length; i++)
@@ -31,10 +31,7 @@ namespace AssistentePessoal
             try
             {
                 int i = cmd.ExecuteNonQuery();
-                if (i > 0)
-                {
-                    MessageBox.Show("Cadastro realizado com sucesso!");
-                }
+                return true;
             }
             catch (Exception ex)
             {

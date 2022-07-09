@@ -56,7 +56,7 @@ namespace AssistentePessoal.Entities
             Db_connection db = new Db_connection();
             string[] p1 = { "@sender_name" , "@sender_phone", "@sender_email", "@sender_cep" };
             string[] p2 = { this.name, this.phone, this.email, this.cep };
-            db.SqlInsert(sql, p1, p2);
+            db.SqlScript(sql, p1, p2);
         }
 
         private void PegarId(string nome)

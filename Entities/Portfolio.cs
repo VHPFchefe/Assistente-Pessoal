@@ -77,7 +77,7 @@ namespace AssistentePessoal.Entities
             Db_connection db = new Db_connection();
             string[] p1 = { "@name_portfolio" };
             string[] p2 = { this.name };
-            db.SqlInsert(sql, p1, p2);
+            db.SqlScript(sql, p1, p2);
         }
 
     }

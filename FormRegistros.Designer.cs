@@ -53,7 +53,7 @@ namespace AssistentePessoal
             this.grid.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black; 
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -67,14 +67,15 @@ namespace AssistentePessoal
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(246)))), ((int)(((byte)(215)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.SelectionBackColor = dataGridViewCellStyle1.SelectionBackColor;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.grid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grid.Size = new System.Drawing.Size(741, 369);
             this.grid.TabIndex = 0;
             this.grid.VirtualMode = true;
-            this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
+            this.grid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.grid_MouseDoubleClick);
+            this.grid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SelecionarLinhas);
             // 
             // contextMenuStrip
             // 
@@ -93,12 +94,14 @@ namespace AssistentePessoal
             this.editar_menu_item.Name = "editar_menu_item";
             this.editar_menu_item.Size = new System.Drawing.Size(96, 22);
             this.editar_menu_item.Text = "Editar";
+            this.editar_menu_item.Click += new System.EventHandler(this.editar_menu_item_Click);
             // 
             // remover_menu_item
             // 
             this.remover_menu_item.Name = "remover_menu_item";
             this.remover_menu_item.Size = new System.Drawing.Size(96, 22);
             this.remover_menu_item.Text = "Remover";
+            this.remover_menu_item.Click += new System.EventHandler(this.remover_menu_item_Click);
             // 
             // Iniciar
             // 

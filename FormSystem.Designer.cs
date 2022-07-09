@@ -29,12 +29,9 @@ namespace AssistentePessoal
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSystem));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.registros = new System.Windows.Forms.Button();
             this.remetentes = new System.Windows.Forms.Button();
             this.carteira = new System.Windows.Forms.Button();
@@ -49,17 +46,6 @@ namespace AssistentePessoal
             this.lucro_tendencia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grafico_lucro)).BeginInit();
             this.SuspendLayout();
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "data_800px.jpg");
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // registros
             // 
@@ -100,8 +86,8 @@ namespace AssistentePessoal
             // grafico_entrada
             // 
             this.grafico_entrada.BackColor = System.Drawing.Color.DarkGray;
-            chartArea3.Name = "ChartArea1";
-            this.grafico_entrada.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            this.grafico_entrada.ChartAreas.Add(chartArea1);
             this.grafico_entrada.Cursor = System.Windows.Forms.Cursors.No;
             this.grafico_entrada.Location = new System.Drawing.Point(-1, -1);
             this.grafico_entrada.Name = "grafico_entrada";
@@ -149,8 +135,8 @@ namespace AssistentePessoal
             // grafico_lucro
             // 
             this.grafico_lucro.BackColor = System.Drawing.Color.DarkGray;
-            chartArea4.Name = "ChartArea1";
-            this.grafico_lucro.ChartAreas.Add(chartArea4);
+            chartArea2.Name = "ChartArea1";
+            this.grafico_lucro.ChartAreas.Add(chartArea2);
             this.grafico_lucro.Cursor = System.Windows.Forms.Cursors.No;
             this.grafico_lucro.Location = new System.Drawing.Point(-1, -1);
             this.grafico_lucro.Name = "grafico_lucro";
@@ -183,8 +169,6 @@ namespace AssistentePessoal
         }
 
         #endregion
-        private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button registros;
         private System.Windows.Forms.Button remetentes;
         private System.Windows.Forms.Button carteira;

@@ -15,7 +15,9 @@ namespace AssistentePessoal.Entities
         public string comment { get; private set; }
         public Senders sender { get; set; }
 
-        public Transact(DateTime date, Movimentation movimentation, double value, string portfolio, string comment, string sender) 
+        public Transact() { }
+
+        public Transact(DateTime date, Movimentation movimentation, double value, string portfolio, string comment, string sender)
         {
             this.date = date;
             this.movimentation = movimentation;
@@ -37,11 +39,10 @@ namespace AssistentePessoal.Entities
                     "@id_portfolio," +
                     "cast(@date_transact as datetime))";
 
+            string[] p1 = { "@removed", "@transact_value", "@transact_comment", "@id_sender", "@id_transact_type", "@id_portfolio", "@date_transact", };
+            string[] p2 = { "0", this.value.ToString("F2", CultureInfo.InvariantCulture), this.comment, this.sender.id.ToString(), (this.movimentation == Movimentation.Entrada ? "1" : "2"), this.portfolio.id.ToString(), this.date.ToString("yyyy-MM-dd HH:mm:ss.fff") };
             Db_connection db = new Db_connection();
-            string[] p1 = {"@removed", "@transact_value", "@transact_comment", "@id_sender", "@id_transact_type", "@id_portfolio", "@date_transact", };
-            string[] p2 = { "0", this.value.ToString("F2", CultureInfo.InvariantCulture), this.comment, this.sender.id.ToString(), (this.movimentation == Movimentation.Entrada ? "1": "2") , this.portfolio.id.ToString(), this.date.ToString("yyyy-MM-dd HH:mm:ss.fff")};
-      
-            db.SqlInsert(sql, p1, p2);
+            db.SqlScript(sql, p1, p2);
         }
 
         public void RegisterTransactAdd()
@@ -49,9 +50,16 @@ namespace AssistentePessoal.Entities
             Insert();
         }
 
-        public void RegisterTransactRemove()
+        public void RegisterRemoved(int item)
         {
-            //futuro update para setar a coluna removed = 1.
+            string sql = "update transact " +
+                          "set removed = 1 " +
+                          "where transact_number = @transact_number ";
+
+            string[] p1 = { "@transact_number" };
+            string[] p2 = { item.ToString() };
+            Db_connection db = new Db_connection();
+            db.SqlScript(sql, p1, p2);
         }
     }
 }

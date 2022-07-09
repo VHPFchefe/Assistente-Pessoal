@@ -4,17 +4,20 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using AssistentePessoal.Entities;
 
 namespace AssistentePessoal
 {
     public partial class FormRegistros : Form
     {
-
         public DataGridViewCellStyle default_back_color = new DataGridViewCellStyle();
+
+        // Valores atribuidos no evento selecionarLinhas(object sender, MouseEventArgs e)
+        private int[] transacoes = { };
+        int linhas_quantas = 0;
+        int ultima_linha = 0;
+        int primeira_linha = 0;
 
         public FormRegistros()
         {
@@ -141,20 +144,127 @@ namespace AssistentePessoal
             form.Show();
         }
 
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            contextMenuStrip.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            if (linhas_quantas > 1)
+            {
+                editar_menu_item.Visible = false;
+            }
+            else
+            {
+                editar_menu_item.Visible = true;
+                int index = PointCellIndex();
+                this.grid.ClearSelection();
+                this.grid.Rows[index].Selected = true;
+            }
+        }
+
+        public int PointCellIndex()
+        {
+            Point pointRight = this.grid.PointToClient(Cursor.Position);
+            DataGridView.HitTestInfo hitTest = this.grid.HitTest(pointRight.X, pointRight.Y);
+            if (hitTest.RowIndex >= 0)
+            {
+                return hitTest.RowIndex;
+            }
+            return 0;
+        }
+
+        private void editar_menu_item_Click(object sender, EventArgs e)
+        {
+            Form form = new Form();
+            form.Show();
+        }
+
+        private void remover_menu_item_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string aviso = "";
+
+                if (transacoes.Length == 1)
+                {
+                    aviso += "Você realmente deseja remover o item: \n";
+                }
+                else
+                {
+                    aviso += "Antenção! \nVocê realmente deseja remover os " + transacoes.Length + " items?\n";
+                }
+                foreach (int item in transacoes)
+                {
+                    aviso += "Transação N°: " + item + "\n";
+                }
+
+                if (MessageBox.Show(aviso, "Remover Registros", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    string p1, p2, p3;
+                    if (transacoes.Length == 1)
+                    {
+                        p1 = "Foi";
+                        p2 = "removido";
+                        p3 = "item";
+                    }
+                    else
+                    {
+                        p1 = "Foram";
+                        p2 = "removidos";
+                        p3 = "itens";
+                    }
+                    RemoverRegistros();
+                    MessageBox.Show($"{p1} {p2} {transacoes.Length} {p3}.");
+                    Search();
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+        }
+
+
+        private void RemoverRegistros()
+        {
+            Transact transact = new Transact();
+            foreach (int item in transacoes)
+            {
+                transact.RegisterRemoved(item);
+            }
+        }
+
+        private void SelecionarLinhas(object sender, MouseEventArgs e)
+        {
+            int linhas_quantas = grid.SelectedRows.Count;
+            int ultima_linha = grid.SelectedRows[0].Index;
+            int primeira_linha = ultima_linha - (linhas_quantas - 1);
+            int[] transacoes = new int[linhas_quantas];
+            //MessageBox.Show("Foram selecionadas: " + linhas_quantas.ToString() + " linhas,\nA primeira linha é: " + primeira_linha.ToString());
+            int count = 0;
+            for (int i = primeira_linha; i < primeira_linha + (linhas_quantas); i++)
+            {
+                transacoes[count] = int.Parse(this.grid.Rows[i].Cells["Número da Transação"].Value.ToString());
+                //MessageBox.Show("Index: "+ i + "\nValor: "+ transacoes[count]);
+                count++;
+                if (primeira_linha == linhas_quantas) break;
+            }
+
+            this.linhas_quantas = linhas_quantas;
+            this.ultima_linha = ultima_linha;
+            this.primeira_linha = primeira_linha;
+            this.transacoes = transacoes; // Armazena os números/id das celulas;
+        }
+
+        private void grid_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja editar ?", "Editar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Form teste = new Form();
+                teste.Show();
+            }
+        }
+
         private void FormRegistros_Load(object sender, EventArgs e)
         {
             LoadGrid();
             LoadCb_filtros();
-        }
-
-
-        private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            /*if (MessageBox.Show("Você realmente deseja editar ?", "Editar registro", MessageBoxButtons.YesNo)== DialogResult.Yes)
-            {
-                Form teste = new Form();
-                teste.Show();
-            }*/
         }
 
         private void tx_pesquisaEvent(object sender, KeyPressEventArgs e)
@@ -175,25 +285,6 @@ namespace AssistentePessoal
         private void cb_filtro_SelectedIndexChanged(object sender, EventArgs e)
         {
             Search();
-        }
-
-        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-            int index = PointCellIndex();
-            this.grid.ClearSelection();
-            contextMenuStrip.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.grid.Rows[index].Selected = true;
-        }
-
-        public int PointCellIndex()
-        {
-            Point pointRight = this.grid.PointToClient(Cursor.Position);
-            DataGridView.HitTestInfo hitTest = this.grid.HitTest(pointRight.X, pointRight.Y);
-            if (hitTest.RowIndex >= 0)
-            {
-                return hitTest.RowIndex;
-            }
-            return 0;
         }
     }
 }
