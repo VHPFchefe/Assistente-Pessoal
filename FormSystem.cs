@@ -128,19 +128,16 @@ namespace AssistentePessoal
             grafico.Series["entradas"].ChartType = serieType;
             grafico.Series["entradas"].LegendText = "Entradas";
             grafico.Series["entradas"].BorderWidth = 4;
-            for (int i = 0; i < X.Length; i++)
-            {
-                grafico.Series["entradas"].Points.AddXY(X[i], Y[i]);
-
-            }
 
             //Serie2
             grafico.Series.Add("saidas");
             grafico.Series["saidas"].ChartType = serieType;
             grafico.Series["saidas"].LegendText = "Saídas";
             grafico.Series["saidas"].BorderWidth = 4;
+
             for (int i = 0; i < X.Length; i++)
             {
+                grafico.Series["entradas"].Points.AddXY(X[i], Y[i]);
                 grafico.Series["saidas"].Points.AddXY(X[i], Y2[i]);
             }
         }

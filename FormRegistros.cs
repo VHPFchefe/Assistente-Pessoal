@@ -13,9 +13,13 @@ namespace AssistentePessoal
 {
     public partial class FormRegistros : Form
     {
+
+        public DataGridViewCellStyle default_back_color = new DataGridViewCellStyle();
+
         public FormRegistros()
         {
             InitializeComponent();
+            this.grid.ClearSelection();
         }
 
         private void Search()
@@ -173,21 +177,23 @@ namespace AssistentePessoal
             Search();
         }
 
-        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            int index;
-            Point point = this.grid.PointToClient(Cursor.Position);
-            DataGridView.HitTestInfo hitTest = this.grid.HitTest(point.X, point.Y);
-            if (hitTest.RowIndex >= 0)
-            {
-                index = hitTest.RowIndex;
-                MessageBox.Show(hitTest.RowIndex.ToString());
-            }
+            int index = PointCellIndex();
+            this.grid.ClearSelection();
+            contextMenuStrip.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.grid.Rows[index].Selected = true;
         }
 
-        private void grid_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        public int PointCellIndex()
         {
-            //this.grid.Rows.SharedRow(this.grid.Rows.);
+            Point pointRight = this.grid.PointToClient(Cursor.Position);
+            DataGridView.HitTestInfo hitTest = this.grid.HitTest(pointRight.X, pointRight.Y);
+            if (hitTest.RowIndex >= 0)
+            {
+                return hitTest.RowIndex;
+            }
+            return 0;
         }
     }
 }
