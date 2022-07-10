@@ -10,32 +10,34 @@ namespace AssistentePessoal
 {
     public partial class FormRegistroEntrada : Form
     {
+        private bool is_edit = false;
+        private Transact transact_edit;
 
         public FormRegistroEntrada(int edit_transact)
         {
             InitializeComponent();
-
-            Transact transact = new Transact(edit_transact);
-            this.cb_movimentacao.Text = transact.movimentation.ToString();
-            this.TexBoxValues.Text = transact.value.ToString("F2");
-            this.cb_carteira.SelectedItem = transact.portfolio.name;
-            this.textBox1.Text = transact.comment;
-            this.cb_remetente.SelectedItem = transact.sender.name;
-            this.register_date.Value = transact.date;
-            this.titulo.Text = titulo.Text +"  -  N° "+ transact.TransactNumber.ToString();
+            loadTipoEntrada();
+            loadPortfolio();
+            loadRemetente();
+            this.transact_edit = new Transact(edit_transact);
+            this.titulo.Text = titulo.Text +"  -  N° "+ transact_edit.TransactNumber.ToString();
+            this.cb_movimentacao.Text = transact_edit.movimentation.ToString();
+            this.TexBoxValues.Text = transact_edit.value.ToString("F2");
+            this.cb_carteira.Text = transact_edit.portfolio.name;
+            this.textBox1.Text = transact_edit.comment;
+            this.cb_remetente.Text = transact_edit.sender.name;
+            this.register_date.Value = transact_edit.date;
+            is_edit = true;
         }
 
         public FormRegistroEntrada()
         {
             InitializeComponent();
-            TexBoxValues.Text = string.Format("{0:#,##0.00}", 0d);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
             loadTipoEntrada();
             loadPortfolio();
             loadRemetente();
+            TexBoxValues.Text = string.Format("{0:#,##0.00}", 0d);
+            is_edit = false;
         }
 
         private void AtualizaFormPai()
@@ -66,8 +68,17 @@ namespace AssistentePessoal
                 }
                 else
                 {
-                    Transact transact = new Transact(register_date.Value, (Movimentation)Enum.Parse(typeof(Movimentation), cb_movimentacao.Text), Double.Parse(TexBoxValues.Text), cb_carteira.Text, textBox1.Text, cb_remetente.Text);
-                    transact.RegisterTransactAdd();
+                    if (is_edit)
+                    {
+                        Transact transact = new Transact(transact_edit.TransactNumber,register_date.Value, (Movimentation)Enum.Parse(typeof(Movimentation), cb_movimentacao.Text), Double.Parse(TexBoxValues.Text), cb_carteira.Text, textBox1.Text, cb_remetente.Text);
+                        transact.RegisterTransactEdit();
+                        MessageBox.Show("Transação Editada.");
+                    }
+                    else
+                    {
+                        Transact transact = new Transact(register_date.Value, (Movimentation)Enum.Parse(typeof(Movimentation), cb_movimentacao.Text), Double.Parse(TexBoxValues.Text), cb_carteira.Text, textBox1.Text, cb_remetente.Text);
+                        transact.RegisterTransactAdd();
+                    }
                     AtualizaFormPai();
                     this.Close();
                 }
@@ -138,7 +149,6 @@ namespace AssistentePessoal
                     cb_movimentacao.Items.Add(teste[1]);
                 }
                 reader.Close();
-                cb_movimentacao.SelectedIndex = 0;
             }
             catch (Exception ex)
             {

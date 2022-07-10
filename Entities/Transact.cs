@@ -27,14 +27,16 @@ namespace AssistentePessoal.Entities
             {
                 string sql =
                 " Select " +
-                " transact_value as value, " +
-                " transact_comment as comment," +
-                " id_sender as sender," +
-                " id_transact_type as t_type," +
-                " id_portfolio as portifolio," +
-                " date_transact as date " +
-                " from transact where removed = 0 " +
-                " and @transact_number = transact_number ";
+                " t.transact_value as value, " +
+                " t.transact_comment as comment," +
+                " s.sender_name as sender," +
+                " t.id_transact_type as t_type," +
+                " p.name_portfolio as portifolio," +
+                " t.date_transact as date " +
+                " from transact t  " +
+                " inner join sender s on (s.id_sender = t.id_sender)" +
+                " inner join portfolio p on (p.id_portfolio = t.id_portfolio)" +
+                " where t.removed = 0 and @transact_number = t.transact_number ";
 
                 SqlCommand command = new SqlCommand(sql, db.con);
                 command.Parameters.AddWithValue("@transact_number", TransactNumber);
@@ -68,6 +70,32 @@ namespace AssistentePessoal.Entities
             this.comment = comment;
             this.sender = new Senders(sender);
         }
+        
+        public Transact(int transact_number, DateTime date, Movimentation movimentation, double value, string portfolio, string comment, string sender) : this(date, movimentation, value, portfolio, comment, sender)
+        {
+            this.TransactNumber = transact_number;
+        }
+
+        public void RegisterTransactAdd()
+        {
+            Insert();
+        }
+        public void RegisterTransactEdit()
+        {
+            Update();
+        }
+
+        public void RegisterRemoved(int item)
+        {
+            string sql = "update transact " +
+                          "set removed = 1 " +
+                          "where transact_number = @transact_number ";
+
+            string[] p1 = { "@transact_number" };
+            string[] p2 = { item.ToString() };
+            Db_connection db = new Db_connection();
+            db.SqlScript(sql, p1, p2);
+        }
 
         private void Insert()
         {
@@ -87,19 +115,19 @@ namespace AssistentePessoal.Entities
             db.SqlScript(sql, p1, p2);
         }
 
-        public void RegisterTransactAdd()
+        private void Update()
         {
-            Insert();
-        }
-
-        public void RegisterRemoved(int item)
-        {
-            string sql = "update transact " +
-                          "set removed = 1 " +
-                          "where transact_number = @transact_number ";
-
-            string[] p1 = { "@transact_number" };
-            string[] p2 = { item.ToString() };
+            string sql =
+                " update transact set " +
+                " transact_value = cast(@transact_value as numeric(20, 2)), " +
+                " transact_comment = @transact_comment, " +
+                " id_sender = @id_sender, " +
+                " id_transact_type =  @id_transact_type, " +
+                " id_portfolio = @id_portfolio," +
+                " date_transact = cast(@date_transact as datetime)" +
+                " from transact where transact_number = @transact_number ";
+            string[] p1 = { "@transact_number", "@transact_value", "@transact_comment", "@id_sender", "@id_transact_type", "@id_portfolio", "@date_transact", };
+            string[] p2 = { this.TransactNumber.ToString(), this.value.ToString("F2", CultureInfo.InvariantCulture), this.comment, this.sender.id.ToString(), (this.movimentation == Movimentation.Entrada ? "1" : "2"), this.portfolio.id.ToString(), this.date.ToString("yyyy-MM-dd HH:mm:ss.fff") };
             Db_connection db = new Db_connection();
             db.SqlScript(sql, p1, p2);
         }
