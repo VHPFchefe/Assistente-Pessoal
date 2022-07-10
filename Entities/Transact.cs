@@ -2,6 +2,8 @@
 using System;
 using System.Windows.Forms;
 using AssistentePessoal.Entities.Enum;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace AssistentePessoal.Entities
 {
@@ -16,6 +18,46 @@ namespace AssistentePessoal.Entities
         public Senders sender { get; set; }
 
         public Transact() { }
+
+        public Transact(int TransactNumber)
+        {
+            Db_connection db = new Db_connection();
+
+            try
+            {
+                string sql =
+                " Select " +
+                " transact_value as value, " +
+                " transact_comment as comment," +
+                " id_sender as sender," +
+                " id_transact_type as t_type," +
+                " id_portfolio as portifolio," +
+                " date_transact as date " +
+                " from transact where removed = 0 " +
+                " and @transact_number = transact_number ";
+
+                SqlCommand command = new SqlCommand(sql, db.con);
+                command.Parameters.AddWithValue("@transact_number", TransactNumber);
+                
+                db.con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var teste = (IDataRecord)reader;
+                    this.value = double.Parse(String.Format("{0}", teste[0]));
+                    this.comment = String.Format("{0}", teste[1]);
+                    this.sender = new Senders(String.Format("{0}", teste[2]));
+                    this.movimentation = (int.Parse(String.Format("{0}", teste[3])) == 1 ? Movimentation.Entrada: Movimentation.Saída);
+                    this.portfolio = new Portfolio(String.Format("{0}", teste[4]));
+                    this.date = DateTime.Parse(String.Format("{0}", teste[5]));
+                    this.TransactNumber = TransactNumber;
+                }
+                reader.Close();
+            }
+            catch (Exception ex) { throw new Exception(ex.ToString()); }
+            finally { db.con.Close(); }
+        }
 
         public Transact(DateTime date, Movimentation movimentation, double value, string portfolio, string comment, string sender)
         {

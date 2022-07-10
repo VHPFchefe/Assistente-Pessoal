@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using AssistentePessoal.Entities;
+using AssistentePessoal.Extras;
 
 namespace AssistentePessoal
 {
@@ -23,6 +24,21 @@ namespace AssistentePessoal
         {
             InitializeComponent();
             this.grid.ClearSelection();
+        }
+
+
+        private void Iniciar_Click(object sender, EventArgs e)
+        {
+            FormRegistroEntrada form = new FormRegistroEntrada();
+            form.Owner = this;
+            form.Show();
+        }
+
+        private void EditarRegistro()
+        {
+            FormRegistroEntrada form = new FormRegistroEntrada(transacoes[0]);
+            form.Owner = this;
+            form.Show();
         }
 
         private void Search()
@@ -96,24 +112,7 @@ namespace AssistentePessoal
 
                 string[] p1 = { "@p1", "@p2", "@p3", "@r1", "@r2", "@r3", "@v1", "@p0" };
                 string[] p2 = { ident[0], ident[1], ident[2], search[0], search[1], search[2], movimentation_type.ToString(), identSearch.ToString() };
-                string sql =
-                    " select t.transact_number as 'Número da Transação', " +
-                    " t.transact_value as 'Valor da Transação', " +
-                    " it.name_transact_type as 'Movimentação', " +
-                    " s.sender_name as 'Remetente',	" +
-                    " p.name_portfolio as 'Portifólio', 	" +
-                    " t.transact_comment as 'Comentário',	" +
-                    " format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação'" +
-                    " from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) " +
-                    " inner join sender s on (s.id_sender = t.id_sender) " +
-                    " inner join portfolio p on (p.id_portfolio = t.id_portfolio) " +
-                    " where t.removed = 0 " +
-                    " and (@p0 = 0 or (@p1 like '%@r1%' " +
-                    " and @p2 like '%@r2%' " +
-                    " and @p3 like '%@r3%')) " +
-                    " and (@v1 = 0 or it.id_transact_type like '%@v1%')" +
-                    " order by t.date_transact desc";
-
+                string sql = new Consultas().sqlGrid;
                 for (int i = 0; i < p1.Length; i++)
                 {
                     sql = sql.Replace(p1[i], p2[i]);
@@ -135,13 +134,6 @@ namespace AssistentePessoal
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             finally { db.con.Close(); }
-        }
-
-        private void Iniciar_Click(object sender, EventArgs e)
-        {
-            FormRegistroEntrada form = new FormRegistroEntrada();
-            form.Owner = this;
-            form.Show();
         }
 
         private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -174,8 +166,7 @@ namespace AssistentePessoal
 
         private void editar_menu_item_Click(object sender, EventArgs e)
         {
-            Form form = new Form();
-            form.Show();
+            EditarRegistro();
         }
 
         private void remover_menu_item_Click(object sender, EventArgs e)
@@ -256,8 +247,7 @@ namespace AssistentePessoal
         {
             if (MessageBox.Show("Você realmente deseja editar ?", "Editar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Form teste = new Form();
-                teste.Show();
+                EditarRegistro();
             }
         }
 

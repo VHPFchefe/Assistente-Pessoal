@@ -20,6 +20,9 @@ C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePe
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.exe.config
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.exe
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.pdb
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormCarteira.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistros.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormSender.resources
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormSystem.resources
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistroEntrada.resources
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.Properties.Resources.resources
@@ -29,6 +32,3 @@ C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\A
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.exe
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.pdb
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.csproj.AssemblyReference.cache
-C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistros.resources
-C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormSender.resources
-C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormCarteira.resources

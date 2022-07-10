@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AssistentePessoal.Entities;
 using AssistentePessoal.Entities.Enum;
@@ -16,7 +10,20 @@ namespace AssistentePessoal
 {
     public partial class FormRegistroEntrada : Form
     {
-        Transact transact;
+
+        public FormRegistroEntrada(int edit_transact)
+        {
+            InitializeComponent();
+
+            Transact transact = new Transact(edit_transact);
+            this.cb_movimentacao.Text = transact.movimentation.ToString();
+            this.TexBoxValues.Text = transact.value.ToString("F2");
+            this.cb_carteira.SelectedItem = transact.portfolio.name;
+            this.textBox1.Text = transact.comment;
+            this.cb_remetente.SelectedItem = transact.sender.name;
+            this.register_date.Value = transact.date;
+            this.titulo.Text = titulo.Text +"  -  N° "+ transact.TransactNumber.ToString();
+        }
 
         public FormRegistroEntrada()
         {
@@ -59,8 +66,8 @@ namespace AssistentePessoal
                 }
                 else
                 {
-                    transact = new Transact(register_date.Value, (Movimentation)Enum.Parse(typeof(Movimentation), cb_movimentacao.Text), Double.Parse(TexBoxValues.Text), cb_carteira.Text, textBox1.Text, cb_remetente.Text);
-                    transact.RegisterTransactAdd(); 
+                    Transact transact = new Transact(register_date.Value, (Movimentation)Enum.Parse(typeof(Movimentation), cb_movimentacao.Text), Double.Parse(TexBoxValues.Text), cb_carteira.Text, textBox1.Text, cb_remetente.Text);
+                    transact.RegisterTransactAdd();
                     AtualizaFormPai();
                     this.Close();
                 }
