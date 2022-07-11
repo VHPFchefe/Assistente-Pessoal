@@ -10,11 +10,14 @@ namespace AssistentePessoal
 {
     public partial class FormRegistroEntrada : Form
     {
+
         private bool is_edit = false;
         private Transact transact_edit;
 
         public FormRegistroEntrada(int edit_transact)
         {
+            this.BringToFront();
+
             InitializeComponent();
             loadTipoEntrada();
             loadPortfolio();

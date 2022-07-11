@@ -25,21 +25,41 @@ namespace AssistentePessoal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormRegistros form = new FormRegistros();
-            form.Owner = this;
-            form.Show();
+            FormRegistros f = (FormRegistros)Application.OpenForms["FormRegistros"];
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                f = new FormRegistros();
+                f.Owner = this;
+                f.Show();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormSender form = new FormSender();
-            form.Show();
+            FormSender f = (FormSender)Application.OpenForms["FormSender"];
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                f = new FormSender();
+                f.Owner = this;
+                f.Show();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormCarteira form = new FormCarteira();
-            form.Show();
+            FormCarteira f = (FormCarteira)Application.OpenForms["FormCarteira"];
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                f = new FormCarteira();
+                f.Owner = this;
+                f.Show();
+            }
         }
 
         public void ConsultaGraficos(Chart grafico ,string sql, SeriesChartType seriesType)

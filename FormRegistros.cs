@@ -46,7 +46,7 @@ namespace AssistentePessoal
             string parameterSQL = tx_pesquisa.Text;
             int identSearch = cb_filtro.SelectedIndex;
             int movimentation_type = cb_movimentation.SelectedIndex;
-            LoadGrid(parameterSQL, identSearch, movimentation_type);
+            LoadGrid(parameterSQL, identSearch, movimentation_type, cb_date.Text);
         }
 
         private void LoadCb_filtros()
@@ -62,6 +62,42 @@ namespace AssistentePessoal
             cb_movimentation.Items.Add("Entrada");
             cb_movimentation.Items.Add("Saída");
             cb_movimentation.SelectedIndex = 0;
+            LoadDataComboBox();
+        }
+
+        private void LoadDataComboBox()
+        {
+            cb_date.Items.Clear();
+            cb_date.Items.Add("[Todos]");
+
+            Db_connection db = new Db_connection();
+            try
+            {
+                string sql =
+                        " select Datepart(YEAR,date_transact) from transact " +
+                        " group by Datepart(YEAR, date_transact) order by  Datepart(YEAR, date_transact)  desc";
+
+                SqlCommand command = new SqlCommand(sql, db.con);
+                db.con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var teste = (IDataRecord)reader;
+                    cb_date.Items.Add(teste[0]);
+                    //MessageBox.Show(String.Format("{0}, {1}", teste[0], teste[1]));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar o Formulário.\n" + ex.ToString());
+            }
+            finally
+            {
+                db.con.Close();
+            }
+            cb_date.SelectedIndex = 0;
         }
 
         public void LoadGrid()
@@ -86,13 +122,13 @@ namespace AssistentePessoal
             finally { db.con.Close(); }
         }
 
-        private void LoadGrid(string sqlSearch, int identSearch, int movimentation_type)
+        private void LoadGrid(string sqlSearch, int identSearch, int movimentation_type, string date)
         {
             Db_connection db = new Db_connection();
             try
             {
-                string[] search = { "0", "0", "0" }; ////r1
-                string[] ident = { "0", "0", "0" };  //p1
+                string[] search = { "0", "0", "0"}; ////r1
+                string[] ident = { "0", "0", "0"};  //p1
 
                 if (identSearch == 1) //("Número da Transação"); 
                 {
@@ -110,16 +146,18 @@ namespace AssistentePessoal
                     ident[2] = "p.name_portfolio";
                 }
 
-                string[] p1 = { "@p1", "@p2", "@p3", "@r1", "@r2", "@r3", "@v1", "@p0" };
-                string[] p2 = { ident[0], ident[1], ident[2], search[0], search[1], search[2], movimentation_type.ToString(), identSearch.ToString() };
+
+                string data = (string.IsNullOrEmpty(date.ToString()) ? DateTime.Now.ToString("yyyy") : date.ToString());
+                data = (data == "[Todos]" ?  "0" : data); // o 0 cancela o filtro na consulta
+
+
+                string[] p1 = { "@p1", "@p2", "@p3", "@r1", "@r2", "@r3", "@v1", "@p0", "@d1"};
+                string[] p2 = { ident[0], ident[1], ident[2], search[0], search[1], search[2], movimentation_type.ToString(), identSearch.ToString(), data };
                 string sql = new Consultas().sqlGrid;
                 for (int i = 0; i < p1.Length; i++)
                 {
                     sql = sql.Replace(p1[i], p2[i]);
                 }
-
-                //MessageBox.Show(sql);
-
                 SqlCommand cmd = new SqlCommand(sql, db.con);
 
                 db.con.Open();
@@ -253,26 +291,16 @@ namespace AssistentePessoal
 
         private void FormRegistros_Load(object sender, EventArgs e)
         {
-            LoadGrid();
             LoadCb_filtros();
-        }
-
-        private void tx_pesquisaEvent(object sender, KeyPressEventArgs e)
-        {
-            Search();
-        }
-
-        private void tx_pesquisaEvent(object sender, KeyEventArgs e)
-        {
-            Search();
-        }
-
-        private void cb_movimentation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Search();
+            LoadGrid();
         }
 
         private void cb_filtro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void tx_pesquisa_KeyUp(object sender, KeyEventArgs e)
         {
             Search();
         }

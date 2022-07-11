@@ -43,6 +43,8 @@ namespace AssistentePessoal
             this.cb_movimentation = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.cb_date = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -119,7 +121,7 @@ namespace AssistentePessoal
             this.tx_pesquisa.Name = "tx_pesquisa";
             this.tx_pesquisa.Size = new System.Drawing.Size(213, 20);
             this.tx_pesquisa.TabIndex = 2;
-            this.tx_pesquisa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tx_pesquisaEvent);
+            this.tx_pesquisa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tx_pesquisa_KeyUp);
             // 
             // cb_filtro
             // 
@@ -141,7 +143,7 @@ namespace AssistentePessoal
             this.cb_movimentation.Name = "cb_movimentation";
             this.cb_movimentation.Size = new System.Drawing.Size(138, 21);
             this.cb_movimentation.TabIndex = 4;
-            this.cb_movimentation.SelectedIndexChanged += new System.EventHandler(this.cb_movimentation_SelectedIndexChanged);
+            this.cb_movimentation.SelectedIndexChanged += new System.EventHandler(this.cb_filtro_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -161,11 +163,50 @@ namespace AssistentePessoal
             this.label2.TabIndex = 6;
             this.label2.Text = "Tipo de Movimentação:";
             // 
+            // cb_date
+            // 
+            this.cb_date.AutoCompleteCustomSource.AddRange(new string[] {
+            "2025",
+            "2024",
+            "2023",
+            "2022",
+            "2021",
+            "2020",
+            "2019",
+            "2018",
+            "2017",
+            "2016",
+            "2015",
+            "2014",
+            "2013",
+            "2012",
+            "2011",
+            "2010"});
+            this.cb_date.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cb_date.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_date.FormattingEnabled = true;
+            this.cb_date.Location = new System.Drawing.Point(156, 15);
+            this.cb_date.Name = "cb_date";
+            this.cb_date.Size = new System.Drawing.Size(138, 21);
+            this.cb_date.TabIndex = 7;
+            this.cb_date.SelectedIndexChanged += new System.EventHandler(this.cb_filtro_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(102, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Período:";
+            // 
             // FormRegistros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 498);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cb_date);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cb_movimentation);
@@ -196,5 +237,7 @@ namespace AssistentePessoal
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem editar_menu_item;
         private System.Windows.Forms.ToolStripMenuItem remover_menu_item;
+        private System.Windows.Forms.ComboBox cb_date;
+        private System.Windows.Forms.Label label3;
     }
 }
