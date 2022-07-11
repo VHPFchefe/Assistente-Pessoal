@@ -13,19 +13,20 @@ namespace AssistentePessoal
     public partial class FormRegistros : Form
     {
         public DataGridViewCellStyle default_back_color = new DataGridViewCellStyle();
+        
 
-        // Valores atribuidos no evento selecionarLinhas(object sender, MouseEventArgs e)
         private int[] transacoes = { };
-        int linhas_quantas = 0;
-        int ultima_linha = 0;
-        int primeira_linha = 0;
-
+   
         public FormRegistros()
         {
             InitializeComponent();
             this.grid.ClearSelection();
         }
 
+        private void AtualizaGrafico()
+        {
+            ((FormSystem)this.Owner).AtualizarGrafico();
+        }
 
         private void Iniciar_Click(object sender, EventArgs e)
         {
@@ -115,7 +116,7 @@ namespace AssistentePessoal
                         this.grid.DataSource = dt;
                         this.grid.ReadOnly = true;
                     }
-                    ((FormSystem)this.Owner).AtualizarGrafico();
+                    AtualizaGrafico(); ;
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
@@ -178,7 +179,7 @@ namespace AssistentePessoal
         {
             contextMenuStrip.Cursor = System.Windows.Forms.Cursors.Hand;
 
-            if (linhas_quantas > 1)
+            if (grid.SelectedRows.Count > 1)
             {
                 editar_menu_item.Visible = false;
             }
@@ -213,15 +214,15 @@ namespace AssistentePessoal
             {
                 string aviso = "";
 
-                if (transacoes.Length == 1)
+                if (grid.SelectedRows.Count == 1)
                 {
                     aviso += "Você realmente deseja remover o item: \n";
                 }
                 else
                 {
-                    aviso += "Antenção! \nVocê realmente deseja remover os " + transacoes.Length + " items?\n";
+                    aviso += "Antenção! \nVocê realmente deseja remover os " + grid.SelectedRows.Count + " items?\n";
                 }
-                foreach (int item in transacoes)
+                foreach (int item in GetIdInRows())
                 {
                     aviso += "Transação N°: " + item + "\n";
                 }
@@ -229,7 +230,7 @@ namespace AssistentePessoal
                 if (MessageBox.Show(aviso, "Remover Registros", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     string p1, p2, p3;
-                    if (transacoes.Length == 1)
+                    if (grid.SelectedRows.Count == 1)
                     {
                         p1 = "Foi";
                         p2 = "removido";
@@ -242,43 +243,33 @@ namespace AssistentePessoal
                         p3 = "itens";
                     }
                     RemoverRegistros();
-                    MessageBox.Show($"{p1} {p2} {transacoes.Length} {p3}.");
+                    MessageBox.Show($"{p1} {p2} {grid.SelectedRows.Count} {p3}.");
                     Search();
+                    AtualizaGrafico();
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
         }
 
-
         private void RemoverRegistros()
         {
             Transact transact = new Transact();
-            foreach (int item in transacoes)
+            foreach (int item in GetIdInRows())
             {
                 transact.RegisterRemoved(item);
             }
         }
 
-        private void SelecionarLinhas(object sender, MouseEventArgs e)
+        private int[] GetIdInRows()
         {
-            int linhas_quantas = grid.SelectedRows.Count;
-            int ultima_linha = grid.SelectedRows[0].Index;
-            int primeira_linha = ultima_linha - (linhas_quantas - 1);
-            int[] transacoes = new int[linhas_quantas];
-            //MessageBox.Show("Foram selecionadas: " + linhas_quantas.ToString() + " linhas,\nA primeira linha é: " + primeira_linha.ToString());
-            int count = 0;
-            for (int i = primeira_linha; i < primeira_linha + (linhas_quantas); i++)
+            int i = 0;
+            int[] id = new int[grid.SelectedRows.Count];
+            foreach(DataGridViewRow item in grid.SelectedRows)
             {
-                transacoes[count] = int.Parse(this.grid.Rows[i].Cells["Número da Transação"].Value.ToString());
-                //MessageBox.Show("Index: "+ i + "\nValor: "+ transacoes[count]);
-                count++;
-                if (primeira_linha == linhas_quantas) break;
+                id[i] = int.Parse(item.Cells["Número da Transação"].Value.ToString());
+                i++;
             }
-
-            this.linhas_quantas = linhas_quantas;
-            this.ultima_linha = ultima_linha;
-            this.primeira_linha = primeira_linha;
-            this.transacoes = transacoes; // Armazena os números/id das celulas;
+            return id;
         }
 
         private void grid_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -304,5 +295,7 @@ namespace AssistentePessoal
         {
             Search();
         }
+
+
     }
 }

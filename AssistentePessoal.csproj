@@ -69,11 +69,11 @@
     <Compile Include="Entities\Senders.cs" />
     <Compile Include="Entities\Transact.cs" />
     <Compile Include="Extras\Consultas.cs" />
-    <Compile Include="FormCarteira.cs">
+    <Compile Include="FormCarteiraCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCarteira.Designer.cs">
-      <DependentUpon>FormCarteira.cs</DependentUpon>
+    <Compile Include="FormCarteiraCadastro.Designer.cs">
+      <DependentUpon>FormCarteiraCadastro.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRegistros.cs">
       <SubType>Form</SubType>
@@ -81,11 +81,11 @@
     <Compile Include="FormRegistros.Designer.cs">
       <DependentUpon>FormRegistros.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSender.cs">
+    <Compile Include="FormSenderCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSender.Designer.cs">
-      <DependentUpon>FormSender.cs</DependentUpon>
+    <Compile Include="FormSenderCadastro.Designer.cs">
+      <DependentUpon>FormSenderCadastro.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSystem.cs">
       <SubType>Form</SubType>
@@ -101,14 +101,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormCarteira.resx">
-      <DependentUpon>FormCarteira.cs</DependentUpon>
+    <EmbeddedResource Include="FormCarteiraCadastro.resx">
+      <DependentUpon>FormCarteiraCadastro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistros.resx">
       <DependentUpon>FormRegistros.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSender.resx">
-      <DependentUpon>FormSender.cs</DependentUpon>
+    <EmbeddedResource Include="FormSenderCadastro.resx">
+      <DependentUpon>FormSenderCadastro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSystem.resx">
       <DependentUpon>FormSystem.cs</DependentUpon>

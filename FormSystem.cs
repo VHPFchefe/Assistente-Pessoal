@@ -38,12 +38,12 @@ namespace AssistentePessoal
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormSender f = (FormSender)Application.OpenForms["FormSender"];
+            FormSenderCadastro f = (FormSenderCadastro)Application.OpenForms["FormSender"];
             if (f != null)
                 f.BringToFront();
             else
             {
-                f = new FormSender();
+                f = new FormSenderCadastro();
                 f.Owner = this;
                 f.Show();
             }
@@ -51,12 +51,12 @@ namespace AssistentePessoal
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormCarteira f = (FormCarteira)Application.OpenForms["FormCarteira"];
+            FormCarteiraCadastro f = (FormCarteiraCadastro)Application.OpenForms["FormCarteira"];
             if (f != null)
                 f.BringToFront();
             else
             {
-                f = new FormCarteira();
+                f = new FormCarteiraCadastro();
                 f.Owner = this;
                 f.Show();
             }

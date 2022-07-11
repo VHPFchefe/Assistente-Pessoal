@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace AssistentePessoal
 {
-    public partial class FormSender : Form
+    public partial class FormSenderCadastro : Form
     {
         Senders remetente;
 
-        public FormSender()
+        public FormSenderCadastro()
         {
             InitializeComponent();
         }

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 using AssistentePessoal.Entities;
 namespace AssistentePessoal
 {
-    public partial class FormCarteira : Form
+    public partial class FormCarteiraCadastro : Form
     {
         Portfolio portfolio;
-        public FormCarteira()
+        public FormCarteiraCadastro()
         {
             InitializeComponent();
         }

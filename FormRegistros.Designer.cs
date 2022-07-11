@@ -73,11 +73,10 @@ namespace AssistentePessoal
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.grid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(741, 369);
+            this.grid.Size = new System.Drawing.Size(751, 369);
             this.grid.TabIndex = 0;
             this.grid.VirtualMode = true;
             this.grid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.grid_MouseDoubleClick);
-            this.grid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SelecionarLinhas);
             // 
             // contextMenuStrip
             // 
@@ -107,7 +106,7 @@ namespace AssistentePessoal
             // 
             // Iniciar
             // 
-            this.Iniciar.Location = new System.Drawing.Point(633, 444);
+            this.Iniciar.Location = new System.Drawing.Point(643, 444);
             this.Iniciar.Name = "Iniciar";
             this.Iniciar.Size = new System.Drawing.Size(142, 42);
             this.Iniciar.TabIndex = 1;
@@ -117,7 +116,7 @@ namespace AssistentePessoal
             // 
             // tx_pesquisa
             // 
-            this.tx_pesquisa.Location = new System.Drawing.Point(562, 43);
+            this.tx_pesquisa.Location = new System.Drawing.Point(572, 42);
             this.tx_pesquisa.Name = "tx_pesquisa";
             this.tx_pesquisa.Size = new System.Drawing.Size(213, 20);
             this.tx_pesquisa.TabIndex = 2;
@@ -128,7 +127,7 @@ namespace AssistentePessoal
             this.cb_filtro.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cb_filtro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_filtro.FormattingEnabled = true;
-            this.cb_filtro.Location = new System.Drawing.Point(418, 42);
+            this.cb_filtro.Location = new System.Drawing.Point(428, 41);
             this.cb_filtro.Name = "cb_filtro";
             this.cb_filtro.Size = new System.Drawing.Size(138, 21);
             this.cb_filtro.TabIndex = 3;
@@ -139,7 +138,7 @@ namespace AssistentePessoal
             this.cb_movimentation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cb_movimentation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_movimentation.FormattingEnabled = true;
-            this.cb_movimentation.Location = new System.Drawing.Point(156, 42);
+            this.cb_movimentation.Location = new System.Drawing.Point(156, 41);
             this.cb_movimentation.Name = "cb_movimentation";
             this.cb_movimentation.Size = new System.Drawing.Size(138, 21);
             this.cb_movimentation.TabIndex = 4;
@@ -148,7 +147,7 @@ namespace AssistentePessoal
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(359, 46);
+            this.label1.Location = new System.Drawing.Point(369, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 5;
@@ -157,7 +156,7 @@ namespace AssistentePessoal
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 46);
+            this.label2.Location = new System.Drawing.Point(31, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 13);
             this.label2.TabIndex = 6;
@@ -185,7 +184,7 @@ namespace AssistentePessoal
             this.cb_date.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cb_date.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_date.FormattingEnabled = true;
-            this.cb_date.Location = new System.Drawing.Point(156, 15);
+            this.cb_date.Location = new System.Drawing.Point(156, 14);
             this.cb_date.Name = "cb_date";
             this.cb_date.Size = new System.Drawing.Size(138, 21);
             this.cb_date.TabIndex = 7;
@@ -194,7 +193,7 @@ namespace AssistentePessoal
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(102, 18);
+            this.label3.Location = new System.Drawing.Point(102, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 8;

@@ -1,7 +1,7 @@
 ﻿
 namespace AssistentePessoal
 {
-    partial class FormSender
+    partial class FormSenderCadastro
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace AssistentePessoal
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSender));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSenderCadastro));
             this.cancelar = new System.Windows.Forms.Button();
             this.ok = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
