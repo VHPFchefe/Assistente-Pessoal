@@ -1,7 +1,7 @@
 ﻿
 namespace AssistentePessoal
 {
-    partial class FormSenderCadastro
+    partial class FormCadastroSender
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace AssistentePessoal
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSenderCadastro));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroSender));
             this.cancelar = new System.Windows.Forms.Button();
             this.ok = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,7 +38,7 @@ namespace AssistentePessoal
             this.tx_email = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.mask_cep = new System.Windows.Forms.MaskedTextBox();
             this.msk_celular = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
@@ -128,15 +128,15 @@ namespace AssistentePessoal
             this.label4.TabIndex = 26;
             this.label4.Text = "CEP";
             // 
-            // maskedTextBox1
+            // mask_cep
             // 
-            this.maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(86, 225);
-            this.maskedTextBox1.Mask = "00000-000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(272, 23);
-            this.maskedTextBox1.TabIndex = 27;
-            this.maskedTextBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.msk_celular_MouseClick);
+            this.mask_cep.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mask_cep.Location = new System.Drawing.Point(86, 225);
+            this.mask_cep.Mask = "00000-000";
+            this.mask_cep.Name = "mask_cep";
+            this.mask_cep.Size = new System.Drawing.Size(272, 23);
+            this.mask_cep.TabIndex = 27;
+            this.mask_cep.MouseClick += new System.Windows.Forms.MouseEventHandler(this.msk_celular_MouseClick);
             // 
             // msk_celular
             // 
@@ -148,13 +148,13 @@ namespace AssistentePessoal
             this.msk_celular.TabIndex = 28;
             this.msk_celular.MouseClick += new System.Windows.Forms.MouseEventHandler(this.msk_celular_MouseClick);
             // 
-            // FormSender
+            // FormCadastroSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 362);
             this.Controls.Add(this.msk_celular);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.mask_cep);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tx_email);
             this.Controls.Add(this.label3);
@@ -164,7 +164,7 @@ namespace AssistentePessoal
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.ok);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormSender";
+            this.Name = "FormCadastroSender";
             this.Text = "FormSender";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -181,7 +181,7 @@ namespace AssistentePessoal
         private System.Windows.Forms.TextBox tx_email;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox mask_cep;
         private System.Windows.Forms.MaskedTextBox msk_celular;
     }
 }

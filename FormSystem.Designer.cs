@@ -157,7 +157,7 @@ namespace AssistentePessoal
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSystem";
-            this.Text = "Form1";
+            this.Text = "Assistente Pessoal";
             this.Load += new System.EventHandler(this.FormSystem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grafico_entrada)).EndInit();
             this.tabControl1.ResumeLayout(false);

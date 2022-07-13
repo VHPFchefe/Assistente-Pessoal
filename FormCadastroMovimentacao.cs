@@ -8,13 +8,13 @@ using System.Data.SqlClient;
 
 namespace AssistentePessoal
 {
-    public partial class FormRegistroEntrada : Form
+    public partial class FormCadastroMovimentacao : Form
     {
 
         private bool is_edit = false;
         private Transact transact_edit;
 
-        public FormRegistroEntrada(int edit_transact)
+        public FormCadastroMovimentacao(int edit_transact)
         {
             this.BringToFront();
 
@@ -33,7 +33,7 @@ namespace AssistentePessoal
             is_edit = true;
         }
 
-        public FormRegistroEntrada()
+        public FormCadastroMovimentacao()
         {
             InitializeComponent();
             loadTipoEntrada();
@@ -45,7 +45,7 @@ namespace AssistentePessoal
 
         private void AtualizaFormPai()
         {
-            ((FormRegistros)this.Owner).LoadGrid();
+            ((FormRegistrosMovimentacao)this.Owner).LoadGrid();
         }
 
         private void cancelar_Click(object sender, EventArgs e)

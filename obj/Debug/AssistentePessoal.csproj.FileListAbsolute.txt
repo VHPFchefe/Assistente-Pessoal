@@ -20,9 +20,13 @@ C:\Users\vinicius.floriano\source\repos\AssistentePessoal\obj\Debug\AssistentePe
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.exe.config
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.exe
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\bin\Debug\AssistentePessoal.pdb
-C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistros.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormCadastroCarteira.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistrosCarteira.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistrosMovimentacao.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormCadastroSender.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistrosSender.resources
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormSystem.resources
-C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormRegistroEntrada.resources
+C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormCadastroMovimentacao.resources
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.Properties.Resources.resources
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.csproj.GenerateResource.cache
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.csproj.CoreCompileInputs.cache
@@ -30,5 +34,3 @@ C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\A
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.exe
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.pdb
 C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.csproj.AssemblyReference.cache
-C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormCarteiraCadastro.resources
-C:\Users\vinicius.floriano\Documents\Programação\PROJETO - AssistentePessoal\Assistente-Pessoal\obj\Debug\AssistentePessoal.FormSenderCadastro.resources

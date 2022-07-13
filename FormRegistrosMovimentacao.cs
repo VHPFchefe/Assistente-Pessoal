@@ -7,17 +7,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using AssistentePessoal.Entities;
 using AssistentePessoal.Extras;
+using System.Linq;
 
 namespace AssistentePessoal
 {
-    public partial class FormRegistros : Form
+    public partial class FormRegistrosMovimentacao : Form
     {
         public DataGridViewCellStyle default_back_color = new DataGridViewCellStyle();
-        
 
-        private int[] transacoes = { };
-   
-        public FormRegistros()
+        public FormRegistrosMovimentacao()
         {
             InitializeComponent();
             this.grid.ClearSelection();
@@ -30,16 +28,18 @@ namespace AssistentePessoal
 
         private void Iniciar_Click(object sender, EventArgs e)
         {
-            FormRegistroEntrada form = new FormRegistroEntrada();
-            form.Owner = this;
-            form.Show();
+            EditarRegistro();
         }
 
         private void EditarRegistro()
         {
-            FormRegistroEntrada form = new FormRegistroEntrada(transacoes[0]);
-            form.Owner = this;
-            form.Show();
+            if(GetIdInRows().Length == 1)
+            {
+                int id = GetIdInRows().ElementAt(0);
+                FormCadastroMovimentacao form = new FormCadastroMovimentacao(id);
+                form.Owner = this;
+                form.Show();
+            }
         }
 
         private void Search()

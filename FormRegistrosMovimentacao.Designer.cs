@@ -1,7 +1,7 @@
 ﻿
 namespace AssistentePessoal
 {
-    partial class FormRegistros
+    partial class FormRegistrosMovimentacao
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace AssistentePessoal
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegistros));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegistrosMovimentacao));
             this.grid = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editar_menu_item = new System.Windows.Forms.ToolStripMenuItem();

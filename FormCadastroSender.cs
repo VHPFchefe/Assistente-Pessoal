@@ -1,25 +1,34 @@
 ﻿using AssistentePessoal.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AssistentePessoal
 {
-    public partial class FormSenderCadastro : Form
+    public partial class FormCadastroSender : Form
     {
         Senders remetente;
+        public bool is_new;
 
-        public FormSenderCadastro()
+        public FormCadastroSender()
         {
             InitializeComponent();
+            is_new = true;
+        }
+
+        public FormCadastroSender(int id)
+        {
+            InitializeComponent();
+            remetente= new Senders(id);
+            mask_cep.Text = remetente.cep;
+            msk_celular.Text = remetente.phone;
+            tx_email.Text = remetente.email;
+            tb_nome.Text = remetente.name;
+            is_new = false;
+        }
+
+        private void AtualizaFormPai()
+        {
+            ((FormRegistrosSender)this.Owner).LoadGrid();
         }
 
         private void ok_Click(object sender, EventArgs e)
@@ -28,11 +37,22 @@ namespace AssistentePessoal
             {
                 if (!ValidateSender())
                 {
-                    string cep = decode(maskedTextBox1.Text) == 0 ? "" : maskedTextBox1.Text;
+                    string cep = decode(mask_cep.Text) == 0 ? "" : mask_cep.Text;
                     string celular = decode(msk_celular.Text) == 0 ? "" : msk_celular.Text;
                     string email = tx_email.Text.Length == 0 ? "" : tx_email.Text;
-                    remetente = new Senders(tb_nome.Text, celular , email, cep);
-                    remetente.CadastroCliente();
+
+                    if (!is_new)
+                    {
+                        remetente = new Senders(remetente.id,tb_nome.Text, celular, email, cep);
+                        remetente.RegisterEdit();
+                    }
+                    else
+                    {
+                        remetente = new Senders(tb_nome.Text, celular, email, cep);
+                        remetente.RegisterAdd();
+                    }
+
+                    AtualizaFormPai();
                     this.Close();
                 }
             }
@@ -78,13 +98,13 @@ namespace AssistentePessoal
                 exc += "O nome não pode ficar em branco.\n";
             }
 
-            if (decode(msk_celular.Text) == 0 ? false : decode(msk_celular.Text) < 11) 
+            if (decode(msk_celular.Text) == 0 ? false : decode(msk_celular.Text) < 11)
             {
                 ex = true;
                 exc += "Preencha corretamente o campos Celular.\n";
             }
 
-            if (decode(maskedTextBox1.Text) == 0 ? false : decode(maskedTextBox1.Text) < 8)
+            if (decode(mask_cep.Text) == 0 ? false : decode(mask_cep.Text) < 8)
             {
                 ex = true;
                 exc += "Preencha corretamente o campo CEP.\n";

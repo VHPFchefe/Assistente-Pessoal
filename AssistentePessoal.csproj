@@ -69,23 +69,35 @@
     <Compile Include="Entities\Senders.cs" />
     <Compile Include="Entities\Transact.cs" />
     <Compile Include="Extras\Consultas.cs" />
-    <Compile Include="FormCarteiraCadastro.cs">
+    <Compile Include="FormCadastroCarteira.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCarteiraCadastro.Designer.cs">
-      <DependentUpon>FormCarteiraCadastro.cs</DependentUpon>
+    <Compile Include="FormCadastroCarteira.Designer.cs">
+      <DependentUpon>FormCadastroCarteira.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRegistros.cs">
+    <Compile Include="FormRegistrosCarteira.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRegistros.Designer.cs">
-      <DependentUpon>FormRegistros.cs</DependentUpon>
+    <Compile Include="FormRegistrosCarteira.Designer.cs">
+      <DependentUpon>FormRegistrosCarteira.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSenderCadastro.cs">
+    <Compile Include="FormRegistrosMovimentacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSenderCadastro.Designer.cs">
-      <DependentUpon>FormSenderCadastro.cs</DependentUpon>
+    <Compile Include="FormRegistrosMovimentacao.Designer.cs">
+      <DependentUpon>FormRegistrosMovimentacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCadastroSender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCadastroSender.Designer.cs">
+      <DependentUpon>FormCadastroSender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistrosSender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistrosSender.Designer.cs">
+      <DependentUpon>FormRegistrosSender.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSystem.cs">
       <SubType>Form</SubType>
@@ -93,28 +105,34 @@
     <Compile Include="FormSystem.Designer.cs">
       <DependentUpon>FormSystem.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRegistroEntrada.cs">
+    <Compile Include="FormCadastroMovimentacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRegistroEntrada.Designer.cs">
-      <DependentUpon>FormRegistroEntrada.cs</DependentUpon>
+    <Compile Include="FormCadastroMovimentacao.Designer.cs">
+      <DependentUpon>FormCadastroMovimentacao.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormCarteiraCadastro.resx">
-      <DependentUpon>FormCarteiraCadastro.cs</DependentUpon>
+    <EmbeddedResource Include="FormCadastroCarteira.resx">
+      <DependentUpon>FormCadastroCarteira.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistros.resx">
-      <DependentUpon>FormRegistros.cs</DependentUpon>
+    <EmbeddedResource Include="FormRegistrosCarteira.resx">
+      <DependentUpon>FormRegistrosCarteira.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSenderCadastro.resx">
-      <DependentUpon>FormSenderCadastro.cs</DependentUpon>
+    <EmbeddedResource Include="FormRegistrosMovimentacao.resx">
+      <DependentUpon>FormRegistrosMovimentacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCadastroSender.resx">
+      <DependentUpon>FormCadastroSender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrosSender.resx">
+      <DependentUpon>FormRegistrosSender.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSystem.resx">
       <DependentUpon>FormSystem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistroEntrada.resx">
-      <DependentUpon>FormRegistroEntrada.cs</DependentUpon>
+    <EmbeddedResource Include="FormCadastroMovimentacao.resx">
+      <DependentUpon>FormCadastroMovimentacao.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
