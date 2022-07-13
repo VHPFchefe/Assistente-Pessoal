@@ -13,17 +13,44 @@ namespace AssistentePessoal
     public partial class FormCadastroCarteira : Form
     {
         Portfolio portfolio;
+        public bool is_new;
+
         public FormCadastroCarteira()
         {
             InitializeComponent();
+            is_new = true;
         }
+
+        public FormCadastroCarteira(int id)
+        {
+            InitializeComponent();
+            is_new = false;
+            portfolio = new Portfolio(id);
+            tb_nome.Text = portfolio.name;
+        }
+
+        private void AtualizaFormPai()
+        {
+            ((FormRegistrosCarteira)this.Owner).LoadGrid();
+        }
+
 
         private void ok_Click(object sender, EventArgs e)
         {
             try
             {
-                portfolio = new Portfolio(tb_nome.Text);
-                portfolio.Insert();
+
+                if (!is_new)
+                {
+                    portfolio = new Portfolio(portfolio.id, tb_nome.Text);
+                    portfolio.RegisterEdit();
+                }
+                else
+                {
+                    portfolio = new Portfolio(tb_nome.Text);
+                    portfolio.RegisterAdd();
+                }
+                AtualizaFormPai();
                 this.Close();
             }
             catch (Exception ex)
@@ -39,11 +66,6 @@ namespace AssistentePessoal
             {
                 this.Close();
             }
-        }
-
-        private void FormCarteira_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

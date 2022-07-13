@@ -39,7 +39,7 @@ namespace AssistentePessoal
             // cancelar
             // 
             this.cancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.cancelar.Location = new System.Drawing.Point(632, 415);
+            this.cancelar.Location = new System.Drawing.Point(222, 141);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
             this.cancelar.TabIndex = 20;
@@ -50,7 +50,7 @@ namespace AssistentePessoal
             // ok
             // 
             this.ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ok.Location = new System.Drawing.Point(713, 415);
+            this.ok.Location = new System.Drawing.Point(303, 141);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);
             this.ok.TabIndex = 19;
@@ -60,7 +60,7 @@ namespace AssistentePessoal
             // 
             // tb_nome
             // 
-            this.tb_nome.Location = new System.Drawing.Point(106, 39);
+            this.tb_nome.Location = new System.Drawing.Point(106, 56);
             this.tb_nome.Name = "tb_nome";
             this.tb_nome.Size = new System.Drawing.Size(272, 20);
             this.tb_nome.TabIndex = 22;
@@ -68,25 +68,24 @@ namespace AssistentePessoal
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 42);
+            this.label1.Location = new System.Drawing.Point(12, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 21;
             this.label1.Text = "Nome da carteira";
             // 
-            // FormCarteira
+            // FormCadastroCarteira
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(410, 176);
             this.Controls.Add(this.tb_nome);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.ok);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormCarteira";
-            this.Text = "FormCarteira";
-            this.Load += new System.EventHandler(this.FormCarteira_Load);
+            this.Name = "FormCadastroCarteira";
+            this.Text = "Cadastro de Carteira";
             this.ResumeLayout(false);
             this.PerformLayout();
 

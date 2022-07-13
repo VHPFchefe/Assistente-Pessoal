@@ -45,6 +45,8 @@ namespace AssistentePessoal
             this.label2 = new System.Windows.Forms.Label();
             this.cb_date = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label_total = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -199,11 +201,31 @@ namespace AssistentePessoal
             this.label3.TabIndex = 8;
             this.label3.Text = "Período:";
             // 
-            // FormRegistros
+            // label_total
+            // 
+            this.label_total.AutoSize = true;
+            this.label_total.Location = new System.Drawing.Point(40, 459);
+            this.label_total.Name = "label_total";
+            this.label_total.Size = new System.Drawing.Size(88, 13);
+            this.label_total.TabIndex = 9;
+            this.label_total.Text = "Saldo Total: XXX";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(153, 459);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Saldo Selecionado: XXX";
+            // 
+            // FormRegistrosMovimentacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 498);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label_total);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cb_date);
             this.Controls.Add(this.label2);
@@ -214,7 +236,7 @@ namespace AssistentePessoal
             this.Controls.Add(this.Iniciar);
             this.Controls.Add(this.grid);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormRegistros";
+            this.Name = "FormRegistrosMovimentacao";
             this.Text = "FormRegistros";
             this.Load += new System.EventHandler(this.FormRegistros_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
@@ -238,5 +260,7 @@ namespace AssistentePessoal
         private System.Windows.Forms.ToolStripMenuItem remover_menu_item;
         private System.Windows.Forms.ComboBox cb_date;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_total;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -28,9 +28,8 @@ namespace AssistentePessoal
 
         private void CriarRegistro(bool isNew)
         {
-            if (GetIdInRows().Length == 1)
+            if (GetIdInRows().Length <= 1)
             {
-                int id = GetIdInRows().ElementAt(0);
                 FormCadastroSender f = (FormCadastroSender)Application.OpenForms["FormCadastroSender"];
                 if (f != null)
                     f.BringToFront();
@@ -42,6 +41,7 @@ namespace AssistentePessoal
                     }
                     else
                     {
+                        int id = GetIdInRows().ElementAt(0);
                         f = new FormCadastroSender(id);
                     }
                     f.Owner = this;

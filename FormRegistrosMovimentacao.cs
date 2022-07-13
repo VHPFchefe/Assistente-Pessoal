@@ -28,19 +28,37 @@ namespace AssistentePessoal
 
         private void Iniciar_Click(object sender, EventArgs e)
         {
-            EditarRegistro();
+            CriarRegistro(true);
         }
 
-        private void EditarRegistro()
+        private void CriarRegistro(bool isNew)
         {
-            if(GetIdInRows().Length == 1)
+            if (GetIdInRows().Length <= 1)
             {
-                int id = GetIdInRows().ElementAt(0);
-                FormCadastroMovimentacao form = new FormCadastroMovimentacao(id);
-                form.Owner = this;
-                form.Show();
+                FormCadastroMovimentacao f = (FormCadastroMovimentacao)Application.OpenForms["FormCadastroMovimentacao"];
+                if (f != null)
+                {
+                    f.BringToFront();
+                }
+                else
+                {
+                    if (isNew)
+                    {
+                        f = new FormCadastroMovimentacao();
+                    }
+                    else
+                    {
+                        int id = GetIdInRows().ElementAt(0);
+                        f = new FormCadastroMovimentacao(id);
+                    }
+                    f.Owner = this;
+                    f.Show();
+                }
+                LoadGrid();
             }
         }
+
+
 
         private void Search()
         {
@@ -205,7 +223,7 @@ namespace AssistentePessoal
 
         private void editar_menu_item_Click(object sender, EventArgs e)
         {
-            EditarRegistro();
+            CriarRegistro(false);
         }
 
         private void remover_menu_item_Click(object sender, EventArgs e)
@@ -276,7 +294,7 @@ namespace AssistentePessoal
         {
             if (MessageBox.Show("Você realmente deseja editar ?", "Editar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                EditarRegistro();
+                CriarRegistro(false);
             }
         }
 
