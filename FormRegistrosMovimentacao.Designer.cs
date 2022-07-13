@@ -46,7 +46,7 @@ namespace AssistentePessoal
             this.cb_date = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label_total = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label_selecionado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,7 @@ namespace AssistentePessoal
             this.grid.Size = new System.Drawing.Size(751, 369);
             this.grid.TabIndex = 0;
             this.grid.VirtualMode = true;
+            this.grid.SelectionChanged += new System.EventHandler(this.grid_SelectionChanged);
             this.grid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.grid_MouseDoubleClick);
             // 
             // contextMenuStrip
@@ -204,27 +205,27 @@ namespace AssistentePessoal
             // label_total
             // 
             this.label_total.AutoSize = true;
-            this.label_total.Location = new System.Drawing.Point(40, 459);
+            this.label_total.Location = new System.Drawing.Point(31, 450);
             this.label_total.Name = "label_total";
             this.label_total.Size = new System.Drawing.Size(88, 13);
             this.label_total.TabIndex = 9;
             this.label_total.Text = "Saldo Total: XXX";
             // 
-            // label4
+            // label_selecionado
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(153, 459);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Saldo Selecionado: XXX";
+            this.label_selecionado.AutoSize = true;
+            this.label_selecionado.Location = new System.Drawing.Point(31, 473);
+            this.label_selecionado.Name = "label_selecionado";
+            this.label_selecionado.Size = new System.Drawing.Size(123, 13);
+            this.label_selecionado.TabIndex = 10;
+            this.label_selecionado.Text = "Saldo Selecionado: XXX";
             // 
             // FormRegistrosMovimentacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 498);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label_selecionado);
             this.Controls.Add(this.label_total);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cb_date);
@@ -236,6 +237,7 @@ namespace AssistentePessoal
             this.Controls.Add(this.Iniciar);
             this.Controls.Add(this.grid);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormRegistrosMovimentacao";
             this.Text = "FormRegistros";
             this.Load += new System.EventHandler(this.FormRegistros_Load);
@@ -261,6 +263,6 @@ namespace AssistentePessoal
         private System.Windows.Forms.ComboBox cb_date;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label_total;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label_selecionado;
     }
 }

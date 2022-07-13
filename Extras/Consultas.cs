@@ -48,7 +48,8 @@ namespace AssistentePessoal.Extras
                     " s.sender_name as 'Remetente',	" +
                     " p.name_portfolio as 'Portifólio', 	" +
                     " t.transact_comment as 'Comentário',	" +
-                    " format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação'" +
+                    " format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação'," +
+                    " t.id_transact_type as 'id_transact_type' " +
                     " from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) " +
                     " inner join sender s on (s.id_sender = t.id_sender) " +
                     " inner join portfolio p on (p.id_portfolio = t.id_portfolio) " +

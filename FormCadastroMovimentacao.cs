@@ -45,7 +45,7 @@ namespace AssistentePessoal
 
         private void AtualizaFormPai()
         {
-            ((FormRegistrosMovimentacao)this.Owner).LoadGrid();
+            ((FormRegistrosMovimentacao)this.Owner).Search();
         }
 
         private void cancelar_Click(object sender, EventArgs e)

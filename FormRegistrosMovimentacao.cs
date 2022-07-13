@@ -54,13 +54,11 @@ namespace AssistentePessoal
                     f.Owner = this;
                     f.Show();
                 }
-                LoadGrid();
+                Search();
             }
         }
 
-
-
-        private void Search()
+        public void Search()
         {
             string parameterSQL = tx_pesquisa.Text;
             int identSearch = cb_filtro.SelectedIndex;
@@ -119,12 +117,12 @@ namespace AssistentePessoal
             cb_date.SelectedIndex = 0;
         }
 
-        public void LoadGrid()
+        private void LoadGrid()
         {
             Db_connection db = new Db_connection();
             try
             {
-                string sql = "select t.transact_number as 'Número da Transação', t.transact_value as 'Valor da Transação', it.name_transact_type as 'Movimentação', s.sender_name as 'Remetente',	p.name_portfolio as 'Portifólio', 	t.transact_comment as 'Comentário',	format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação'from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) inner join sender s on (s.id_sender = t.id_sender) inner join portfolio p on (p.id_portfolio = t.id_portfolio) where t.removed = 0 order by date_transact desc";
+                string sql = "select t.transact_number as 'Número da Transação', t.transact_value as 'Valor da Transação', it.name_transact_type as 'Movimentação', s.sender_name as 'Remetente',	p.name_portfolio as 'Portifólio', 	t.transact_comment as 'Comentário',	format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação', t.id_transact_type as 'id_transact_type' from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) inner join sender s on (s.id_sender = t.id_sender) inner join portfolio p on (p.id_portfolio = t.id_portfolio) where t.removed = 0 order by date_transact desc";
                 db.con.Open();
                 using (SqlDataAdapter da = new SqlDataAdapter(sql, db.con))
                 {
@@ -136,6 +134,10 @@ namespace AssistentePessoal
                     }
                     AtualizaGrafico(); ;
                 }
+                this.grid.Columns["id_transact_type"].Visible = false;
+                this.grid.Columns["Remetente"].Width = 110;
+                label_total.Text = "Saldo Total: " + AtualizaSaldoTotal();
+                label_selecionado.Text = "Saldo Selecionado: " + AtualizaSaldoSelecionado();
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             finally { db.con.Close(); }
@@ -146,8 +148,8 @@ namespace AssistentePessoal
             Db_connection db = new Db_connection();
             try
             {
-                string[] search = { "0", "0", "0"}; ////r1
-                string[] ident = { "0", "0", "0"};  //p1
+                string[] search = { "0", "0", "0" }; ////r1
+                string[] ident = { "0", "0", "0" };  //p1
 
                 if (identSearch == 1) //("Número da Transação"); 
                 {
@@ -167,10 +169,10 @@ namespace AssistentePessoal
 
 
                 string data = (string.IsNullOrEmpty(date.ToString()) ? DateTime.Now.ToString("yyyy") : date.ToString());
-                data = (data == "[Todos]" ?  "0" : data); // o 0 cancela o filtro na consulta
+                data = (data == "[Todos]" ? "0" : data); // o 0 cancela o filtro na consulta
 
 
-                string[] p1 = { "@p1", "@p2", "@p3", "@r1", "@r2", "@r3", "@v1", "@p0", "@d1"};
+                string[] p1 = { "@p1", "@p2", "@p3", "@r1", "@r2", "@r3", "@v1", "@p0", "@d1" };
                 string[] p2 = { ident[0], ident[1], ident[2], search[0], search[1], search[2], movimentation_type.ToString(), identSearch.ToString(), data };
                 string sql = new Consultas().sqlGrid;
                 for (int i = 0; i < p1.Length; i++)
@@ -188,6 +190,10 @@ namespace AssistentePessoal
                         this.grid.DataSource = dt;
                     }
                 }
+                this.grid.Columns["id_transact_type"].Visible = false;
+                this.grid.Columns["Remetente"].Width = 110;
+                label_total.Text = "Saldo Total: " + AtualizaSaldoTotal();
+                label_selecionado.Text = "Saldo Selecionado: " + AtualizaSaldoSelecionado();
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             finally { db.con.Close(); }
@@ -282,7 +288,7 @@ namespace AssistentePessoal
         {
             int i = 0;
             int[] id = new int[grid.SelectedRows.Count];
-            foreach(DataGridViewRow item in grid.SelectedRows)
+            foreach (DataGridViewRow item in grid.SelectedRows)
             {
                 id[i] = int.Parse(item.Cells["Número da Transação"].Value.ToString());
                 i++;
@@ -314,6 +320,43 @@ namespace AssistentePessoal
             Search();
         }
 
+        private string AtualizaSaldoTotal()
+        {
+            double value = 0;
+            foreach (DataGridViewRow row in grid.Rows)
+            {
+                if (int.Parse(row.Cells["id_transact_type"].Value.ToString()) == 1)
+                {
+                    value += double.Parse(row.Cells["Valor da Transação"].Value.ToString());
+                }
+                else
+                {
+                    value -= double.Parse(row.Cells["Valor da Transação"].Value.ToString());
+                }
+            }
+            return value.ToString("C2");
+        }
 
+        private string AtualizaSaldoSelecionado()
+        {
+            double value = 0;
+            foreach (DataGridViewRow row in grid.SelectedRows)
+            {
+                if (int.Parse(row.Cells["id_transact_type"].Value.ToString()) == 1)
+                {
+                    value += double.Parse(row.Cells["Valor da Transação"].Value.ToString());
+                }
+                else
+                {
+                    value -= double.Parse(row.Cells["Valor da Transação"].Value.ToString());
+                }
+            }
+            return value.ToString("C2");
+        }
+
+        private void grid_SelectionChanged(object sender, EventArgs e)
+        {
+            label_selecionado.Text = "Saldo Selecionado: " + AtualizaSaldoSelecionado();
+        }
     }
 }

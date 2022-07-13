@@ -34,12 +34,12 @@ namespace AssistentePessoal
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegistrosSender));
             this.grid = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tx_pesquisa = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolEditar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolRemover = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tx_pesquisa = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +73,29 @@ namespace AssistentePessoal
             this.grid.VirtualMode = true;
             this.grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellDoubleClick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolEditar,
+            this.toolRemover});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(122, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            // 
+            // toolEditar
+            // 
+            this.toolEditar.Name = "toolEditar";
+            this.toolEditar.Size = new System.Drawing.Size(121, 22);
+            this.toolEditar.Text = "Editar";
+            this.toolEditar.Click += new System.EventHandler(this.toolEditar_Click);
+            // 
+            // toolRemover
+            // 
+            this.toolRemover.Name = "toolRemover";
+            this.toolRemover.Size = new System.Drawing.Size(121, 22);
+            this.toolRemover.Text = "Remover";
+            this.toolRemover.Click += new System.EventHandler(this.toolRemover_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -100,29 +123,6 @@ namespace AssistentePessoal
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolEditar,
-            this.toolRemover});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(122, 48);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
-            // 
-            // toolEditar
-            // 
-            this.toolEditar.Name = "toolEditar";
-            this.toolEditar.Size = new System.Drawing.Size(121, 22);
-            this.toolEditar.Text = "Editar";
-            this.toolEditar.Click += new System.EventHandler(this.toolEditar_Click);
-            // 
-            // toolRemover
-            // 
-            this.toolRemover.Name = "toolRemover";
-            this.toolRemover.Size = new System.Drawing.Size(121, 22);
-            this.toolRemover.Text = "Remover";
-            this.toolRemover.Click += new System.EventHandler(this.toolRemover_Click);
-            // 
             // FormRegistrosSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,6 +133,8 @@ namespace AssistentePessoal
             this.Controls.Add(this.tx_pesquisa);
             this.Controls.Add(this.grid);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormRegistrosSender";
             this.Text = "Registros de Remetentes";
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();

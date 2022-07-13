@@ -236,7 +236,7 @@ namespace AssistentePessoal
             this.label6.TabIndex = 20;
             this.label6.Text = "Registro de Movimentação";
             // 
-            // FormRegistroEntrada
+            // FormCadastroMovimentacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -260,7 +260,8 @@ namespace AssistentePessoal
             this.Controls.Add(this.label6);
             this.Controls.Add(this.listView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormRegistroEntrada";
+            this.MaximizeBox = false;
+            this.Name = "FormCadastroMovimentacao";
             this.Text = "Assistente Pessoal";
             this.ResumeLayout(false);
             this.PerformLayout();

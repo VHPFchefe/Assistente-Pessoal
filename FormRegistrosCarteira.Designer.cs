@@ -126,6 +126,7 @@ namespace AssistentePessoal
             this.Controls.Add(this.tx_pesquisa);
             this.Controls.Add(this.grid);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormRegistrosCarteira";
             this.Text = "Registros de Carteira";
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();

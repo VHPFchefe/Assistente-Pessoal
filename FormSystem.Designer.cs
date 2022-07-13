@@ -67,7 +67,7 @@ namespace AssistentePessoal
             this.remetentes.Name = "remetentes";
             this.remetentes.Size = new System.Drawing.Size(121, 34);
             this.remetentes.TabIndex = 2;
-            this.remetentes.Text = "Cadastrar Remetentes";
+            this.remetentes.Text = "Remetentes";
             this.remetentes.UseVisualStyleBackColor = false;
             this.remetentes.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -79,7 +79,7 @@ namespace AssistentePessoal
             this.carteira.Name = "carteira";
             this.carteira.Size = new System.Drawing.Size(119, 34);
             this.carteira.TabIndex = 3;
-            this.carteira.Text = "Cadastrar Carteira";
+            this.carteira.Text = "Portifólio/Carteira";
             this.carteira.UseVisualStyleBackColor = false;
             this.carteira.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -156,6 +156,7 @@ namespace AssistentePessoal
             this.Controls.Add(this.tabControl1);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormSystem";
             this.Text = "Assistente Pessoal";
             this.Load += new System.EventHandler(this.FormSystem_Load);

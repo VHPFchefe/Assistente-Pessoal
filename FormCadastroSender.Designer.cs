@@ -164,6 +164,7 @@ namespace AssistentePessoal
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.ok);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormCadastroSender";
             this.Text = "FormSender";
             this.ResumeLayout(false);
