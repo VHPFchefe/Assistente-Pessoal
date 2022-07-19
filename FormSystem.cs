@@ -11,7 +11,7 @@ using System.Threading;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Data.SqlClient;
 using AssistentePessoal.Extras;
-
+using AssistentePessoal.Entities;
 namespace AssistentePessoal
 {
     public partial class FormSystem : Form
@@ -21,6 +21,7 @@ namespace AssistentePessoal
         public FormSystem()
         {
             InitializeComponent();
+            Import teste = new Import();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -172,5 +173,6 @@ namespace AssistentePessoal
         {
             LoadGraficos();
         }
+
     }
 }

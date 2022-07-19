@@ -1,5 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Globalization;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,6 +10,7 @@ using System.Windows.Forms;
 using AssistentePessoal.Entities;
 using AssistentePessoal.Extras;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace AssistentePessoal
 {
@@ -357,6 +360,146 @@ namespace AssistentePessoal
         private void grid_SelectionChanged(object sender, EventArgs e)
         {
             label_selecionado.Text = "Saldo Selecionado: " + AtualizaSaldoSelecionado();
+        }
+
+
+        private void button1_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tp = new ToolTip();
+            tp.SetToolTip(button1, "Salvar como");
+        }
+
+        private void button2_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tp = new ToolTip();
+            tp.SetToolTip(button2, "Importar planilha de registros");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.FileName = "";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ImportarCsv(openFileDialog1.FileName);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fileName = "Movimentações Pessoais - Export " + DateTime.Now.ToString("dd-MM-yyyy") + ".csv";
+            saveFileDialog1.FileName = fileName;
+            saveFileDialog1.Filter = "Arquivos Excel | *.csv";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ExportarCsv(saveFileDialog1.FileName);
+            }
+        }
+
+        private void ExportarCsv(string path)
+        {
+            FileStream fs = null;
+
+            string cabecalho = "Número da Transação;Valor;Movimentação;Remetente;Carteira;Comentário;Data";
+            string[] lines = new string[grid.Rows.Count];
+            int a = 0;
+            foreach (DataGridViewRow dr in grid.Rows)
+            {
+                lines[a] =
+                    dr.Cells[0].Value.ToString() + ";" +
+                    dr.Cells[1].Value.ToString() + ";" +
+                    dr.Cells[2].Value.ToString() + ";" +
+                    dr.Cells[3].Value.ToString() + ";" +
+                    dr.Cells[4].Value.ToString() + ";" +
+                    dr.Cells[5].Value.ToString() + ";" +
+                    dr.Cells[6].Value.ToString() + ";" +
+                    dr.Cells[7].Value.ToString();
+                a++;
+            }
+            try
+            {
+                fs = new FileStream(path, FileMode.Create);
+
+                using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
+                {
+                    sw.WriteLine(cabecalho);
+                    foreach (string line in lines)
+                    {
+                        sw.WriteLine(line.ToUpper());
+                    }
+                }
+                MessageBox.Show("Planilha Exportada com sucesso");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            finally
+            {
+                if (fs != null)
+                    fs.Dispose();
+            }
+        }
+
+        private void ImportarCsv(string path)
+        {
+            FileStream fs = null;
+            try
+            {
+                fs = new FileStream(path, FileMode.Open);
+                using (StreamReader sr = new StreamReader(fs, Encoding.UTF8))
+                {
+                    List<string> lines = new List<string>();
+                    Import imp = new Import();
+
+                    while (!sr.EndOfStream)
+                    {
+                        lines.Add(sr.ReadLine());
+                    }
+                    lines.RemoveAt(0);
+
+                    int[] transacts_import = new int[lines.Count()];
+                    int[] transacts_in_db = TransactInDb();
+                    int c = 0;
+                    foreach (string item in lines)
+                    {
+                        string[] coll = item.Split(';');
+                        transacts_import[c] = int.Parse(coll[0]);
+                        //MessageBox.Show(transacts_import[c].ToString());
+                        c++;
+                    }
+
+                    if (imp.Validate(transacts_in_db, transacts_import))
+                    {
+                        //imp.createRegistros
+                    }
+                }
+            }
+            catch (IOException e) { MessageBox.Show(e.ToString()); }
+            finally
+            {
+                if (fs != null)
+                    fs.Dispose();
+            }
+
+            int[] TransactInDb()
+            {
+                List<int> transacts = new List<int>();
+                Db_connection db = new Db_connection();
+                try
+                {
+                    string sql = "select t.transact_number as 'Número da Transação', t.transact_value as 'Valor da Transação', it.name_transact_type as 'Movimentação', s.sender_name as 'Remetente',	p.name_portfolio as 'Portifólio', 	t.transact_comment as 'Comentário',	format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação', t.id_transact_type as 'id_transact_type' from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) inner join sender s on (s.id_sender = t.id_sender) inner join portfolio p on (p.id_portfolio = t.id_portfolio) where t.removed = 0 order by date_transact desc";
+                    db.con.Open();
+                    SqlCommand command = new SqlCommand(sql, db.con);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var teste = (IDataRecord)reader;
+                        transacts.Add(int.Parse(String.Format("{0}", teste[0])));
+                    }
+                    reader.Close();
+
+                }
+                catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+                finally { db.con.Close();}
+                return transacts.ToArray();
+            }
         }
     }
 }

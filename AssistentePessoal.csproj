@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Db_connection.cs" />
+    <Compile Include="Extras\Db_connection.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Enum\Movimentation.cs" />
     <Compile Include="Entities\Portfolio.cs" />
@@ -111,6 +111,7 @@
     <Compile Include="FormCadastroMovimentacao.Designer.cs">
       <DependentUpon>FormCadastroMovimentacao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extras\Import.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormCadastroCarteira.resx">

@@ -1,0 +1,7 @@
+﻿Número da Transação;Valor;Movimentação;Remetente;Carteira;Comentário;Data
+2;100,00;ENTRADA;VINICIUS;NUBANK;;13/07/2022;1
+
+1;500,00;SAÍDA;VINICIUS;NUBANK;;13/07/2022;2
+
+3;500,00;ENTRADA;VINICIUS;NUBANK;;13/07/2021;1
+

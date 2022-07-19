@@ -40,6 +40,7 @@ namespace AssistentePessoal
             this.entrada_saida = new System.Windows.Forms.TabPage();
             this.lucro_tendencia = new System.Windows.Forms.TabPage();
             this.grafico_lucro = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grafico_entrada)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.entrada_saida.SuspendLayout();
@@ -123,6 +124,7 @@ namespace AssistentePessoal
             // 
             // lucro_tendencia
             // 
+            this.lucro_tendencia.Controls.Add(this.richTextBox1);
             this.lucro_tendencia.Controls.Add(this.grafico_lucro);
             this.lucro_tendencia.Location = new System.Drawing.Point(4, 22);
             this.lucro_tendencia.Name = "lucro_tendencia";
@@ -143,6 +145,16 @@ namespace AssistentePessoal
             this.grafico_lucro.Size = new System.Drawing.Size(848, 431);
             this.grafico_lucro.TabIndex = 6;
             this.grafico_lucro.Text = "chart1";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.richTextBox1.Location = new System.Drawing.Point(97, 141);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(640, 96);
+            this.richTextBox1.TabIndex = 7;
+            this.richTextBox1.Text = "Coming soon:\n----------------------------------------------\n1 - Nova funcionalida" +
+    "de - Contas a Pagar;\n2 - Implementar gráfico de lucro x tendencia;\n3 - Webview";
             // 
             // FormSystem
             // 
@@ -178,5 +190,6 @@ namespace AssistentePessoal
         private System.Windows.Forms.TabPage entrada_saida;
         private System.Windows.Forms.TabPage lucro_tendencia;
         private System.Windows.Forms.DataVisualization.Charting.Chart grafico_lucro;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

@@ -5,6 +5,7 @@ using AssistentePessoal.Entities;
 using AssistentePessoal.Entities.Enum;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
+using AssistentePessoal.Extras;
 
 namespace AssistentePessoal
 {
