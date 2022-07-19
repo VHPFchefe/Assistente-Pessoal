@@ -439,67 +439,30 @@ namespace AssistentePessoal
 
         private void ImportarCsv(string path)
         {
-            FileStream fs = null;
+            Import imp = new Import();
+            imp.CreateRegistros(path, TransactInDb());
+        }
+
+        private List<string> TransactInDb()
+        {
+            List<string> transacts = new List<string>();
+            Db_connection db = new Db_connection();
             try
             {
-                fs = new FileStream(path, FileMode.Open);
-                using (StreamReader sr = new StreamReader(fs, Encoding.UTF8))
+                string sql = "select t.transact_number as 'Número da Transação', t.transact_value as 'Valor da Transação', it.name_transact_type as 'Movimentação', s.sender_name as 'Remetente',	p.name_portfolio as 'Portifólio', 	t.transact_comment as 'Comentário',	format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação', t.id_transact_type as 'id_transact_type' from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) inner join sender s on (s.id_sender = t.id_sender) inner join portfolio p on (p.id_portfolio = t.id_portfolio) where t.removed = 0 order by date_transact desc";
+                db.con.Open();
+                SqlCommand command = new SqlCommand(sql, db.con);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    List<string> lines = new List<string>();
-                    Import imp = new Import();
-
-                    while (!sr.EndOfStream)
-                    {
-                        lines.Add(sr.ReadLine());
-                    }
-                    lines.RemoveAt(0);
-
-                    int[] transacts_import = new int[lines.Count()];
-                    int[] transacts_in_db = TransactInDb();
-                    int c = 0;
-                    foreach (string item in lines)
-                    {
-                        string[] coll = item.Split(';');
-                        transacts_import[c] = int.Parse(coll[0]);
-                        //MessageBox.Show(transacts_import[c].ToString());
-                        c++;
-                    }
-
-                    if (imp.Validate(transacts_in_db, transacts_import))
-                    {
-                        //imp.createRegistros
-                    }
+                    var teste = (IDataRecord)reader;
+                    transacts.Add(String.Format("{0}", teste[0]));
                 }
+                reader.Close();
             }
-            catch (IOException e) { MessageBox.Show(e.ToString()); }
-            finally
-            {
-                if (fs != null)
-                    fs.Dispose();
-            }
-
-            int[] TransactInDb()
-            {
-                List<int> transacts = new List<int>();
-                Db_connection db = new Db_connection();
-                try
-                {
-                    string sql = "select t.transact_number as 'Número da Transação', t.transact_value as 'Valor da Transação', it.name_transact_type as 'Movimentação', s.sender_name as 'Remetente',	p.name_portfolio as 'Portifólio', 	t.transact_comment as 'Comentário',	format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação', t.id_transact_type as 'id_transact_type' from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) inner join sender s on (s.id_sender = t.id_sender) inner join portfolio p on (p.id_portfolio = t.id_portfolio) where t.removed = 0 order by date_transact desc";
-                    db.con.Open();
-                    SqlCommand command = new SqlCommand(sql, db.con);
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var teste = (IDataRecord)reader;
-                        transacts.Add(int.Parse(String.Format("{0}", teste[0])));
-                    }
-                    reader.Close();
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-                finally { db.con.Close();}
-                return transacts.ToArray();
-            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            finally { db.con.Close(); }
+            return transacts;
         }
     }
 }

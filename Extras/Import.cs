@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,29 +9,62 @@ using AssistentePessoal.Entities;
 
 namespace AssistentePessoal.Extras
 {
-    public class Import : Transact
+    public class Import
     {
         public Import() { }
-        public Import(int TransactNumber) : base(TransactNumber)
-        {
+        public Transact transact;
 
+        public void CreateRegistros(string path, List<string> transacts_in_db)
+        {
+            FileStream fs = null;
+            try
+            {
+                fs = new FileStream(path, FileMode.Open);
+                using (StreamReader sr = new StreamReader(fs, Encoding.UTF8))
+                {
+                    List<string> lines = new List<string>();
+
+                    while (!sr.EndOfStream)
+                    {
+                        lines.Add(sr.ReadLine());
+                    }
+                    
+                    lines.RemoveAt(0);
+
+                    if (Validate(transacts_in_db, lines))
+                    {
+                        PersistirRegistro();
+                    }
+                }
+            }
+            catch (IOException e) { MessageBox.Show(e.ToString()); }
+            finally
+            {
+                if (fs != null)
+                    fs.Dispose();
+            }
         }
 
-        public bool Validate(int[] x, int[] y)
+        private bool Validate(List<string> transacts_in_db, List<string> dados_import)
         {
-            // Regras
             // A planilha não pode conter número de transações duplicados ou existente no banco, se houver, cancelar a operação sem salvar registros.
-            // X = valores do banco
-            // Y = valores da planilha
-            return Existente(x, y) == false && Duplicado(y) == false;
+            List<string>  imports = new List<string>();
+            
+            foreach (string item in dados_import)
+            {
+                string[] coll = item.Split(';');
+                imports.Add(coll[0].ToString());
+            }
+            
+            return Existente(transacts_in_db, imports) == false && Duplicado(imports) == false;
         }
 
-        private bool Duplicado(int[] Z)
+        private bool Duplicado(List<string> Z)
         {
-            List<int> list_duplicatas = new List<int>();
+            List<string> list_duplicatas = new List<string>();
             bool duplicados = false;
-            int[] x = Z;
-            int[] y = Z;
+            string[] x = Z.ToArray();
+            string[] y = Z.ToArray();
             int indexI = 0;
             string message_dupl = "";
             for (int i = 0; i < x.Length; i++)
@@ -47,7 +81,7 @@ namespace AssistentePessoal.Extras
                 }
                 indexI++;
             }
-            foreach (int item in list_duplicatas)
+            foreach (string item in list_duplicatas)
             {
                 message_dupl += "\nN° Transação: " + item;
             }
@@ -55,18 +89,29 @@ namespace AssistentePessoal.Extras
             return duplicados;
         }
 
-        private bool Existente(int[] x, int[] y)
+        private bool Existente(List<string> x, List<string> y)
         {
             bool existente = false;
-            for (int i = 0; i < x.Length; i++)
+            string [] items =  y.ToArray();
+
+            for (int i = 0; i < x.Count(); i++)
             {
-                if (x.Contains(y[i]))
+                if (x.Contains(items[i]))
                 {
-                    MessageBox.Show($"Planilha contém informações existentes no banco!\nJá existe o N° Transação na linha {i + 1} da Planilha!");
+                    MessageBox.Show($"Planilha não pode Transações existentes no banco de dados!\nErro na linha {i + 2} da Planilha!" +
+                        $"\nTransação N° {items[i]}");
                     existente = true;
                 }
             }
             return existente;
+        }
+
+        private void PersistirRegistro()
+        {
+            /*
+            transact = new Transact(); // Acessar o construtor completo igual de edição
+            transact.RegisterTransactAdd();
+            */
         }
     }
 }
