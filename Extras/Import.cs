@@ -58,7 +58,8 @@ namespace AssistentePessoal.Extras
                 imports.Add(coll[0].ToString());
             }
 
-            return Existente(transacts_in_db, imports) == false && Duplicado(imports) == false;
+            return Duplicado(imports) == false;
+                   //Existente(transacts_in_db, imports) == false && 
         }
 
         private bool Duplicado(List<string> Z)

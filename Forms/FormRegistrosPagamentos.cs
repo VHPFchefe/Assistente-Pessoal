@@ -14,22 +14,22 @@ using System.Collections.Generic;
 
 namespace AssistentePessoal
 {
-    public partial class FormRegistrosMovimentacao : Form
+    public partial class FormRegistrosPagamentos : Form
     {
-        public DataGridViewCellStyle default_back_color = new DataGridViewCellStyle();
-
-        public FormRegistrosMovimentacao()
+        public FormRegistrosPagamentos()
         {
             InitializeComponent();
             this.grid.ClearSelection();
         }
+
+        public DataGridViewCellStyle default_back_color = new DataGridViewCellStyle();
 
         private void AtualizaGrafico()
         {
             ((FormSystem)this.Owner).AtualizarGrafico();
         }
 
-        private void Iniciar_Click(object sender, EventArgs e)
+        private void Iniciar_Click_1(object sender, EventArgs e)
         {
             CriarRegistro(true);
         }
@@ -38,7 +38,7 @@ namespace AssistentePessoal
         {
             if (GetIdInRows().Length <= 1)
             {
-                FormCadastroMovimentacao f = (FormCadastroMovimentacao)Application.OpenForms["FormCadastroMovimentacao"];
+                FormCadastroPagamento f = (FormCadastroPagamento)Application.OpenForms["FormCadastroPagamento"];
                 if (f != null)
                 {
                     f.BringToFront();
@@ -47,12 +47,12 @@ namespace AssistentePessoal
                 {
                     if (isNew)
                     {
-                        f = new FormCadastroMovimentacao();
+                        f = new FormCadastroPagamento();
                     }
                     else
                     {
                         int id = GetIdInRows().ElementAt(0);
-                        f = new FormCadastroMovimentacao(id);
+                        f = new FormCadastroPagamento(id);
                     }
                     f.Owner = this;
                     f.Show();
@@ -62,11 +62,11 @@ namespace AssistentePessoal
         }
 
         public void Search()
-        {
+        {/*
             string parameterSQL = tx_pesquisa.Text;
             int identSearch = cb_filtro.SelectedIndex;
             int movimentation_type = cb_movimentation.SelectedIndex;
-            LoadGrid(parameterSQL, identSearch, movimentation_type, cb_date.Text);
+            LoadGrid(parameterSQL, identSearch, movimentation_type, cb_date.Text);*/
         }
 
         private void LoadCb_filtros()
@@ -79,8 +79,8 @@ namespace AssistentePessoal
             cb_filtro.SelectedIndex = 0;
             cb_movimentation.Items.Clear();
             cb_movimentation.Items.Add("[Todos]");
-            cb_movimentation.Items.Add("Entrada");
-            cb_movimentation.Items.Add("Saída");
+            cb_movimentation.Items.Add("À Pagar");
+            cb_movimentation.Items.Add("Pagas");
             cb_movimentation.SelectedIndex = 0;
             LoadDataComboBox();
         }
@@ -200,23 +200,6 @@ namespace AssistentePessoal
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             finally { db.con.Close(); }
-        }
-
-        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-            contextMenuStrip.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            if (grid.SelectedRows.Count > 1)
-            {
-                editar_menu_item.Visible = false;
-            }
-            else
-            {
-                editar_menu_item.Visible = true;
-                int index = PointCellIndex();
-                this.grid.ClearSelection();
-                this.grid.Rows[index].Selected = true;
-            }
         }
 
         public int PointCellIndex()
@@ -363,31 +346,15 @@ namespace AssistentePessoal
             label_selecionado.Text = "Saldo Selecionado: " + AtualizaSaldoSelecionado();
         }
 
-
-        private void button1_MouseHover(object sender, EventArgs e)
+        private void btn_exportar_MouseHover(object sender, EventArgs e)
         {
             ToolTip tp = new ToolTip();
-            tp.SetToolTip(button1, "Salvar como");
+            tp.SetToolTip(btn_exportar, "Salvar como");
         }
 
-        private void button2_MouseHover(object sender, EventArgs e)
+        private void btn_exportar_Click(object sender, EventArgs e)
         {
-            ToolTip tp = new ToolTip();
-            tp.SetToolTip(button2, "Importar planilha de registros");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.FileName = "";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                ImportarCsv(openFileDialog1.FileName);
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string fileName = "Movimentações Pessoais - Export " + DateTime.Now.ToString("dd-MM-yyyy") + ".csv";
+            string fileName = "Pagamentos Pessoais - Export " + DateTime.Now.ToString("dd-MM-yyyy") + ".csv";
             saveFileDialog1.FileName = fileName;
             saveFileDialog1.Filter = "Arquivos Excel | *.csv";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -438,33 +405,11 @@ namespace AssistentePessoal
             }
         }
 
-        private void ImportarCsv(string path)
+        private void FormRegistrosPagamentos_Load(object sender, EventArgs e)
         {
-            Import imp = new Import();
-            imp.CreateRegistros(path, TransactInDb());
-            Search();
+            LoadCb_filtros();
+            LoadGrid();
         }
 
-        private List<string> TransactInDb()
-        {
-            List<string> transacts = new List<string>();
-            Db_connection db = new Db_connection();
-            try
-            {
-                string sql = "select t.transact_number as 'Número da Transação', t.transact_value as 'Valor da Transação', it.name_transact_type as 'Movimentação', s.sender_name as 'Remetente',	p.name_portfolio as 'Portifólio', 	t.transact_comment as 'Comentário',	format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação', t.id_transact_type as 'id_transact_type' from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) inner join sender s on (s.id_sender = t.id_sender) inner join portfolio p on (p.id_portfolio = t.id_portfolio) where t.removed = 0 order by date_transact desc";
-                db.con.Open();
-                SqlCommand command = new SqlCommand(sql, db.con);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    var teste = (IDataRecord)reader;
-                    transacts.Add(String.Format("{0}", teste[0]));
-                }
-                reader.Close();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-            finally { db.con.Close(); }
-            return transacts;
-        }
     }
 }

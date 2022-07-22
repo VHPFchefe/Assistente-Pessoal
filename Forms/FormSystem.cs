@@ -23,46 +23,7 @@ namespace AssistentePessoal
             InitializeComponent();
             Import teste = new Import();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FormRegistrosMovimentacao f = (FormRegistrosMovimentacao)Application.OpenForms["FormRegistros"];
-            if (f != null)
-                f.BringToFront();
-            else
-            {
-                f = new FormRegistrosMovimentacao();
-                f.Owner = this;
-                f.Show();
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            FormRegistrosSender f = (FormRegistrosSender)Application.OpenForms["FormRegistrosSender"];
-            if (f != null)
-                f.BringToFront();
-            else
-            {
-                f = new FormRegistrosSender();
-                f.Owner = this;
-                f.Show();
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            FormRegistrosCarteira f = (FormRegistrosCarteira)Application.OpenForms["FormRegistrosCarteira"];
-            if (f != null)
-                f.BringToFront();
-            else
-            {
-                f = new FormRegistrosCarteira();
-                f.Owner = this;
-                f.Show();
-            }
-        }
-
+        
         public void ConsultaGraficos(Chart grafico ,string sql, SeriesChartType seriesType)
         {
             Db_connection db = new Db_connection();
@@ -174,5 +135,67 @@ namespace AssistentePessoal
             LoadGraficos();
         }
 
+
+        private void tollStripADM_Click(object sender, EventArgs e)
+        {
+            FormRegistrosSender f = (FormRegistrosSender)Application.OpenForms["FormRegistrosSender"];
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                f = new FormRegistrosSender();
+                f.Owner = this;
+                f.Show();
+            }
+        }
+
+        private void tollStripPORT_Click(object sender, EventArgs e)
+        {
+            FormRegistrosCarteira f = (FormRegistrosCarteira)Application.OpenForms["FormRegistrosCarteira"];
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                f = new FormRegistrosCarteira();
+                f.Owner = this;
+                f.Show();
+            }
+        }
+
+        private void tollStripMOV_Click(object sender, EventArgs e)
+        {
+            FormRegistrosMovimentacao f = (FormRegistrosMovimentacao)Application.OpenForms["FormRegistros"];
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                f = new FormRegistrosMovimentacao();
+                f.Owner = this;
+                f.Show();
+            }
+        }
+
+        private void toolStripPagamentos_Click(object sender, EventArgs e)
+        {
+            FormRegistrosPagamentos f = (FormRegistrosPagamentos)Application.OpenForms["FormRegistrosPagamentos"];
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                f = new FormRegistrosPagamentos();
+                f.Owner = this;
+                f.Show();
+            }
+        }
+
+        private void tollStripADM_MouseEnter(object sender, EventArgs e)
+        {
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
+        }
+
+        private void tollStripADM_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+        }
     }
 }

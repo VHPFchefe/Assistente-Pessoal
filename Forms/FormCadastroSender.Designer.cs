@@ -166,7 +166,7 @@ namespace AssistentePessoal
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormCadastroSender";
-            this.Text = "FormSender";
+            this.Text = "Remetente/Beneficiário";
             this.ResumeLayout(false);
             this.PerformLayout();
 

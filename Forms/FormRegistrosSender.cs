@@ -134,11 +134,11 @@ namespace AssistentePessoal
 
                 if (this.grid.SelectedRows.Count == 1)
                 {
-                    aviso += "Você realmente deseja remover o remetente: \n";
+                    aviso += "Você realmente deseja remover o remetente/beneficiário: \n";
                 }
                 else
                 {
-                    aviso += "Antenção! \nVocê realmente deseja remover os " + grid.SelectedRows.Count.ToString() + " remetentes?\n";
+                    aviso += "Antenção! \nVocê realmente deseja remover os " + grid.SelectedRows.Count.ToString() + " remetentes/beneficiários?\n";
                 }
 
                 foreach (string item in GetNameInRows())
@@ -147,27 +147,27 @@ namespace AssistentePessoal
                 }
 
 
-                if (MessageBox.Show(aviso, "Remover Remetentes", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(aviso, "Remover remetente/beneficiário", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     string p1, p2, p3;
                     if (grid.SelectedRows.Count == 1)
                     {
                         p1 = "Foi";
                         p2 = "removido";
-                        p3 = "remetente";
+                        p3 = "remetente/beneficiário";
                     }
                     else
                     {
                         p1 = "Foram";
                         p2 = "removidos";
-                        p3 = "remetentes";
+                        p3 = "remetentes/beneficiários";
                     }
                     RemoverRegistros();
                     MessageBox.Show($"{p1} {p2} {grid.SelectedRows.Count} {p3}.");
                     LoadGrid();
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Erro ao remover remetente!\n" + ex.ToString()); }
+            catch (Exception ex) { MessageBox.Show("Erro ao remover o remetente/beneficiário!\n" + ex.ToString()); }
         }
 
         private void RemoverRegistros()

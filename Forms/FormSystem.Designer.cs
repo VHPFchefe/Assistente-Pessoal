@@ -29,66 +29,33 @@ namespace AssistentePessoal
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSystem));
-            this.registros = new System.Windows.Forms.Button();
-            this.remetentes = new System.Windows.Forms.Button();
-            this.carteira = new System.Windows.Forms.Button();
             this.grafico_entrada = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.entrada_saida = new System.Windows.Forms.TabPage();
             this.lucro_tendencia = new System.Windows.Forms.TabPage();
-            this.grafico_lucro = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.grafico_lucro = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tollStripADM = new System.Windows.Forms.ToolStripButton();
+            this.tollStripPORT = new System.Windows.Forms.ToolStripButton();
+            this.tollStripMOV = new System.Windows.Forms.ToolStripButton();
+            this.toolStripPagamentos = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.grafico_entrada)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.entrada_saida.SuspendLayout();
             this.lucro_tendencia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grafico_lucro)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // registros
-            // 
-            this.registros.BackColor = System.Drawing.Color.LightGreen;
-            this.registros.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.registros.Location = new System.Drawing.Point(608, 11);
-            this.registros.Name = "registros";
-            this.registros.Size = new System.Drawing.Size(118, 34);
-            this.registros.TabIndex = 1;
-            this.registros.Text = "Visualizar Registros";
-            this.registros.UseVisualStyleBackColor = false;
-            this.registros.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // remetentes
-            // 
-            this.remetentes.BackColor = System.Drawing.Color.LightGreen;
-            this.remetentes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.remetentes.Location = new System.Drawing.Point(732, 11);
-            this.remetentes.Name = "remetentes";
-            this.remetentes.Size = new System.Drawing.Size(121, 34);
-            this.remetentes.TabIndex = 2;
-            this.remetentes.Text = "Remetentes";
-            this.remetentes.UseVisualStyleBackColor = false;
-            this.remetentes.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // carteira
-            // 
-            this.carteira.BackColor = System.Drawing.Color.LightGreen;
-            this.carteira.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.carteira.Location = new System.Drawing.Point(483, 11);
-            this.carteira.Name = "carteira";
-            this.carteira.Size = new System.Drawing.Size(119, 34);
-            this.carteira.TabIndex = 3;
-            this.carteira.Text = "Portifólio/Carteira";
-            this.carteira.UseVisualStyleBackColor = false;
-            this.carteira.Click += new System.EventHandler(this.button3_Click);
             // 
             // grafico_entrada
             // 
             this.grafico_entrada.BackColor = System.Drawing.Color.DarkGray;
-            chartArea1.Name = "ChartArea1";
-            this.grafico_entrada.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.grafico_entrada.ChartAreas.Add(chartArea3);
             this.grafico_entrada.Cursor = System.Windows.Forms.Cursors.No;
             this.grafico_entrada.Location = new System.Drawing.Point(-1, -1);
             this.grafico_entrada.Name = "grafico_entrada";
@@ -134,18 +101,6 @@ namespace AssistentePessoal
             this.lucro_tendencia.Text = "Lucro x Tendência";
             this.lucro_tendencia.UseVisualStyleBackColor = true;
             // 
-            // grafico_lucro
-            // 
-            this.grafico_lucro.BackColor = System.Drawing.Color.DarkGray;
-            chartArea2.Name = "ChartArea1";
-            this.grafico_lucro.ChartAreas.Add(chartArea2);
-            this.grafico_lucro.Cursor = System.Windows.Forms.Cursors.No;
-            this.grafico_lucro.Location = new System.Drawing.Point(-1, -1);
-            this.grafico_lucro.Name = "grafico_lucro";
-            this.grafico_lucro.Size = new System.Drawing.Size(848, 431);
-            this.grafico_lucro.TabIndex = 6;
-            this.grafico_lucro.Text = "chart1";
-            // 
             // richTextBox1
             // 
             this.richTextBox1.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -156,15 +111,90 @@ namespace AssistentePessoal
             this.richTextBox1.Text = "Coming soon:\n----------------------------------------------\n1 - Nova funcionalida" +
     "de - Contas a Pagar;\n2 - Implementar gráfico de lucro x tendencia;\n3 - Webview";
             // 
+            // grafico_lucro
+            // 
+            this.grafico_lucro.BackColor = System.Drawing.Color.DarkGray;
+            chartArea4.Name = "ChartArea1";
+            this.grafico_lucro.ChartAreas.Add(chartArea4);
+            this.grafico_lucro.Cursor = System.Windows.Forms.Cursors.No;
+            this.grafico_lucro.Location = new System.Drawing.Point(-1, -1);
+            this.grafico_lucro.Name = "grafico_lucro";
+            this.grafico_lucro.Size = new System.Drawing.Size(848, 431);
+            this.grafico_lucro.TabIndex = 6;
+            this.grafico_lucro.Text = "chart1";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tollStripADM,
+            this.tollStripPORT,
+            this.tollStripMOV,
+            this.toolStripPagamentos});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(882, 25);
+            this.toolStrip1.TabIndex = 7;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tollStripADM
+            // 
+            this.tollStripADM.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tollStripADM.Image = ((System.Drawing.Image)(resources.GetObject("tollStripADM.Image")));
+            this.tollStripADM.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tollStripADM.Margin = new System.Windows.Forms.Padding(1);
+            this.tollStripADM.Name = "tollStripADM";
+            this.tollStripADM.Size = new System.Drawing.Size(23, 23);
+            this.tollStripADM.Text = "Remetente/Beneficiário";
+            this.tollStripADM.Click += new System.EventHandler(this.tollStripADM_Click);
+            this.tollStripADM.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
+            this.tollStripADM.MouseLeave += new System.EventHandler(this.tollStripADM_MouseLeave);
+            // 
+            // tollStripPORT
+            // 
+            this.tollStripPORT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tollStripPORT.Image = ((System.Drawing.Image)(resources.GetObject("tollStripPORT.Image")));
+            this.tollStripPORT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tollStripPORT.Margin = new System.Windows.Forms.Padding(1);
+            this.tollStripPORT.Name = "tollStripPORT";
+            this.tollStripPORT.Size = new System.Drawing.Size(23, 23);
+            this.tollStripPORT.Text = "Portifólio/Carteira";
+            this.tollStripPORT.Click += new System.EventHandler(this.tollStripPORT_Click);
+            this.tollStripPORT.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
+            this.tollStripPORT.MouseLeave += new System.EventHandler(this.tollStripADM_MouseLeave);
+            // 
+            // tollStripMOV
+            // 
+            this.tollStripMOV.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tollStripMOV.Image = ((System.Drawing.Image)(resources.GetObject("tollStripMOV.Image")));
+            this.tollStripMOV.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tollStripMOV.Margin = new System.Windows.Forms.Padding(1);
+            this.tollStripMOV.Name = "tollStripMOV";
+            this.tollStripMOV.Size = new System.Drawing.Size(23, 23);
+            this.tollStripMOV.Text = "Movimentações";
+            this.tollStripMOV.Click += new System.EventHandler(this.tollStripMOV_Click);
+            this.tollStripMOV.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
+            this.tollStripMOV.MouseLeave += new System.EventHandler(this.tollStripADM_MouseLeave);
+            // 
+            // toolStripPagamentos
+            // 
+            this.toolStripPagamentos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripPagamentos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPagamentos.Image")));
+            this.toolStripPagamentos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripPagamentos.Margin = new System.Windows.Forms.Padding(1);
+            this.toolStripPagamentos.Name = "toolStripPagamentos";
+            this.toolStripPagamentos.Size = new System.Drawing.Size(23, 23);
+            this.toolStripPagamentos.Text = "Contas a Pagar";
+            this.toolStripPagamentos.Click += new System.EventHandler(this.toolStripPagamentos_Click);
+            this.toolStripPagamentos.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
+            this.toolStripPagamentos.MouseLeave += new System.EventHandler(this.tollStripADM_MouseLeave);
+            // 
             // FormSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(882, 506);
-            this.Controls.Add(this.carteira);
-            this.Controls.Add(this.remetentes);
-            this.Controls.Add(this.registros);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -177,19 +207,24 @@ namespace AssistentePessoal
             this.entrada_saida.ResumeLayout(false);
             this.lucro_tendencia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grafico_lucro)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button registros;
-        private System.Windows.Forms.Button remetentes;
-        private System.Windows.Forms.Button carteira;
         private System.Windows.Forms.DataVisualization.Charting.Chart grafico_entrada;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage entrada_saida;
         private System.Windows.Forms.TabPage lucro_tendencia;
         private System.Windows.Forms.DataVisualization.Charting.Chart grafico_lucro;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tollStripADM;
+        private System.Windows.Forms.ToolStripButton tollStripPORT;
+        private System.Windows.Forms.ToolStripButton tollStripMOV;
+        private System.Windows.Forms.ToolStripButton toolStripPagamentos;
     }
 }
