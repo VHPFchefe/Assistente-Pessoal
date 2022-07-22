@@ -28,6 +28,9 @@ namespace AssistentePessoal.Entities
                 if (nome.Length > 0)
                 {
                     this.name = nome;
+                    this.cep = "";
+                    this.email = "";
+                    this.phone = "";
                     Pop(nome);
                 }
             }
@@ -147,6 +150,10 @@ namespace AssistentePessoal.Entities
 
         private void Insert()
         {
+            string cep = this.cep.Length == 0 ? "" : this.cep;
+            string celular = this.phone.Length == 0 ? "" : this.phone;
+            string email = this.email.Length == 0 ? "" : this.email;
+
             string sql =
                             " insert into sender" +
                             " (sender_name,sender_phone,sender_email,sender_cep,removed) " +

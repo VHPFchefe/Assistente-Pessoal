@@ -81,6 +81,7 @@ namespace AssistentePessoal.Entities
         {
             Insert();
         }
+
         public void RegisterTransactEdit()
         {
             Update();

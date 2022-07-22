@@ -233,6 +233,7 @@ namespace AssistentePessoal
         private void editar_menu_item_Click(object sender, EventArgs e)
         {
             CriarRegistro(false);
+            LoadGrid();
         }
 
         private void remover_menu_item_Click(object sender, EventArgs e)
@@ -441,6 +442,7 @@ namespace AssistentePessoal
         {
             Import imp = new Import();
             imp.CreateRegistros(path, TransactInDb());
+            Search();
         }
 
         private List<string> TransactInDb()
