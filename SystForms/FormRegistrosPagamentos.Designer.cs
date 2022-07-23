@@ -172,7 +172,7 @@ namespace AssistentePessoal
             this.Iniciar.Name = "Iniciar";
             this.Iniciar.Size = new System.Drawing.Size(142, 42);
             this.Iniciar.TabIndex = 14;
-            this.Iniciar.Text = "Registrar Movimentação";
+            this.Iniciar.Text = "Registrar Pagamento";
             this.Iniciar.UseVisualStyleBackColor = true;
             this.Iniciar.Click += new System.EventHandler(this.Iniciar_Click_1);
             // 
@@ -180,7 +180,7 @@ namespace AssistentePessoal
             // 
             this.grid.AllowUserToAddRows = false;
             this.grid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -194,9 +194,9 @@ namespace AssistentePessoal
             this.grid.Location = new System.Drawing.Point(36, 69);
             this.grid.Name = "grid";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(200)))), ((int)(((byte)(190)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.grid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -253,6 +253,7 @@ namespace AssistentePessoal
             this.Controls.Add(this.Iniciar);
             this.Controls.Add(this.grid);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormRegistrosPagamentos";
             this.Text = "Contas à Pagar";
             this.Load += new System.EventHandler(this.FormRegistrosPagamentos_Load);

@@ -79,6 +79,7 @@ namespace AssistentePessoal
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.grid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid.ContextMenuStrip = this.contextMenuStrip1;
             this.grid.Location = new System.Drawing.Point(13, 64);

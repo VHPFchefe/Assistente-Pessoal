@@ -29,8 +29,8 @@ namespace AssistentePessoal
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSystem));
             this.grafico_entrada = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -53,14 +53,13 @@ namespace AssistentePessoal
             // 
             // grafico_entrada
             // 
-            this.grafico_entrada.BackColor = System.Drawing.Color.DarkGray;
-            chartArea3.Name = "ChartArea1";
-            this.grafico_entrada.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            this.grafico_entrada.ChartAreas.Add(chartArea1);
             this.grafico_entrada.Cursor = System.Windows.Forms.Cursors.No;
-            this.grafico_entrada.Location = new System.Drawing.Point(-1, -1);
+            this.grafico_entrada.Location = new System.Drawing.Point(-1, 0);
             this.grafico_entrada.Name = "grafico_entrada";
             this.grafico_entrada.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            this.grafico_entrada.Size = new System.Drawing.Size(848, 432);
+            this.grafico_entrada.Size = new System.Drawing.Size(845, 431);
             this.grafico_entrada.TabIndex = 5;
             this.grafico_entrada.Text = "chart1";
             // 
@@ -69,11 +68,11 @@ namespace AssistentePessoal
             this.tabControl1.Controls.Add(this.entrada_saida);
             this.tabControl1.Controls.Add(this.lucro_tendencia);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tabControl1.Location = new System.Drawing.Point(12, 30);
+            this.tabControl1.Location = new System.Drawing.Point(12, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(0, 0);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(848, 454);
+            this.tabControl1.Size = new System.Drawing.Size(848, 443);
             this.tabControl1.TabIndex = 6;
             // 
             // entrada_saida
@@ -85,7 +84,7 @@ namespace AssistentePessoal
             this.entrada_saida.Location = new System.Drawing.Point(4, 22);
             this.entrada_saida.Name = "entrada_saida";
             this.entrada_saida.Padding = new System.Windows.Forms.Padding(3);
-            this.entrada_saida.Size = new System.Drawing.Size(840, 428);
+            this.entrada_saida.Size = new System.Drawing.Size(840, 417);
             this.entrada_saida.TabIndex = 0;
             this.entrada_saida.Text = "Entradas x Saídas";
             // 
@@ -96,7 +95,7 @@ namespace AssistentePessoal
             this.lucro_tendencia.Location = new System.Drawing.Point(4, 22);
             this.lucro_tendencia.Name = "lucro_tendencia";
             this.lucro_tendencia.Padding = new System.Windows.Forms.Padding(3);
-            this.lucro_tendencia.Size = new System.Drawing.Size(840, 428);
+            this.lucro_tendencia.Size = new System.Drawing.Size(840, 417);
             this.lucro_tendencia.TabIndex = 1;
             this.lucro_tendencia.Text = "Lucro x Tendência";
             this.lucro_tendencia.UseVisualStyleBackColor = true;
@@ -113,9 +112,8 @@ namespace AssistentePessoal
             // 
             // grafico_lucro
             // 
-            this.grafico_lucro.BackColor = System.Drawing.Color.DarkGray;
-            chartArea4.Name = "ChartArea1";
-            this.grafico_lucro.ChartAreas.Add(chartArea4);
+            chartArea2.Name = "ChartArea1";
+            this.grafico_lucro.ChartAreas.Add(chartArea2);
             this.grafico_lucro.Cursor = System.Windows.Forms.Cursors.No;
             this.grafico_lucro.Location = new System.Drawing.Point(-1, -1);
             this.grafico_lucro.Name = "grafico_lucro";
@@ -125,6 +123,10 @@ namespace AssistentePessoal
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tollStripADM,
             this.tollStripPORT,
@@ -132,18 +134,19 @@ namespace AssistentePessoal
             this.toolStripPagamentos});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(882, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(882, 38);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // tollStripADM
             // 
+            this.tollStripADM.BackColor = System.Drawing.Color.Transparent;
             this.tollStripADM.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tollStripADM.Image = ((System.Drawing.Image)(resources.GetObject("tollStripADM.Image")));
+            this.tollStripADM.Image = global::AssistentePessoal.Properties.Resources.conta_32px;
             this.tollStripADM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tollStripADM.Margin = new System.Windows.Forms.Padding(1);
             this.tollStripADM.Name = "tollStripADM";
-            this.tollStripADM.Size = new System.Drawing.Size(23, 23);
+            this.tollStripADM.Size = new System.Drawing.Size(36, 36);
             this.tollStripADM.Text = "Remetente/Beneficiário";
             this.tollStripADM.Click += new System.EventHandler(this.tollStripADM_Click);
             this.tollStripADM.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
@@ -151,12 +154,13 @@ namespace AssistentePessoal
             // 
             // tollStripPORT
             // 
+            this.tollStripPORT.BackColor = System.Drawing.Color.Transparent;
             this.tollStripPORT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tollStripPORT.Image = ((System.Drawing.Image)(resources.GetObject("tollStripPORT.Image")));
+            this.tollStripPORT.Image = global::AssistentePessoal.Properties.Resources.carteira_32px;
             this.tollStripPORT.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tollStripPORT.Margin = new System.Windows.Forms.Padding(1);
             this.tollStripPORT.Name = "tollStripPORT";
-            this.tollStripPORT.Size = new System.Drawing.Size(23, 23);
+            this.tollStripPORT.Size = new System.Drawing.Size(36, 36);
             this.tollStripPORT.Text = "Portifólio/Carteira";
             this.tollStripPORT.Click += new System.EventHandler(this.tollStripPORT_Click);
             this.tollStripPORT.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
@@ -164,12 +168,13 @@ namespace AssistentePessoal
             // 
             // tollStripMOV
             // 
+            this.tollStripMOV.BackColor = System.Drawing.Color.Transparent;
             this.tollStripMOV.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tollStripMOV.Image = ((System.Drawing.Image)(resources.GetObject("tollStripMOV.Image")));
+            this.tollStripMOV.Image = global::AssistentePessoal.Properties.Resources.intercambio_32px;
             this.tollStripMOV.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tollStripMOV.Margin = new System.Windows.Forms.Padding(1);
             this.tollStripMOV.Name = "tollStripMOV";
-            this.tollStripMOV.Size = new System.Drawing.Size(23, 23);
+            this.tollStripMOV.Size = new System.Drawing.Size(36, 36);
             this.tollStripMOV.Text = "Movimentações";
             this.tollStripMOV.Click += new System.EventHandler(this.tollStripMOV_Click);
             this.tollStripMOV.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
@@ -177,12 +182,13 @@ namespace AssistentePessoal
             // 
             // toolStripPagamentos
             // 
+            this.toolStripPagamentos.BackColor = System.Drawing.Color.Transparent;
             this.toolStripPagamentos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripPagamentos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPagamentos.Image")));
+            this.toolStripPagamentos.Image = global::AssistentePessoal.Properties.Resources.seta_para_baixo_32px;
             this.toolStripPagamentos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripPagamentos.Margin = new System.Windows.Forms.Padding(1);
             this.toolStripPagamentos.Name = "toolStripPagamentos";
-            this.toolStripPagamentos.Size = new System.Drawing.Size(23, 23);
+            this.toolStripPagamentos.Size = new System.Drawing.Size(36, 36);
             this.toolStripPagamentos.Text = "Contas a Pagar";
             this.toolStripPagamentos.Click += new System.EventHandler(this.toolStripPagamentos_Click);
             this.toolStripPagamentos.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
@@ -192,7 +198,7 @@ namespace AssistentePessoal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(882, 506);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);

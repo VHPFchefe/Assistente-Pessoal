@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Account\Parcel.cs" />
     <Compile Include="Entities\Account\Payments.cs" />
     <Compile Include="Entities\Enum\PaymentStatus.cs" />
     <Compile Include="Extras\Db_connection.cs" />
@@ -70,88 +71,88 @@
     <Compile Include="Entities\Senders.cs" />
     <Compile Include="Entities\Account\Transact.cs" />
     <Compile Include="Extras\Consultas.cs" />
-    <Compile Include="Forms\FormCadastroCarteira.cs">
+    <Compile Include="SystForms\FormCadastroCarteira.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormCadastroCarteira.Designer.cs">
+    <Compile Include="SystForms\FormCadastroCarteira.Designer.cs">
       <DependentUpon>FormCadastroCarteira.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormCadastroPagamento.cs">
+    <Compile Include="SystForms\FormCadastroPagamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormCadastroPagamento.Designer.cs">
+    <Compile Include="SystForms\FormCadastroPagamento.Designer.cs">
       <DependentUpon>FormCadastroPagamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormRegistrosCarteira.cs">
+    <Compile Include="SystForms\FormRegistrosCarteira.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormRegistrosCarteira.Designer.cs">
+    <Compile Include="SystForms\FormRegistrosCarteira.Designer.cs">
       <DependentUpon>FormRegistrosCarteira.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormRegistrosMovimentacao.cs">
+    <Compile Include="SystForms\FormRegistrosMovimentacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormRegistrosMovimentacao.Designer.cs">
+    <Compile Include="SystForms\FormRegistrosMovimentacao.Designer.cs">
       <DependentUpon>FormRegistrosMovimentacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormCadastroSender.cs">
+    <Compile Include="SystForms\FormCadastroSender.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormCadastroSender.Designer.cs">
+    <Compile Include="SystForms\FormCadastroSender.Designer.cs">
       <DependentUpon>FormCadastroSender.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormRegistrosPagamentos.cs">
+    <Compile Include="SystForms\FormRegistrosPagamentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormRegistrosPagamentos.Designer.cs">
+    <Compile Include="SystForms\FormRegistrosPagamentos.Designer.cs">
       <DependentUpon>FormRegistrosPagamentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormRegistrosSender.cs">
+    <Compile Include="SystForms\FormRegistrosSender.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormRegistrosSender.Designer.cs">
+    <Compile Include="SystForms\FormRegistrosSender.Designer.cs">
       <DependentUpon>FormRegistrosSender.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSystem.cs">
+    <Compile Include="SystForms\FormSystem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSystem.Designer.cs">
+    <Compile Include="SystForms\FormSystem.Designer.cs">
       <DependentUpon>FormSystem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormCadastroMovimentacao.cs">
+    <Compile Include="SystForms\FormCadastroMovimentacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormCadastroMovimentacao.Designer.cs">
+    <Compile Include="SystForms\FormCadastroMovimentacao.Designer.cs">
       <DependentUpon>FormCadastroMovimentacao.cs</DependentUpon>
     </Compile>
     <Compile Include="Extras\Import.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\FormCadastroCarteira.resx">
+    <EmbeddedResource Include="SystForms\FormCadastroCarteira.resx">
       <DependentUpon>FormCadastroCarteira.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCadastroPagamento.resx">
+    <EmbeddedResource Include="SystForms\FormCadastroPagamento.resx">
       <DependentUpon>FormCadastroPagamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRegistrosCarteira.resx">
+    <EmbeddedResource Include="SystForms\FormRegistrosCarteira.resx">
       <DependentUpon>FormRegistrosCarteira.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRegistrosMovimentacao.resx">
+    <EmbeddedResource Include="SystForms\FormRegistrosMovimentacao.resx">
       <DependentUpon>FormRegistrosMovimentacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCadastroSender.resx">
+    <EmbeddedResource Include="SystForms\FormCadastroSender.resx">
       <DependentUpon>FormCadastroSender.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRegistrosPagamentos.resx">
+    <EmbeddedResource Include="SystForms\FormRegistrosPagamentos.resx">
       <DependentUpon>FormRegistrosPagamentos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRegistrosSender.resx">
+    <EmbeddedResource Include="SystForms\FormRegistrosSender.resx">
       <DependentUpon>FormRegistrosSender.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSystem.resx">
+    <EmbeddedResource Include="SystForms\FormSystem.resx">
       <DependentUpon>FormSystem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCadastroMovimentacao.resx">
+    <EmbeddedResource Include="SystForms\FormCadastroMovimentacao.resx">
       <DependentUpon>FormCadastroMovimentacao.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -163,6 +164,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -178,7 +180,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Recursos\robo.ico" />
+    <None Include="Resources\cancelar_NFe16x16.png" />
+    <None Include="Resources\avaliacao_fornecedor16x16.png" />
+    <None Include="Resources\duplicar.png" />
+    <None Include="Resources\carteira-32px.png" />
+    <None Include="Resources\intercambio-32px.png" />
+    <None Include="Resources\seta-para-baixo-32px.png" />
+    <None Include="Resources\conta-32px.png" />
+    <None Include="Imagens\schumacher16x16.png" />
+    <None Include="Imagens\user_benefits.png" />
+    <None Include="Imagens\clientes16x16.png" />
+    <None Include="Imagens\contas_a_pagar16x16.png" />
+    <Content Include="Imagens\robo.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
