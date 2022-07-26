@@ -113,9 +113,10 @@ namespace AssistentePessoal
             // 
             // Iniciar
             // 
-            this.Iniciar.Location = new System.Drawing.Point(643, 444);
+            this.Iniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Iniciar.Location = new System.Drawing.Point(681, 444);
             this.Iniciar.Name = "Iniciar";
-            this.Iniciar.Size = new System.Drawing.Size(142, 42);
+            this.Iniciar.Size = new System.Drawing.Size(104, 42);
             this.Iniciar.TabIndex = 1;
             this.Iniciar.Text = "Registrar Movimentação";
             this.Iniciar.UseVisualStyleBackColor = true;

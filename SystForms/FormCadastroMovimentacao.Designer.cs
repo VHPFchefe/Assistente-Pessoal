@@ -29,14 +29,13 @@ namespace AssistentePessoal
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroMovimentacao));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroParcela));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.register_date = new System.Windows.Forms.DateTimePicker();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.titulo = new System.Windows.Forms.Label();
             this.cb_movimentacao = new System.Windows.Forms.ComboBox();
             this.cb_carteira = new System.Windows.Forms.ComboBox();
@@ -61,6 +60,7 @@ namespace AssistentePessoal
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.LightGray;
             this.label2.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(61, 53);
             this.label2.Name = "label2";
@@ -72,6 +72,7 @@ namespace AssistentePessoal
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.LightGray;
             this.label3.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(61, 89);
             this.label3.Name = "label3";
@@ -83,6 +84,7 @@ namespace AssistentePessoal
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.LightGray;
             this.label4.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(62, 126);
             this.label4.Name = "label4";
@@ -94,6 +96,7 @@ namespace AssistentePessoal
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.LightGray;
             this.label5.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(61, 163);
             this.label5.Name = "label5";
@@ -114,20 +117,10 @@ namespace AssistentePessoal
             this.register_date.Size = new System.Drawing.Size(235, 21);
             this.register_date.TabIndex = 5;
             // 
-            // listView1
-            // 
-            this.listView1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.listView1.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(51, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(400, 377);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // titulo
             // 
             this.titulo.AutoSize = true;
+            this.titulo.BackColor = System.Drawing.Color.LightGray;
             this.titulo.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titulo.Location = new System.Drawing.Point(65, 27);
             this.titulo.Name = "titulo";
@@ -176,6 +169,7 @@ namespace AssistentePessoal
             // ok
             // 
             this.ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ok.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ok.Location = new System.Drawing.Point(365, 352);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);
@@ -187,6 +181,7 @@ namespace AssistentePessoal
             // cancelar
             // 
             this.cancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelar.Location = new System.Drawing.Point(284, 352);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
@@ -216,6 +211,7 @@ namespace AssistentePessoal
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.LightGray;
             this.label8.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(61, 201);
             this.label8.Name = "label8";
@@ -227,8 +223,9 @@ namespace AssistentePessoal
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.LightGray;
             this.label6.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.ForeColor = System.Drawing.Color.LightGray;
             this.label6.Location = new System.Drawing.Point(61, 27);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(110, 0, 110, 0);
@@ -258,12 +255,12 @@ namespace AssistentePessoal
             this.Controls.Add(this.label1);
             this.Controls.Add(this.titulo);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.listView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormCadastroMovimentacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Assistente Pessoal";
+            this.Load += new System.EventHandler(this.FormCadastroMovimentacao_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,7 +274,6 @@ namespace AssistentePessoal
         private global::System.Windows.Forms.Label label4;
         private global::System.Windows.Forms.Label label5;
         private global::System.Windows.Forms.DateTimePicker register_date;
-        private global::System.Windows.Forms.ListView listView1;
         private global::System.Windows.Forms.Label titulo;
         private global::System.Windows.Forms.ComboBox cb_movimentacao;
         private global::System.Windows.Forms.ComboBox cb_carteira;

@@ -34,15 +34,22 @@ namespace AssistentePessoal
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroPagamento));
             this.tabParcelas = new System.Windows.Forms.TabPage();
             this.grid = new System.Windows.Forms.DataGridView();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabGeral = new System.Windows.Forms.TabPage();
-            this.c_data_emissao = new System.Windows.Forms.DateTimePicker();
             this.c_beneficiado = new System.Windows.Forms.ComboBox();
+            this.value_label = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.c_data_emissao = new System.Windows.Forms.DateTimePicker();
             this.c_nome = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lab_progress = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,14 +59,7 @@ namespace AssistentePessoal
             this.label1 = new System.Windows.Forms.Label();
             this.c_progresso = new System.Windows.Forms.ProgressBar();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button3 = new System.Windows.Forms.Button();
-            this.value_label = new System.Windows.Forms.Label();
             this.tabParcelas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.tabGeral.SuspendLayout();
@@ -104,6 +104,7 @@ namespace AssistentePessoal
             this.grid.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.grid.Location = new System.Drawing.Point(7, 55);
             this.grid.Name = "grid";
+            this.grid.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(246)))), ((int)(((byte)(215)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -113,6 +114,49 @@ namespace AssistentePessoal
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grid.Size = new System.Drawing.Size(617, 281);
             this.grid.TabIndex = 6;
+            // 
+            // number
+            // 
+            this.number.HeaderText = "N°";
+            this.number.Name = "number";
+            this.number.ReadOnly = true;
+            this.number.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.number.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.number.Width = 90;
+            // 
+            // value
+            // 
+            this.value.HeaderText = "Valor";
+            this.value.Name = "value";
+            this.value.ReadOnly = true;
+            this.value.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // vencimento
+            // 
+            this.vencimento.HeaderText = "Data de Vencimento";
+            this.vencimento.Name = "vencimento";
+            this.vencimento.ReadOnly = true;
+            this.vencimento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.vencimento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.vencimento.Width = 160;
+            // 
+            // pagamento
+            // 
+            this.pagamento.HeaderText = "Data de Pagamento";
+            this.pagamento.Name = "pagamento";
+            this.pagamento.ReadOnly = true;
+            this.pagamento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.pagamento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.pagamento.Width = 160;
+            // 
+            // pago
+            // 
+            this.pago.HeaderText = "Pago";
+            this.pago.Name = "pago";
+            this.pago.ReadOnly = true;
+            this.pago.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.pago.Width = 67;
             // 
             // button2
             // 
@@ -157,12 +201,12 @@ namespace AssistentePessoal
             // tabGeral
             // 
             this.tabGeral.BackColor = System.Drawing.SystemColors.Control;
+            this.tabGeral.Controls.Add(this.c_beneficiado);
             this.tabGeral.Controls.Add(this.value_label);
             this.tabGeral.Controls.Add(this.button3);
             this.tabGeral.Controls.Add(this.c_data_emissao);
-            this.tabGeral.Controls.Add(this.c_beneficiado);
             this.tabGeral.Controls.Add(this.c_nome);
-            this.tabGeral.Controls.Add(this.label4);
+            this.tabGeral.Controls.Add(this.lab_progress);
             this.tabGeral.Controls.Add(this.textBox1);
             this.tabGeral.Controls.Add(this.label7);
             this.tabGeral.Controls.Add(this.label6);
@@ -179,6 +223,42 @@ namespace AssistentePessoal
             this.tabGeral.TabIndex = 0;
             this.tabGeral.Text = "Geral";
             // 
+            // c_beneficiado
+            // 
+            this.c_beneficiado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.c_beneficiado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.c_beneficiado.FormattingEnabled = true;
+            this.c_beneficiado.Location = new System.Drawing.Point(136, 90);
+            this.c_beneficiado.Name = "c_beneficiado";
+            this.c_beneficiado.Size = new System.Drawing.Size(185, 21);
+            this.c_beneficiado.TabIndex = 18;
+            // 
+            // value_label
+            // 
+            this.value_label.AutoSize = true;
+            this.value_label.BackColor = System.Drawing.Color.Gainsboro;
+            this.value_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.value_label.Location = new System.Drawing.Point(443, 68);
+            this.value_label.MaximumSize = new System.Drawing.Size(167, 20);
+            this.value_label.Name = "value_label";
+            this.value_label.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.value_label.Size = new System.Drawing.Size(54, 17);
+            this.value_label.TabIndex = 17;
+            this.value_label.Text = "R$ 0,00";
+            this.value_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.Location = new System.Drawing.Point(134, 65);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(187, 22);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "Anexar\r\n";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // c_data_emissao
             // 
             this.c_data_emissao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -187,15 +267,6 @@ namespace AssistentePessoal
             this.c_data_emissao.Size = new System.Drawing.Size(167, 20);
             this.c_data_emissao.TabIndex = 14;
             // 
-            // c_beneficiado
-            // 
-            this.c_beneficiado.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.c_beneficiado.FormattingEnabled = true;
-            this.c_beneficiado.Location = new System.Drawing.Point(136, 90);
-            this.c_beneficiado.Name = "c_beneficiado";
-            this.c_beneficiado.Size = new System.Drawing.Size(185, 21);
-            this.c_beneficiado.TabIndex = 13;
-            // 
             // c_nome
             // 
             this.c_nome.Location = new System.Drawing.Point(136, 40);
@@ -203,20 +274,19 @@ namespace AssistentePessoal
             this.c_nome.Size = new System.Drawing.Size(185, 20);
             this.c_nome.TabIndex = 12;
             // 
-            // label4
+            // lab_progress
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.LightGray;
-            this.label4.Location = new System.Drawing.Point(327, 91);
-            this.label4.Margin = new System.Windows.Forms.Padding(3);
-            this.label4.MaximumSize = new System.Drawing.Size(110, 20);
-            this.label4.MinimumSize = new System.Drawing.Size(110, 20);
-            this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(0, 4, 0, 3);
-            this.label4.Size = new System.Drawing.Size(110, 20);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Progresso: XXX";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lab_progress.AutoSize = true;
+            this.lab_progress.BackColor = System.Drawing.Color.LightGray;
+            this.lab_progress.Location = new System.Drawing.Point(327, 91);
+            this.lab_progress.Margin = new System.Windows.Forms.Padding(3);
+            this.lab_progress.MaximumSize = new System.Drawing.Size(110, 20);
+            this.lab_progress.MinimumSize = new System.Drawing.Size(110, 20);
+            this.lab_progress.Name = "lab_progress";
+            this.lab_progress.Padding = new System.Windows.Forms.Padding(0, 4, 0, 3);
+            this.lab_progress.Size = new System.Drawing.Size(110, 20);
+            this.lab_progress.TabIndex = 9;
+            this.lab_progress.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // textBox1
             // 
@@ -314,7 +384,6 @@ namespace AssistentePessoal
             this.c_progresso.Name = "c_progresso";
             this.c_progresso.Size = new System.Drawing.Size(167, 19);
             this.c_progresso.TabIndex = 8;
-            this.c_progresso.Value = 70;
             // 
             // tabControl
             // 
@@ -326,74 +395,6 @@ namespace AssistentePessoal
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(641, 399);
             this.tabControl.TabIndex = 0;
-            // 
-            // number
-            // 
-            this.number.HeaderText = "N°";
-            this.number.Name = "number";
-            this.number.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.number.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.number.Width = 90;
-            // 
-            // value
-            // 
-            this.value.HeaderText = "Valor";
-            this.value.Name = "value";
-            this.value.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // vencimento
-            // 
-            this.vencimento.HeaderText = "Data de Vencimento";
-            this.vencimento.Name = "vencimento";
-            this.vencimento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.vencimento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.vencimento.Width = 160;
-            // 
-            // pagamento
-            // 
-            this.pagamento.HeaderText = "Data de Pagamento";
-            this.pagamento.Name = "pagamento";
-            this.pagamento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.pagamento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.pagamento.Width = 160;
-            // 
-            // pago
-            // 
-            this.pago.HeaderText = "Pago";
-            this.pago.Name = "pago";
-            this.pago.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.pago.Width = 67;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Location = new System.Drawing.Point(134, 65);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(187, 22);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "Anexar\r\n";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // value_label
-            // 
-            this.value_label.AutoSize = true;
-            this.value_label.BackColor = System.Drawing.Color.Gainsboro;
-            this.value_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.value_label.Location = new System.Drawing.Point(443, 68);
-            this.value_label.MaximumSize = new System.Drawing.Size(167, 20);
-            this.value_label.Name = "value_label";
-            this.value_label.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.value_label.Size = new System.Drawing.Size(54, 17);
-            this.value_label.TabIndex = 17;
-            this.value_label.Text = "R$ 0,00";
-            this.value_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FormCadastroPagamento
             // 
@@ -427,9 +428,8 @@ namespace AssistentePessoal
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.DateTimePicker c_data_emissao;
-        private System.Windows.Forms.ComboBox c_beneficiado;
         private System.Windows.Forms.TextBox c_nome;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lab_progress;
         private System.Windows.Forms.ProgressBar c_progresso;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_add;
@@ -444,5 +444,6 @@ namespace AssistentePessoal
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label value_label;
+        private System.Windows.Forms.ComboBox c_beneficiado;
     }
 }

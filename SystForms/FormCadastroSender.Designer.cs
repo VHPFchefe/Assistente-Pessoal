@@ -45,6 +45,7 @@ namespace AssistentePessoal
             // cancelar
             // 
             this.cancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelar.Location = new System.Drawing.Point(265, 327);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
@@ -56,6 +57,7 @@ namespace AssistentePessoal
             // ok
             // 
             this.ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ok.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ok.Location = new System.Drawing.Point(346, 327);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);

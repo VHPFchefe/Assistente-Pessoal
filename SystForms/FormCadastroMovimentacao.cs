@@ -234,5 +234,10 @@ namespace AssistentePessoal
                 db.con.Close();
             }
         }
+
+        private void FormCadastroMovimentacao_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
