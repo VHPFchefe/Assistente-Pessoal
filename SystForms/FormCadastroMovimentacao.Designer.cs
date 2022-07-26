@@ -262,6 +262,7 @@ namespace AssistentePessoal
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormCadastroMovimentacao";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Assistente Pessoal";
             this.ResumeLayout(false);
             this.PerformLayout();

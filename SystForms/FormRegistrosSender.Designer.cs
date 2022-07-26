@@ -136,6 +136,7 @@ namespace AssistentePessoal
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormRegistrosSender";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registros de Remetentes/Beneficiarios";
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

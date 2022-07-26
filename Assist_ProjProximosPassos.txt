@@ -5,8 +5,12 @@ Bugs:
 ==============================================
 Backlog Itens:
 ----------------------------------------------  
-1 - Criar Regra de Contas a Pagar  [Validar no banco de dados]
-2 - Criar Regra de Parcelas [Validar no banco de dados]
+1 - Botão de Anexar salvando na pasta local de anexos e referenciando o caminho e nome do arquivo no banco de dados;
+
+
+
+
+2 - Criar Regra de Parcelas 
 3 - CRUD Contas a Pagar
 4 - CRUD Parcelas
 5 - Organizar e centralizar recursos de imagens

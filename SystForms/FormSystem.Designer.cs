@@ -206,6 +206,7 @@ namespace AssistentePessoal
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormSystem";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Assistente Pessoal";
             this.Load += new System.EventHandler(this.FormSystem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grafico_entrada)).EndInit();

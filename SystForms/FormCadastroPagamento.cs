@@ -1,30 +1,28 @@
 ﻿using AssistentePessoal.Extras;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AssistentePessoal.Entities.Account;
+using System.IO;
+using System.Configuration;
 
 namespace AssistentePessoal
 {
     public partial class FormCadastroPagamento : Form
     {
-
         Payments payment;
         private bool is_edit = false;
         string progress = "Progresso: 7/10";
+        DataGridViewRow last_row;
 
         public FormCadastroPagamento(int edit_transact)
         {
             this.BringToFront();
             InitializeComponent();
             is_edit = true;
+            LoadFormRegister();
         }
 
         public FormCadastroPagamento()
@@ -32,54 +30,139 @@ namespace AssistentePessoal
             InitializeComponent();
             is_edit = false;
             payment = new Payments();
-            AddRow();
+            this.grid.Rows.Add(1);
+            LoadFormRegister();
+        }
+
+        #region Eventos
+            private void btn_add_Click(object sender, EventArgs e)
+            {
+                AddRow();
+            }
+
+            private void btn_remove_Click(object sender, EventArgs e)
+            {
+                RemoveRow();
+            }
+
+            private void button2_Click(object sender, EventArgs e)
+            {
+                if (MessageBox.Show("Você realmente deseja cancelar ?", "Cancelar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+
+            private void button1_Click(object sender, EventArgs e)
+            {
+
+            }
+
+
+            private void button3_Click(object sender, EventArgs e)
+            {
+                Anexar();
+            }
+        #endregion
+
+        #region Metodos
+
+        private void LoadFormRegister()
+        {
+            LoadRows();
+            LoadBeneficiario();
+        }
+
+        private void getLastRow()
+        {
+            this.last_row = this.grid.Rows[this.grid.Rows.Count - 1];
+            this.last_row.ReadOnly = true;
+            this.last_row.DefaultCellStyle.BackColor = Color.DarkSlateGray;
+        }
+
+        private void getValue_label() { }
+
+        private void LoadRows()
+        {
+            getLastRow();
+            getValue_label();
+            foreach (DataGridViewRow dr in this.grid.Rows)
+            {
+                if (dr.Cells["number"].RowIndex != this.last_row.Index)
+                    dr.Cells["number"].Value = ((int)dr.Cells["number"].RowIndex + 1).ToString();
+            }
         }
 
         private void AddRow()
         {
             this.grid.Rows.Add(1);
+            LoadRows();
         }
 
         private void RemoveRow()
         {
-            foreach (DataGridViewRow item in this.grid.SelectedRows)
+            if (this.grid.CurrentRow == null) return;
+            int index_a = -1;
+            foreach (DataGridViewCell item in this.grid.SelectedCells)
             {
-                MessageBox.Show(item.Index.ToString());
-                this.grid.Rows.RemoveAt(item.Index);
+                if (item.RowIndex != index_a)
+                {
+                    if (item.RowIndex != this.last_row.Index)
+                    {
+                        this.grid.Rows.RemoveAt(item.RowIndex);
+                        index_a = item.RowIndex;
+                    }
+                }
             }
+            LoadRows();
         }
 
-        private void LoadGrid()
+        private void LoadBeneficiario()
         {
             Db_connection db = new Db_connection();
             try
             {
-                string sql = "select t.transact_number as 'Número da Transação', t.transact_value as 'Valor da Transação', it.name_transact_type as 'Movimentação', s.sender_name as 'Remetente',	p.name_portfolio as 'Portifólio', 	t.transact_comment as 'Comentário',	format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação', t.id_transact_type as 'id_transact_type' from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) inner join sender s on (s.id_sender = t.id_sender) inner join portfolio p on (p.id_portfolio = t.id_portfolio) where t.removed = 0 order by date_transact desc";
+                c_beneficiado.Items.Clear();
+                c_beneficiado.Text = "Selecione uma opção";
+                string sql =
+                        " Select " +
+                        " id_sender as id, " +
+                        " sender_name as name " +
+                        " from sender  where removed = 0";
+
+                SqlCommand command = new SqlCommand(sql, db.con);
                 db.con.Open();
-                using (SqlDataAdapter da = new SqlDataAdapter(sql, db.con))
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    using (DataTable dt = new DataTable())
-                    {
-                        da.Fill(dt);
-                        this.grid.DataSource = dt;
-                        this.grid.ReadOnly = true;
-                    }
+                    var teste = (IDataRecord)reader;
+                    c_beneficiado.Items.Add(teste[1]);
                 }
-                this.grid.Columns["id_transact_type"].Visible = false;
-                this.grid.Columns["Remetente"].Width = 110;
+                reader.Close();
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-            finally { db.con.Close(); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar o Formulário.\n" + ex.ToString());
+            }
+            finally
+            {
+                db.con.Close();
+            }
         }
 
-        private void btn_add_Click(object sender, EventArgs e)
+        private void Anexar()
         {
-            AddRow();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = openFileDialog1.FileName;
+                string localPath = ConfigurationManager.AppSettings["localPath"] + @"\Arquivos\"+ openFileDialog1.SafeFileName;
+                File.Copy(fileName, localPath);
+                MessageBox.Show("Registrar no banco !!!\n\n"+fileName+"\npara =>\n"+ localPath);
+            }
         }
+        #endregion
 
-        private void btn_remove_Click(object sender, EventArgs e)
-        {
-            RemoveRow();
-        }
+
     }
 }

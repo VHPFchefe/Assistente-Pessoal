@@ -255,6 +255,7 @@ namespace AssistentePessoal
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormRegistrosPagamentos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contas à Pagar";
             this.Load += new System.EventHandler(this.FormRegistrosPagamentos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();

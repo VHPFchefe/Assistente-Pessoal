@@ -86,6 +86,7 @@ namespace AssistentePessoal
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormCadastroCarteira";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Carteira";
             this.ResumeLayout(false);
             this.PerformLayout();

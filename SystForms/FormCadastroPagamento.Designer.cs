@@ -33,16 +33,15 @@ namespace AssistentePessoal
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroPagamento));
             this.tabParcelas = new System.Windows.Forms.TabPage();
+            this.grid = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabGeral = new System.Windows.Forms.TabPage();
-            this.c_valor = new System.Windows.Forms.TextBox();
             this.c_data_emissao = new System.Windows.Forms.DateTimePicker();
             this.c_beneficiado = new System.Windows.Forms.ComboBox();
             this.c_nome = new System.Windows.Forms.TextBox();
-            this.c_documento = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,16 +52,18 @@ namespace AssistentePessoal
             this.label1 = new System.Windows.Forms.Label();
             this.c_progresso = new System.Windows.Forms.ProgressBar();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.grid = new System.Windows.Forms.DataGridView();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button3 = new System.Windows.Forms.Button();
+            this.value_label = new System.Windows.Forms.Label();
             this.tabParcelas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.tabGeral.SuspendLayout();
             this.tabControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
             // tabParcelas
@@ -80,6 +81,39 @@ namespace AssistentePessoal
             this.tabParcelas.TabIndex = 2;
             this.tabParcelas.Text = "Parcelas";
             // 
+            // grid
+            // 
+            this.grid.AllowUserToDeleteRows = false;
+            this.grid.AllowUserToResizeColumns = false;
+            this.grid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.grid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.number,
+            this.value,
+            this.vencimento,
+            this.pagamento,
+            this.pago});
+            this.grid.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.grid.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.grid.Location = new System.Drawing.Point(7, 55);
+            this.grid.Name = "grid";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(246)))), ((int)(((byte)(215)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.grid.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grid.Size = new System.Drawing.Size(617, 281);
+            this.grid.TabIndex = 6;
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(468, 342);
@@ -88,6 +122,7 @@ namespace AssistentePessoal
             this.button2.TabIndex = 5;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btn_remove
             // 
@@ -117,15 +152,16 @@ namespace AssistentePessoal
             this.button1.TabIndex = 1;
             this.button1.Text = "Gravar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabGeral
             // 
             this.tabGeral.BackColor = System.Drawing.SystemColors.Control;
-            this.tabGeral.Controls.Add(this.c_valor);
+            this.tabGeral.Controls.Add(this.value_label);
+            this.tabGeral.Controls.Add(this.button3);
             this.tabGeral.Controls.Add(this.c_data_emissao);
             this.tabGeral.Controls.Add(this.c_beneficiado);
             this.tabGeral.Controls.Add(this.c_nome);
-            this.tabGeral.Controls.Add(this.c_documento);
             this.tabGeral.Controls.Add(this.label4);
             this.tabGeral.Controls.Add(this.textBox1);
             this.tabGeral.Controls.Add(this.label7);
@@ -143,43 +179,29 @@ namespace AssistentePessoal
             this.tabGeral.TabIndex = 0;
             this.tabGeral.Text = "Geral";
             // 
-            // c_valor
-            // 
-            this.c_valor.Location = new System.Drawing.Point(442, 66);
-            this.c_valor.Name = "c_valor";
-            this.c_valor.ReadOnly = true;
-            this.c_valor.Size = new System.Drawing.Size(168, 20);
-            this.c_valor.TabIndex = 15;
-            // 
             // c_data_emissao
             // 
             this.c_data_emissao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.c_data_emissao.Location = new System.Drawing.Point(443, 39);
+            this.c_data_emissao.Location = new System.Drawing.Point(443, 40);
             this.c_data_emissao.Name = "c_data_emissao";
             this.c_data_emissao.Size = new System.Drawing.Size(167, 20);
             this.c_data_emissao.TabIndex = 14;
             // 
             // c_beneficiado
             // 
+            this.c_beneficiado.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.c_beneficiado.FormattingEnabled = true;
-            this.c_beneficiado.Location = new System.Drawing.Point(136, 89);
+            this.c_beneficiado.Location = new System.Drawing.Point(136, 90);
             this.c_beneficiado.Name = "c_beneficiado";
             this.c_beneficiado.Size = new System.Drawing.Size(185, 21);
             this.c_beneficiado.TabIndex = 13;
             // 
             // c_nome
             // 
-            this.c_nome.Location = new System.Drawing.Point(136, 39);
+            this.c_nome.Location = new System.Drawing.Point(136, 40);
             this.c_nome.Name = "c_nome";
             this.c_nome.Size = new System.Drawing.Size(185, 20);
             this.c_nome.TabIndex = 12;
-            // 
-            // c_documento
-            // 
-            this.c_documento.Location = new System.Drawing.Point(136, 65);
-            this.c_documento.Name = "c_documento";
-            this.c_documento.Size = new System.Drawing.Size(185, 20);
-            this.c_documento.TabIndex = 11;
             // 
             // label4
             // 
@@ -208,6 +230,7 @@ namespace AssistentePessoal
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.LightGray;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(19, 133);
             this.label7.Margin = new System.Windows.Forms.Padding(3);
             this.label7.Name = "label7";
@@ -221,6 +244,7 @@ namespace AssistentePessoal
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.LightGray;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(19, 65);
             this.label6.Margin = new System.Windows.Forms.Padding(3);
             this.label6.Name = "label6";
@@ -260,6 +284,7 @@ namespace AssistentePessoal
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.LightGray;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(19, 91);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
@@ -273,6 +298,7 @@ namespace AssistentePessoal
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.LightGray;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(19, 39);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
@@ -301,44 +327,12 @@ namespace AssistentePessoal
             this.tabControl.Size = new System.Drawing.Size(641, 399);
             this.tabControl.TabIndex = 0;
             // 
-            // grid
-            // 
-            this.grid.AllowUserToAddRows = false;
-            this.grid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.grid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.grid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.number,
-            this.value,
-            this.vencimento,
-            this.pagamento,
-            this.pago});
-            this.grid.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.grid.ImeMode = System.Windows.Forms.ImeMode.Alpha;
-            this.grid.Location = new System.Drawing.Point(7, 55);
-            this.grid.Name = "grid";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(246)))), ((int)(((byte)(215)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.grid.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(617, 281);
-            this.grid.TabIndex = 6;
-            this.grid.VirtualMode = true;
-            // 
             // number
             // 
             this.number.HeaderText = "N°";
             this.number.Name = "number";
             this.number.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.number.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.number.Width = 90;
             // 
             // value
@@ -346,12 +340,14 @@ namespace AssistentePessoal
             this.value.HeaderText = "Valor";
             this.value.Name = "value";
             this.value.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // vencimento
             // 
             this.vencimento.HeaderText = "Data de Vencimento";
             this.vencimento.Name = "vencimento";
             this.vencimento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.vencimento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.vencimento.Width = 160;
             // 
             // pagamento
@@ -359,6 +355,7 @@ namespace AssistentePessoal
             this.pagamento.HeaderText = "Data de Pagamento";
             this.pagamento.Name = "pagamento";
             this.pagamento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.pagamento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.pagamento.Width = 160;
             // 
             // pago
@@ -368,6 +365,36 @@ namespace AssistentePessoal
             this.pago.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.pago.Width = 67;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.Location = new System.Drawing.Point(134, 65);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(187, 22);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "Anexar\r\n";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // value_label
+            // 
+            this.value_label.AutoSize = true;
+            this.value_label.BackColor = System.Drawing.Color.Gainsboro;
+            this.value_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.value_label.Location = new System.Drawing.Point(443, 68);
+            this.value_label.MaximumSize = new System.Drawing.Size(167, 20);
+            this.value_label.Name = "value_label";
+            this.value_label.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.value_label.Size = new System.Drawing.Size(54, 17);
+            this.value_label.TabIndex = 17;
+            this.value_label.Text = "R$ 0,00";
+            this.value_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormCadastroPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,12 +403,13 @@ namespace AssistentePessoal
             this.Controls.Add(this.tabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCadastroPagamento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contas";
             this.tabParcelas.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.tabGeral.ResumeLayout(false);
             this.tabGeral.PerformLayout();
             this.tabControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -398,11 +426,9 @@ namespace AssistentePessoal
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TextBox c_valor;
         private System.Windows.Forms.DateTimePicker c_data_emissao;
         private System.Windows.Forms.ComboBox c_beneficiado;
         private System.Windows.Forms.TextBox c_nome;
-        private System.Windows.Forms.TextBox c_documento;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ProgressBar c_progresso;
         private System.Windows.Forms.Button button1;
@@ -415,5 +441,8 @@ namespace AssistentePessoal
         private System.Windows.Forms.DataGridViewTextBoxColumn vencimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn pagamento;
         private System.Windows.Forms.DataGridViewCheckBoxColumn pago;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label value_label;
     }
 }
