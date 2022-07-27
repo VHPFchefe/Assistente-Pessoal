@@ -83,11 +83,13 @@ namespace AssistentePessoal
             LoadRows();
             LoadBeneficiario();
         }
-
+  
         private void RefreshForm()
         {
             LoadProgress();
             getValue_label();
+            this.grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.grid.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void getLastRow()
@@ -108,8 +110,7 @@ namespace AssistentePessoal
             double progres = payment.ParcelasPagas();
             double value = progres / qtd * 100;
             this.lab_progress.Text = $"Progresso: {progres}/{qtd}";
-            /*this.c_progresso.Value = (int)value;*/
-            /*MessageBox.Show(payment.ParcelasPagas().ToString());*/
+            this.c_progresso.Value = (int)value < 0 ? 0 : (int)value;
         }
 
         private void LoadRows()
@@ -120,6 +121,9 @@ namespace AssistentePessoal
                 if (dr.Cells["number"].RowIndex != this.last_row.Index)
                 {
                     dr.Cells["number"].Value = ((int)dr.Cells["number"].RowIndex + 1).ToString();
+                    dr.Cells["value"].Style.Format = "F2";
+                    dr.Cells["vencimento"].Style.Format = "dd/MM/yyyy";
+                    dr.Cells["pagamento"].Style.Format = "dd/MM/yyyy";
                     this.payment.parcelas[dr.Index].id = Convert.ToInt32(dr.Cells["number"].Value);
                 }
                 bool pago = dr.Cells["pago"].Value is null == false;
@@ -219,16 +223,19 @@ namespace AssistentePessoal
                 string showParcel = "As parcelas:";
                 foreach (DataGridViewRow dr in this.grid.SelectedRows)
                 {
-                    int id = Convert.ToInt32(dr.Cells["number"].Value.ToString());
-                    foreach (Parcel item in this.payment.parcelas)
+                    if (dr.Index != this.last_row.Index && dr.Cells["pago"].Value is null)
                     {
-                        if (id == item.id)
+                        int id = Convert.ToInt32(dr.Cells["number"].Value.ToString());
+                        foreach (Parcel item in this.payment.parcelas)
                         {
-                            item.PagarParcela();
-                            parcelasPagas.Add(item);
-                            MessageBox.Show("Id: " + item.id);
-                            showParcel += "\n" + item.id;
-                            dr.Cells["pago"].Value = true;
+                            if (id == item.id)
+                            {
+                                item.PagarParcela();
+                                parcelasPagas.Add(item);
+                                showParcel += "\nN° " + item.id + ".";
+                                dr.Cells["pago"].Value = true;
+                                dr.Cells["pagamento"].Value = DateTime.Now.ToString("dd/MM/yyyy");
+                            }
                         }
                     }
                 }

@@ -55,7 +55,7 @@ namespace AssistentePessoal
                 parcel = new Parcel(this.id, value, pagamento, vencimento);
                 if (is_pago.Checked)
                 {
-                    parcel.PagarParcela();
+                    parcel.PagarParcela(pagamento);
                 }
                 close = true;
                 this.Close();

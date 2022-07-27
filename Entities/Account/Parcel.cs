@@ -25,5 +25,11 @@ namespace AssistentePessoal.Entities.Account
             this.status = PaymentStatus.Pago;
             this.date_pagamento = DateTime.Now;
         }
+
+        public void PagarParcela(DateTime pagamento)
+        {
+            this.status = PaymentStatus.Pago;
+            this.date_pagamento = pagamento;
+        }
     }
 }
