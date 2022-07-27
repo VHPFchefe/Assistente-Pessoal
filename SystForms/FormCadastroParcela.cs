@@ -12,21 +12,15 @@ namespace AssistentePessoal
         public Parcel parcel { get; private set; }
         public bool close = false;
 
-        public FormCadastroParcela(int id, int edit_transact)
+        public FormCadastroParcela(int id, Parcel parcel)
         {
             this.BringToFront();
             InitializeComponent();
-            /*
-            this.transact_edit = new Transact(edit_transact);
-            this.titulo.Text = titulo.Text +"  -  N° "+ transact_edit.TransactNumber.ToString();
-            this.cb_movimentacao.Text = transact_edit.movimentation.ToString();
-            this.TexBoxValues.Text = transact_edit.value.ToString("F2");
-            this.cb_carteira.Text = transact_edit.portfolio.name;
-            this.textBox1.Text = transact_edit.comment;
-            this.cb_remetente.Text = transact_edit.sender.name;
-            this.register_date.Value = transact_edit.date;*/
-            is_edit = true;
+            this.TexBoxValues.Text = parcel.value.ToString("F2");
+            this.Data_vencimento.Value = parcel.vencimento;
+            this.is_edit = true;
             this.id = id;
+            data_pagamento.Enabled = false;
         }
 
         public FormCadastroParcela(int id)

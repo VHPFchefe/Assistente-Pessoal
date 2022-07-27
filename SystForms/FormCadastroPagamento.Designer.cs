@@ -36,10 +36,15 @@ namespace AssistentePessoal
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_pagar = new System.Windows.Forms.Button();
             this.grid = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btn_cancelar_conta = new System.Windows.Forms.Button();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_gravar_conta = new System.Windows.Forms.Button();
             this.tabGeral = new System.Windows.Forms.TabPage();
             this.c_beneficiado = new System.Windows.Forms.ComboBox();
             this.value_label = new System.Windows.Forms.Label();
@@ -57,11 +62,6 @@ namespace AssistentePessoal
             this.c_progresso = new System.Windows.Forms.ProgressBar();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabParcelas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.tabGeral.SuspendLayout();
@@ -74,10 +74,10 @@ namespace AssistentePessoal
             this.tabParcelas.Controls.Add(this.btn_editar);
             this.tabParcelas.Controls.Add(this.btn_pagar);
             this.tabParcelas.Controls.Add(this.grid);
-            this.tabParcelas.Controls.Add(this.button2);
+            this.tabParcelas.Controls.Add(this.btn_cancelar_conta);
             this.tabParcelas.Controls.Add(this.btn_remove);
             this.tabParcelas.Controls.Add(this.btn_add);
-            this.tabParcelas.Controls.Add(this.button1);
+            this.tabParcelas.Controls.Add(this.btn_gravar_conta);
             this.tabParcelas.Location = new System.Drawing.Point(4, 22);
             this.tabParcelas.Name = "tabParcelas";
             this.tabParcelas.Padding = new System.Windows.Forms.Padding(3);
@@ -140,15 +140,58 @@ namespace AssistentePessoal
             this.grid.TabIndex = 6;
             this.grid.SelectionChanged += new System.EventHandler(this.grid_SelectionChanged);
             // 
-            // button2
+            // number
             // 
-            this.button2.Location = new System.Drawing.Point(468, 342);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.number.HeaderText = "N°";
+            this.number.Name = "number";
+            this.number.ReadOnly = true;
+            this.number.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.number.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.number.Width = 90;
+            // 
+            // value
+            // 
+            this.value.HeaderText = "$";
+            this.value.Name = "value";
+            this.value.ReadOnly = true;
+            this.value.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // vencimento
+            // 
+            this.vencimento.HeaderText = "Data de Vencimento";
+            this.vencimento.Name = "vencimento";
+            this.vencimento.ReadOnly = true;
+            this.vencimento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.vencimento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.vencimento.Width = 160;
+            // 
+            // pagamento
+            // 
+            this.pagamento.HeaderText = "Data de Pagamento";
+            this.pagamento.Name = "pagamento";
+            this.pagamento.ReadOnly = true;
+            this.pagamento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.pagamento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.pagamento.Width = 160;
+            // 
+            // pago
+            // 
+            this.pago.HeaderText = "Pago";
+            this.pago.Name = "pago";
+            this.pago.ReadOnly = true;
+            this.pago.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.pago.Width = 67;
+            // 
+            // btn_cancelar_conta
+            // 
+            this.btn_cancelar_conta.Location = new System.Drawing.Point(468, 342);
+            this.btn_cancelar_conta.Name = "btn_cancelar_conta";
+            this.btn_cancelar_conta.Size = new System.Drawing.Size(75, 23);
+            this.btn_cancelar_conta.TabIndex = 5;
+            this.btn_cancelar_conta.Text = "Cancelar";
+            this.btn_cancelar_conta.UseVisualStyleBackColor = true;
+            this.btn_cancelar_conta.Click += new System.EventHandler(this.btn_cancelar_conta_Click);
             // 
             // btn_remove
             // 
@@ -170,15 +213,15 @@ namespace AssistentePessoal
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
-            // button1
+            // btn_gravar_conta
             // 
-            this.button1.Location = new System.Drawing.Point(549, 342);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Gravar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_gravar_conta.Location = new System.Drawing.Point(549, 342);
+            this.btn_gravar_conta.Name = "btn_gravar_conta";
+            this.btn_gravar_conta.Size = new System.Drawing.Size(75, 23);
+            this.btn_gravar_conta.TabIndex = 1;
+            this.btn_gravar_conta.Text = "Gravar";
+            this.btn_gravar_conta.UseVisualStyleBackColor = true;
+            this.btn_gravar_conta.Click += new System.EventHandler(this.btn_gravar_conta_Click);
             // 
             // tabGeral
             // 
@@ -378,49 +421,6 @@ namespace AssistentePessoal
             this.tabControl.Size = new System.Drawing.Size(641, 399);
             this.tabControl.TabIndex = 0;
             // 
-            // number
-            // 
-            this.number.HeaderText = "N°";
-            this.number.Name = "number";
-            this.number.ReadOnly = true;
-            this.number.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.number.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.number.Width = 90;
-            // 
-            // value
-            // 
-            this.value.HeaderText = "$";
-            this.value.Name = "value";
-            this.value.ReadOnly = true;
-            this.value.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // vencimento
-            // 
-            this.vencimento.HeaderText = "Data de Vencimento";
-            this.vencimento.Name = "vencimento";
-            this.vencimento.ReadOnly = true;
-            this.vencimento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.vencimento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.vencimento.Width = 160;
-            // 
-            // pagamento
-            // 
-            this.pagamento.HeaderText = "Data de Pagamento";
-            this.pagamento.Name = "pagamento";
-            this.pagamento.ReadOnly = true;
-            this.pagamento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.pagamento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.pagamento.Width = 160;
-            // 
-            // pago
-            // 
-            this.pago.HeaderText = "Pago";
-            this.pago.Name = "pago";
-            this.pago.ReadOnly = true;
-            this.pago.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.pago.Width = 67;
-            // 
             // FormCadastroPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,10 +456,10 @@ namespace AssistentePessoal
         private System.Windows.Forms.TextBox c_nome;
         private System.Windows.Forms.Label lab_progress;
         private System.Windows.Forms.ProgressBar c_progresso;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_gravar_conta;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_remove;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_cancelar_conta;
         private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;

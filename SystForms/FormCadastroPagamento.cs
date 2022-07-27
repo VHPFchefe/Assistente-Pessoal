@@ -40,6 +40,8 @@ namespace AssistentePessoal
             LoadProgress();
             LoadRows();
             LoadBeneficiario();
+            btn_editar.Enabled = false;
+            btn_pagar.Enabled = false;
         }
 
         #region Geral
@@ -141,6 +143,7 @@ namespace AssistentePessoal
                 }
             }
             RefreshForm();
+            StatusEditar();
         }
 
         private void AddRow()
@@ -160,6 +163,26 @@ namespace AssistentePessoal
                 }
                 this.payment.AddParcel(form.parcel);
                 LoadRows();
+                StatusEditar();
+            }
+        }
+
+        private void EditarParcela(int index)
+        {
+            FormCadastroParcela form = new FormCadastroParcela(index, this.payment.parcelas[index]);
+            form.ShowDialog();
+            if (form.close)
+            {
+                this.grid.Rows[index].Cells["value"].Value = form.parcel.value;
+                this.grid.Rows[index].Cells["vencimento"].Value = form.parcel.vencimento;
+                if (form.parcel.status == Entities.Enum.PaymentStatus.Pago)
+                {
+                    this.grid.Rows[index].Cells["pagamento"].Value = form.parcel.date_pagamento;
+                    this.grid.Rows[index].Cells["pago"].Value = true;
+                }
+                this.payment.parcelas[index] = form.parcel;
+                LoadRows();
+                StatusEditar();
             }
         }
 
@@ -208,9 +231,42 @@ namespace AssistentePessoal
             catch (Exception ex) { MessageBox.Show("Erro ao pagar as parcelas: " + ex.Message); }
         }
 
-        private void EditarParcela()
+
+
+        private void GravarConta()
         {
 
+        }
+
+        private void StatusEditar()
+        {
+            if (this.grid.SelectedRows.Count == 1)
+            {
+                if (this.grid.SelectedRows[0].Cells["pago"].Value is null && this.grid.SelectedRows[0].Index != last_row.Index)
+                {
+                    btn_editar.Enabled = true;
+                    btn_pagar.Enabled = true;
+                }
+                else
+                {
+                    btn_editar.Enabled = false;
+                    btn_pagar.Enabled = false;
+                }
+            }
+            else
+            {
+                bool isT = false;
+                foreach (DataGridViewRow dr in this.grid.SelectedRows)
+                {
+                    if (dr.Cells["pago"].Value is null)
+                    {
+                        isT = true;
+                        break;
+                    }
+                }
+                btn_pagar.Enabled = isT;
+                btn_editar.Enabled = false;
+            }
         }
 
         #endregion
@@ -228,17 +284,12 @@ namespace AssistentePessoal
             RemoveRow();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_cancelar_conta_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Você realmente deseja cancelar ?", "Cancelar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Close();
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -251,23 +302,23 @@ namespace AssistentePessoal
             PagarPacerlas();
         }
 
-        private void btn_editar_Click(object sender, EventArgs e)
-        {
-            EditarParcela();
-        }
-
         private void grid_SelectionChanged(object sender, EventArgs e)
         {
-            if (this.grid.SelectedRows.Count > 1)
-            {
-                btn_editar.Enabled = false;
-            }
-            else
-            {
-                btn_editar.Enabled = true;
-            }
+            this.grid.Rows[last_row.Index].Selected = false;
+            StatusEditar();
+        }
+
+        private void btn_editar_Click(object sender, EventArgs e)
+        {
+            EditarParcela(this.grid.SelectedRows[0].Index);
+        }
+
+        private void btn_gravar_conta_Click(object sender, EventArgs e)
+        {
+            GravarConta();
         }
         #endregion
+
 
     }
 }
