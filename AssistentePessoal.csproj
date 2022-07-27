@@ -191,6 +191,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\editar16x16.png" />
+    <None Include="Resources\apply.png" />
     <None Include="Resources\cancelar_NFe16x16.png" />
     <None Include="Resources\avaliacao_fornecedor16x16.png" />
     <None Include="Resources\duplicar.png" />

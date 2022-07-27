@@ -31,17 +31,22 @@ namespace AssistentePessoal.Entities.Account
             this.parcelas = parcelas;
             foreach (Parcel item in this.parcelas)
             {
-                /*                if (item.status == Enum.PaymentStatus.A_Pagar)*/
                 this.value += item.value;
             }
         }
 
         public void AddParcel(Parcel parcel)
         {
-            this.parcelas.Add(parcel);
             this.value += parcel.value;
+            this.parcelas.Add(parcel);
         }
 
+        public void RemoveParcel(int parcel)
+        {
+            this.value -= this.parcelas[parcel].value;
+            this.parcelas.RemoveAt(parcel);
+        }
+        
         public int ParcelasPagas()
         {
             int qtd = 0;

@@ -63,6 +63,16 @@ namespace AssistentePessoal.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap apply {
+            get {
+                object obj = ResourceManager.GetObject("apply", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap avaliacao_fornecedor16x16 {
             get {
                 object obj = ResourceManager.GetObject("avaliacao_fornecedor16x16", resourceCulture);
@@ -126,6 +136,16 @@ namespace AssistentePessoal.Properties {
         internal static System.Drawing.Bitmap duplicar {
             get {
                 object obj = ResourceManager.GetObject("duplicar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap editar16x16 {
+            get {
+                object obj = ResourceManager.GetObject("editar16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

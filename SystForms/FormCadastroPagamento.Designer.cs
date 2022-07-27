@@ -40,8 +40,6 @@ namespace AssistentePessoal
             this.pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
-            this.btn_remove = new System.Windows.Forms.Button();
-            this.btn_add = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabGeral = new System.Windows.Forms.TabPage();
             this.c_beneficiado = new System.Windows.Forms.ComboBox();
@@ -60,6 +58,10 @@ namespace AssistentePessoal
             this.c_progresso = new System.Windows.Forms.ProgressBar();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btn_editar = new System.Windows.Forms.Button();
+            this.btn_pagar = new System.Windows.Forms.Button();
+            this.btn_remove = new System.Windows.Forms.Button();
+            this.btn_add = new System.Windows.Forms.Button();
             this.tabParcelas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.tabGeral.SuspendLayout();
@@ -69,6 +71,8 @@ namespace AssistentePessoal
             // tabParcelas
             // 
             this.tabParcelas.BackColor = System.Drawing.SystemColors.Control;
+            this.tabParcelas.Controls.Add(this.btn_editar);
+            this.tabParcelas.Controls.Add(this.btn_pagar);
             this.tabParcelas.Controls.Add(this.grid);
             this.tabParcelas.Controls.Add(this.button2);
             this.tabParcelas.Controls.Add(this.btn_remove);
@@ -111,7 +115,7 @@ namespace AssistentePessoal
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.grid.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grid.Size = new System.Drawing.Size(617, 281);
             this.grid.TabIndex = 6;
             // 
@@ -167,26 +171,6 @@ namespace AssistentePessoal
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btn_remove
-            // 
-            this.btn_remove.Image = global::AssistentePessoal.Properties.Resources.cancelar_NFe16x16;
-            this.btn_remove.Location = new System.Drawing.Point(36, 26);
-            this.btn_remove.Name = "btn_remove";
-            this.btn_remove.Size = new System.Drawing.Size(24, 23);
-            this.btn_remove.TabIndex = 4;
-            this.btn_remove.UseVisualStyleBackColor = true;
-            this.btn_remove.Click += new System.EventHandler(this.btn_remove_Click);
-            // 
-            // btn_add
-            // 
-            this.btn_add.Image = global::AssistentePessoal.Properties.Resources.duplicar;
-            this.btn_add.Location = new System.Drawing.Point(6, 26);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(24, 23);
-            this.btn_add.TabIndex = 2;
-            this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // button1
             // 
@@ -396,6 +380,46 @@ namespace AssistentePessoal
             this.tabControl.Size = new System.Drawing.Size(641, 399);
             this.tabControl.TabIndex = 0;
             // 
+            // btn_editar
+            // 
+            this.btn_editar.Image = global::AssistentePessoal.Properties.Resources.editar16x16;
+            this.btn_editar.Location = new System.Drawing.Point(96, 26);
+            this.btn_editar.Name = "btn_editar";
+            this.btn_editar.Size = new System.Drawing.Size(24, 23);
+            this.btn_editar.TabIndex = 8;
+            this.btn_editar.UseVisualStyleBackColor = true;
+            this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
+            // 
+            // btn_pagar
+            // 
+            this.btn_pagar.Image = global::AssistentePessoal.Properties.Resources.apply;
+            this.btn_pagar.Location = new System.Drawing.Point(66, 26);
+            this.btn_pagar.Name = "btn_pagar";
+            this.btn_pagar.Size = new System.Drawing.Size(24, 23);
+            this.btn_pagar.TabIndex = 7;
+            this.btn_pagar.UseVisualStyleBackColor = true;
+            this.btn_pagar.Click += new System.EventHandler(this.btn_pagar_Click);
+            // 
+            // btn_remove
+            // 
+            this.btn_remove.Image = global::AssistentePessoal.Properties.Resources.cancelar_NFe16x16;
+            this.btn_remove.Location = new System.Drawing.Point(36, 26);
+            this.btn_remove.Name = "btn_remove";
+            this.btn_remove.Size = new System.Drawing.Size(24, 23);
+            this.btn_remove.TabIndex = 4;
+            this.btn_remove.UseVisualStyleBackColor = true;
+            this.btn_remove.Click += new System.EventHandler(this.btn_remove_Click);
+            // 
+            // btn_add
+            // 
+            this.btn_add.Image = global::AssistentePessoal.Properties.Resources.duplicar;
+            this.btn_add.Location = new System.Drawing.Point(6, 26);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(24, 23);
+            this.btn_add.TabIndex = 2;
+            this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
             // FormCadastroPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,5 +469,7 @@ namespace AssistentePessoal
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label value_label;
         private System.Windows.Forms.ComboBox c_beneficiado;
+        private System.Windows.Forms.Button btn_editar;
+        private System.Windows.Forms.Button btn_pagar;
     }
 }

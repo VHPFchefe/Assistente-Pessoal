@@ -124,8 +124,14 @@
   <data name="avaliacao_fornecedor16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\avaliacao_fornecedor16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cancelar_NFe16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancelar_NFe16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="schumacher16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Imagens\schumacher16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="apply" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apply.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="intercambio-32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\intercambio-32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,7 +154,7 @@
   <data name="duplicar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\duplicar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cancelar_NFe16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cancelar_NFe16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="editar16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\editar16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

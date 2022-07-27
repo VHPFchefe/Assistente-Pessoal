@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace AssistentePessoal
 {
@@ -62,6 +63,16 @@ namespace AssistentePessoal
         {
             Anexar();
         }
+
+        private void btn_pagar_Click(object sender, EventArgs e)
+        {
+            PagarPacerlas();
+        }
+
+        private void btn_editar_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Metodos
@@ -107,7 +118,10 @@ namespace AssistentePessoal
             foreach (DataGridViewRow dr in this.grid.Rows)
             {
                 if (dr.Cells["number"].RowIndex != this.last_row.Index)
+                {
                     dr.Cells["number"].Value = ((int)dr.Cells["number"].RowIndex + 1).ToString();
+                    this.payment.parcelas[dr.Index].id = Convert.ToInt32(dr.Cells["number"].Value);
+                }
                 bool pago = dr.Cells["pago"].Value is null == false;
                 if (pago)
                 {
@@ -120,18 +134,18 @@ namespace AssistentePessoal
 
         private void AddRow()
         {
-            int id = last_row.Index - 1;
+            int id = last_row.Index;
             FormCadastroParcela form = new FormCadastroParcela(id);
             form.ShowDialog();
             if (form.close)
             {
                 this.grid.Rows.Add(1);
-                this.grid.Rows[last_row.Index - 1].Cells["value"].Value = form.parcel.value;
-                this.grid.Rows[last_row.Index - 1].Cells["vencimento"].Value = form.parcel.vencimento;
+                this.grid.Rows[id].Cells["value"].Value = form.parcel.value;
+                this.grid.Rows[id].Cells["vencimento"].Value = form.parcel.vencimento;
                 if (form.parcel.status == Entities.Enum.PaymentStatus.Pago)
                 {
-                    this.grid.Rows[last_row.Index - 1].Cells["pagamento"].Value = form.parcel.date_pagamento;
-                    this.grid.Rows[last_row.Index - 1].Cells["pago"].Value = true;
+                    this.grid.Rows[id].Cells["pagamento"].Value = form.parcel.date_pagamento;
+                    this.grid.Rows[id].Cells["pago"].Value = true;
                 }
                 this.payment.AddParcel(form.parcel);
                 LoadRows();
@@ -141,16 +155,12 @@ namespace AssistentePessoal
         private void RemoveRow()
         {
             if (this.grid.CurrentRow == null) return;
-            int index_a = -1;
-            foreach (DataGridViewCell item in this.grid.SelectedCells)
+            foreach (DataGridViewRow item in this.grid.SelectedRows)
             {
-                if (item.RowIndex != index_a)
+                if (item.Index != this.last_row.Index)
                 {
-                    if (item.RowIndex != this.last_row.Index)
-                    {
-                        this.grid.Rows.RemoveAt(item.RowIndex);
-                        index_a = item.RowIndex;
-                    }
+                    this.payment.RemoveParcel(item.Index);
+                    this.grid.Rows.RemoveAt(item.Index);
                 }
             }
             LoadRows();
@@ -200,8 +210,34 @@ namespace AssistentePessoal
                 MessageBox.Show("Registrar no banco !!!\n\n" + fileName + "\npara =>\n" + localPath);
             }
         }
+
+        private void PagarPacerlas()
+        {
+            try
+            {
+                List<Parcel> parcelasPagas = new List<Parcel>();
+                string showParcel = "As parcelas:";
+                foreach (DataGridViewRow dr in this.grid.SelectedRows)
+                {
+                    int id = Convert.ToInt32(dr.Cells["number"].Value.ToString());
+                    foreach (Parcel item in this.payment.parcelas)
+                    {
+                        if (id == item.id)
+                        {
+                            item.PagarParcela();
+                            parcelasPagas.Add(item);
+                            MessageBox.Show("Id: " + item.id);
+                            showParcel += "\n" + item.id;
+                            dr.Cells["pago"].Value = true;
+                        }
+                    }
+                }
+                if (parcelasPagas.Count == 0) throw new Exception("Nenhuma parcela pôde ser paga!");
+                MessageBox.Show(showParcel + "\nForam pagas com sucesso!");
+                LoadRows();
+            }
+            catch (Exception ex) { MessageBox.Show("Erro ao pagar as parcelas: " + ex.Message); }
+        }
         #endregion
-
-
     }
 }

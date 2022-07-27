@@ -6,7 +6,7 @@ namespace AssistentePessoal.Entities.Account
 {
     public class Parcel
     {
-        public int id { get; private set; }
+        public int id { get; set; }
         public double value { get; private set; }
         public DateTime date_pagamento { get; private set; }
         public DateTime vencimento { get; private set; }
