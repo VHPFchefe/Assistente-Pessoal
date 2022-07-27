@@ -1,5 +1,4 @@
 ﻿using AssistentePessoal.Entities.Account;
-using AssistentePessoal.Entities;
 using AssistentePessoal.Extras;
 using System;
 using System.Data;
@@ -34,47 +33,6 @@ namespace AssistentePessoal
             LoadFormRegister();
         }
 
-        #region Eventos
-        private void btn_add_Click(object sender, EventArgs e)
-        {
-            AddRow();
-        }
-
-        private void btn_remove_Click(object sender, EventArgs e)
-        {
-            RemoveRow();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Você realmente deseja cancelar ?", "Cancelar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                this.Close();
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Anexar();
-        }
-
-        private void btn_pagar_Click(object sender, EventArgs e)
-        {
-            PagarPacerlas();
-        }
-
-        private void btn_editar_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
         #region Metodos
 
         private void LoadFormRegister()
@@ -83,7 +41,56 @@ namespace AssistentePessoal
             LoadRows();
             LoadBeneficiario();
         }
-  
+
+        #region Geral
+
+        private void LoadBeneficiario()
+        {
+            Db_connection db = new Db_connection();
+            try
+            {
+                c_beneficiado.Items.Clear();
+                c_beneficiado.Text = "Selecione uma opção";
+                string sql =
+                        " Select " +
+                        " id_sender as id, " +
+                        " sender_name as name " +
+                        " from sender  where removed = 0";
+
+                SqlCommand command = new SqlCommand(sql, db.con);
+                db.con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var teste = (IDataRecord)reader;
+                    c_beneficiado.Items.Add(teste[1]);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar o Formulário.\n" + ex.ToString());
+            }
+            finally
+            {
+                db.con.Close();
+            }
+        }
+
+        private void Anexar()
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = openFileDialog1.FileName;
+                string localPath = ConfigurationManager.AppSettings["localPath"] + @"\Arquivos\" + openFileDialog1.SafeFileName;
+                File.Copy(fileName, localPath);
+                MessageBox.Show("Registrar no banco !!!\n\n" + fileName + "\npara =>\n" + localPath);
+            }
+        }
+        #endregion
+
+        #region Parcelas
         private void RefreshForm()
         {
             LoadProgress();
@@ -170,51 +177,6 @@ namespace AssistentePessoal
             LoadRows();
         }
 
-        private void LoadBeneficiario()
-        {
-            Db_connection db = new Db_connection();
-            try
-            {
-                c_beneficiado.Items.Clear();
-                c_beneficiado.Text = "Selecione uma opção";
-                string sql =
-                        " Select " +
-                        " id_sender as id, " +
-                        " sender_name as name " +
-                        " from sender  where removed = 0";
-
-                SqlCommand command = new SqlCommand(sql, db.con);
-                db.con.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    var teste = (IDataRecord)reader;
-                    c_beneficiado.Items.Add(teste[1]);
-                }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar o Formulário.\n" + ex.ToString());
-            }
-            finally
-            {
-                db.con.Close();
-            }
-        }
-
-        private void Anexar()
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string fileName = openFileDialog1.FileName;
-                string localPath = ConfigurationManager.AppSettings["localPath"] + @"\Arquivos\" + openFileDialog1.SafeFileName;
-                File.Copy(fileName, localPath);
-                MessageBox.Show("Registrar no banco !!!\n\n" + fileName + "\npara =>\n" + localPath);
-            }
-        }
-
         private void PagarPacerlas()
         {
             try
@@ -245,6 +207,67 @@ namespace AssistentePessoal
             }
             catch (Exception ex) { MessageBox.Show("Erro ao pagar as parcelas: " + ex.Message); }
         }
+
+        private void EditarParcela()
+        {
+
+        }
+
         #endregion
+
+        #endregion
+
+        #region Eventos
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            AddRow();
+        }
+
+        private void btn_remove_Click(object sender, EventArgs e)
+        {
+            RemoveRow();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja cancelar ?", "Cancelar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Anexar();
+        }
+
+        private void btn_pagar_Click(object sender, EventArgs e)
+        {
+            PagarPacerlas();
+        }
+
+        private void btn_editar_Click(object sender, EventArgs e)
+        {
+            EditarParcela();
+        }
+
+        private void grid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.grid.SelectedRows.Count > 1)
+            {
+                btn_editar.Enabled = false;
+            }
+            else
+            {
+                btn_editar.Enabled = true;
+            }
+        }
+        #endregion
+
     }
 }

@@ -138,6 +138,7 @@ namespace AssistentePessoal
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grid.Size = new System.Drawing.Size(617, 281);
             this.grid.TabIndex = 6;
+            this.grid.SelectionChanged += new System.EventHandler(this.grid_SelectionChanged);
             // 
             // button2
             // 

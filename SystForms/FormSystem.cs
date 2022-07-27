@@ -145,7 +145,7 @@ namespace AssistentePessoal
             {
                 f = new FormRegistrosSender();
                 f.Owner = this;
-                f.Show();
+                f.ShowDialog();
             }
         }
 
@@ -158,7 +158,7 @@ namespace AssistentePessoal
             {
                 f = new FormRegistrosCarteira();
                 f.Owner = this;
-                f.Show();
+                f.ShowDialog();
             }
         }
 
@@ -171,7 +171,7 @@ namespace AssistentePessoal
             {
                 f = new FormRegistrosMovimentacao();
                 f.Owner = this;
-                f.Show();
+                f.ShowDialog();
             }
         }
 
@@ -184,7 +184,7 @@ namespace AssistentePessoal
             {
                 f = new FormRegistrosPagamentos();
                 f.Owner = this;
-                f.Show();
+                f.ShowDialog();
             }
         }
 
