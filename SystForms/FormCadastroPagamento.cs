@@ -181,7 +181,7 @@ namespace AssistentePessoal
                     this.grid.Rows[index].Cells["pagamento"].Value = form.parcel.date_pagamento;
                     this.grid.Rows[index].Cells["pago"].Value = true;
                 }
-                this.payment.parcelas[index] = form.parcel;
+                this.payment.EditarParcela(form.parcel, index);
                 LoadRows();
                 StatusEditar();
             }

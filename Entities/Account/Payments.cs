@@ -35,6 +35,17 @@ namespace AssistentePessoal.Entities.Account
             }
         }
 
+        public int ParcelasPagas()
+        {
+            int qtd = 0;
+            foreach (Parcel item in this.parcelas)
+            {
+                if (item.status == Enum.PaymentStatus.Pago)
+                    qtd += 1;
+            }
+            return qtd;
+        }
+
         public void AddParcel(Parcel parcel)
         {
             this.value += parcel.value;
@@ -47,15 +58,14 @@ namespace AssistentePessoal.Entities.Account
             this.parcelas.RemoveAt(parcel);
         }
         
-        public int ParcelasPagas()
+        public void EditarParcela(Parcel parcel, int index)
         {
-            int qtd = 0;
-            foreach (Parcel item in this.parcelas)
+            value = 0;
+            this.parcelas[index] = parcel;
+            foreach (Parcel p in parcelas)
             {
-                if (item.status == Enum.PaymentStatus.Pago)
-                    qtd += 1;
+                value += p.value;
             }
-            return qtd;
         }
     }
 }

@@ -42,11 +42,10 @@ namespace AssistentePessoal
             this.vencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btn_cancelar_conta = new System.Windows.Forms.Button();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
-            this.btn_gravar_conta = new System.Windows.Forms.Button();
             this.tabGeral = new System.Windows.Forms.TabPage();
+            this.btn_continuar = new System.Windows.Forms.Button();
             this.c_beneficiado = new System.Windows.Forms.ComboBox();
             this.value_label = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -63,7 +62,8 @@ namespace AssistentePessoal
             this.c_progresso = new System.Windows.Forms.ProgressBar();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btn_continuar = new System.Windows.Forms.Button();
+            this.btn_cancelar_conta = new System.Windows.Forms.Button();
+            this.btn_gravar_conta = new System.Windows.Forms.Button();
             this.tabParcelas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.tabGeral.SuspendLayout();
@@ -73,14 +73,14 @@ namespace AssistentePessoal
             // tabParcelas
             // 
             this.tabParcelas.BackColor = System.Drawing.SystemColors.Control;
+            this.tabParcelas.Controls.Add(this.btn_cancelar_conta);
+            this.tabParcelas.Controls.Add(this.btn_gravar_conta);
             this.tabParcelas.Controls.Add(this.btn_duplicar_selecionado);
             this.tabParcelas.Controls.Add(this.btn_editar);
             this.tabParcelas.Controls.Add(this.btn_pagar);
             this.tabParcelas.Controls.Add(this.grid);
-            this.tabParcelas.Controls.Add(this.btn_cancelar_conta);
             this.tabParcelas.Controls.Add(this.btn_remove);
             this.tabParcelas.Controls.Add(this.btn_add);
-            this.tabParcelas.Controls.Add(this.btn_gravar_conta);
             this.tabParcelas.Location = new System.Drawing.Point(4, 22);
             this.tabParcelas.Name = "tabParcelas";
             this.tabParcelas.Padding = new System.Windows.Forms.Padding(3);
@@ -196,16 +196,6 @@ namespace AssistentePessoal
             this.pago.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.pago.Width = 67;
             // 
-            // btn_cancelar_conta
-            // 
-            this.btn_cancelar_conta.Location = new System.Drawing.Point(468, 342);
-            this.btn_cancelar_conta.Name = "btn_cancelar_conta";
-            this.btn_cancelar_conta.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancelar_conta.TabIndex = 5;
-            this.btn_cancelar_conta.Text = "Cancelar";
-            this.btn_cancelar_conta.UseVisualStyleBackColor = true;
-            this.btn_cancelar_conta.Click += new System.EventHandler(this.btn_cancelar_conta_Click);
-            // 
             // btn_remove
             // 
             this.btn_remove.Image = global::AssistentePessoal.Properties.Resources.cancelar_NFe16x16;
@@ -225,16 +215,6 @@ namespace AssistentePessoal
             this.btn_add.TabIndex = 2;
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btn_gravar_conta
-            // 
-            this.btn_gravar_conta.Location = new System.Drawing.Point(549, 342);
-            this.btn_gravar_conta.Name = "btn_gravar_conta";
-            this.btn_gravar_conta.Size = new System.Drawing.Size(75, 23);
-            this.btn_gravar_conta.TabIndex = 1;
-            this.btn_gravar_conta.Text = "Gravar";
-            this.btn_gravar_conta.UseVisualStyleBackColor = true;
-            this.btn_gravar_conta.Click += new System.EventHandler(this.btn_gravar_conta_Click);
             // 
             // tabGeral
             // 
@@ -261,6 +241,16 @@ namespace AssistentePessoal
             this.tabGeral.Size = new System.Drawing.Size(633, 373);
             this.tabGeral.TabIndex = 0;
             this.tabGeral.Text = "Geral";
+            // 
+            // btn_continuar
+            // 
+            this.btn_continuar.Location = new System.Drawing.Point(549, 341);
+            this.btn_continuar.Name = "btn_continuar";
+            this.btn_continuar.Size = new System.Drawing.Size(75, 23);
+            this.btn_continuar.TabIndex = 19;
+            this.btn_continuar.Text = "Continuar";
+            this.btn_continuar.UseVisualStyleBackColor = true;
+            this.btn_continuar.Click += new System.EventHandler(this.btn_continuar_Click);
             // 
             // c_beneficiado
             // 
@@ -435,15 +425,29 @@ namespace AssistentePessoal
             this.tabControl.Size = new System.Drawing.Size(641, 399);
             this.tabControl.TabIndex = 0;
             // 
-            // btn_continuar
+            // btn_cancelar_conta
             // 
-            this.btn_continuar.Location = new System.Drawing.Point(549, 341);
-            this.btn_continuar.Name = "btn_continuar";
-            this.btn_continuar.Size = new System.Drawing.Size(75, 23);
-            this.btn_continuar.TabIndex = 19;
-            this.btn_continuar.Text = "Continuar";
-            this.btn_continuar.UseVisualStyleBackColor = true;
-            this.btn_continuar.Click += new System.EventHandler(this.btn_continuar_Click);
+            this.btn_cancelar_conta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btn_cancelar_conta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_cancelar_conta.Location = new System.Drawing.Point(468, 342);
+            this.btn_cancelar_conta.Name = "btn_cancelar_conta";
+            this.btn_cancelar_conta.Size = new System.Drawing.Size(75, 23);
+            this.btn_cancelar_conta.TabIndex = 18;
+            this.btn_cancelar_conta.Text = "Cancelar";
+            this.btn_cancelar_conta.UseVisualStyleBackColor = false;
+            this.btn_cancelar_conta.Click += new System.EventHandler(this.btn_cancelar_conta_Click);
+            // 
+            // btn_gravar_conta
+            // 
+            this.btn_gravar_conta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_gravar_conta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_gravar_conta.Location = new System.Drawing.Point(549, 342);
+            this.btn_gravar_conta.Name = "btn_gravar_conta";
+            this.btn_gravar_conta.Size = new System.Drawing.Size(75, 23);
+            this.btn_gravar_conta.TabIndex = 17;
+            this.btn_gravar_conta.Text = "Ok";
+            this.btn_gravar_conta.UseVisualStyleBackColor = false;
+            this.btn_gravar_conta.Click += new System.EventHandler(this.btn_gravar_conta_Click);
             // 
             // FormCadastroPagamento
             // 
@@ -480,10 +484,8 @@ namespace AssistentePessoal
         private System.Windows.Forms.TextBox c_nome;
         private System.Windows.Forms.Label lab_progress;
         private System.Windows.Forms.ProgressBar c_progresso;
-        private System.Windows.Forms.Button btn_gravar_conta;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_remove;
-        private System.Windows.Forms.Button btn_cancelar_conta;
         private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -498,5 +500,7 @@ namespace AssistentePessoal
         private System.Windows.Forms.DataGridViewCheckBoxColumn pago;
         private System.Windows.Forms.Button btn_duplicar_selecionado;
         private System.Windows.Forms.Button btn_continuar;
+        private System.Windows.Forms.Button btn_cancelar_conta;
+        private System.Windows.Forms.Button btn_gravar_conta;
     }
 }
