@@ -46,7 +46,7 @@ namespace AssistentePessoal
                 double value = double.Parse(TexBoxValues.Text);
                 DateTime vencimento = Data_vencimento.Value;
                 DateTime pagamento = data_pagamento.Value;
-                parcel = new Parcel(this.id, value, pagamento, vencimento);
+                parcel = new Parcel(this.id, value, vencimento);
                 if (is_pago.Checked)
                 {
                     parcel.PagarParcela(pagamento);

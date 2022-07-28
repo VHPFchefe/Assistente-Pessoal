@@ -33,6 +33,7 @@ namespace AssistentePessoal
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroPagamento));
             this.tabParcelas = new System.Windows.Forms.TabPage();
+            this.btn_duplicar_selecionado = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_pagar = new System.Windows.Forms.Button();
             this.grid = new System.Windows.Forms.DataGridView();
@@ -62,6 +63,7 @@ namespace AssistentePessoal
             this.c_progresso = new System.Windows.Forms.ProgressBar();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btn_continuar = new System.Windows.Forms.Button();
             this.tabParcelas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.tabGeral.SuspendLayout();
@@ -71,6 +73,7 @@ namespace AssistentePessoal
             // tabParcelas
             // 
             this.tabParcelas.BackColor = System.Drawing.SystemColors.Control;
+            this.tabParcelas.Controls.Add(this.btn_duplicar_selecionado);
             this.tabParcelas.Controls.Add(this.btn_editar);
             this.tabParcelas.Controls.Add(this.btn_pagar);
             this.tabParcelas.Controls.Add(this.grid);
@@ -84,6 +87,16 @@ namespace AssistentePessoal
             this.tabParcelas.Size = new System.Drawing.Size(633, 373);
             this.tabParcelas.TabIndex = 2;
             this.tabParcelas.Text = "Parcelas";
+            // 
+            // btn_duplicar_selecionado
+            // 
+            this.btn_duplicar_selecionado.Image = global::AssistentePessoal.Properties.Resources.campos_adicionais16x16;
+            this.btn_duplicar_selecionado.Location = new System.Drawing.Point(126, 26);
+            this.btn_duplicar_selecionado.Name = "btn_duplicar_selecionado";
+            this.btn_duplicar_selecionado.Size = new System.Drawing.Size(24, 23);
+            this.btn_duplicar_selecionado.TabIndex = 9;
+            this.btn_duplicar_selecionado.UseVisualStyleBackColor = true;
+            this.btn_duplicar_selecionado.Click += new System.EventHandler(this.btn_duplicar_selecionado_Click);
             // 
             // btn_editar
             // 
@@ -226,6 +239,7 @@ namespace AssistentePessoal
             // tabGeral
             // 
             this.tabGeral.BackColor = System.Drawing.SystemColors.Control;
+            this.tabGeral.Controls.Add(this.btn_continuar);
             this.tabGeral.Controls.Add(this.c_beneficiado);
             this.tabGeral.Controls.Add(this.value_label);
             this.tabGeral.Controls.Add(this.button3);
@@ -421,6 +435,16 @@ namespace AssistentePessoal
             this.tabControl.Size = new System.Drawing.Size(641, 399);
             this.tabControl.TabIndex = 0;
             // 
+            // btn_continuar
+            // 
+            this.btn_continuar.Location = new System.Drawing.Point(549, 341);
+            this.btn_continuar.Name = "btn_continuar";
+            this.btn_continuar.Size = new System.Drawing.Size(75, 23);
+            this.btn_continuar.TabIndex = 19;
+            this.btn_continuar.Text = "Continuar";
+            this.btn_continuar.UseVisualStyleBackColor = true;
+            this.btn_continuar.Click += new System.EventHandler(this.btn_continuar_Click);
+            // 
             // FormCadastroPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,5 +496,7 @@ namespace AssistentePessoal
         private System.Windows.Forms.DataGridViewTextBoxColumn vencimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn pagamento;
         private System.Windows.Forms.DataGridViewCheckBoxColumn pago;
+        private System.Windows.Forms.Button btn_duplicar_selecionado;
+        private System.Windows.Forms.Button btn_continuar;
     }
 }

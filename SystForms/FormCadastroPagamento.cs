@@ -42,6 +42,7 @@ namespace AssistentePessoal
             LoadBeneficiario();
             btn_editar.Enabled = false;
             btn_pagar.Enabled = false;
+            btn_duplicar_selecionado.Enabled = false;
         }
 
         #region Geral
@@ -231,7 +232,33 @@ namespace AssistentePessoal
             catch (Exception ex) { MessageBox.Show("Erro ao pagar as parcelas: " + ex.Message); }
         }
 
+        private void DuplicarPacerlas(DataGridViewRow duplicada)
+        {
+            FormDialogDuplicar form = new FormDialogDuplicar();
+            form.ShowDialog();
+            if (form.close)
+            {
+                int indexROW = last_row.Index;
+                string dmy = form.DMY;
+                int num_dupl = Convert.ToInt32(form.num_duplicatas);
+                int num_rein = Convert.ToInt32(form.num_reincidencia);
+                for (int i = 1+indexROW; i <= num_dupl+ indexROW; i++)
+                {
+                    this.grid.Rows.Add(1);
+                    DataGridViewRow row = this.grid.Rows[last_row.Index - 1];
+                    row.Cells["number"].Value = i;
+                    row.Cells["value"].Value = duplicada.Cells["value"].Value;
+                    row.Cells["vencimento"].Value = duplicada.Cells["vencimento"].Value;
 
+                    // Optado por não duplicar as parcelas como pagas, o user deve pagar individualmente ou em massa após a duplicação
+
+                    double value = double.Parse(row.Cells["value"].Value.ToString());
+                    DateTime dataVencimento = DateTime.Parse(row.Cells["vencimento"].Value.ToString());
+                    this.payment.AddParcel(new Parcel(i, value, dataVencimento));
+                }
+                LoadRows();
+            }
+        }
 
         private void GravarConta()
         {
@@ -252,6 +279,7 @@ namespace AssistentePessoal
                     btn_editar.Enabled = false;
                     btn_pagar.Enabled = false;
                 }
+                btn_duplicar_selecionado.Enabled = true; // mesmo estando paga a parcela ela pode ser duplicada, porém as duplicatas não terão status de pagas.
             }
             else
             {
@@ -266,8 +294,10 @@ namespace AssistentePessoal
                 }
                 btn_pagar.Enabled = isT;
                 btn_editar.Enabled = false;
+                btn_duplicar_selecionado.Enabled = false;
             }
         }
+
 
         #endregion
 
@@ -317,8 +347,16 @@ namespace AssistentePessoal
         {
             GravarConta();
         }
+
+        private void btn_duplicar_selecionado_Click(object sender, EventArgs e)
+        {
+            DuplicarPacerlas(this.grid.SelectedRows[0]);
+        }
+
+        private void btn_continuar_Click(object sender, EventArgs e)
+        {
+            this.tabControl.SelectTab(1);
+        }
         #endregion
-
-
     }
 }

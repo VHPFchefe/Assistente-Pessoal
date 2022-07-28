@@ -146,7 +146,8 @@ namespace AssistentePessoal
             this.tollStripADM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tollStripADM.Margin = new System.Windows.Forms.Padding(1);
             this.tollStripADM.Name = "tollStripADM";
-            this.tollStripADM.Size = new System.Drawing.Size(36, 36);
+            this.tollStripADM.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.tollStripADM.Size = new System.Drawing.Size(56, 36);
             this.tollStripADM.Text = "Remetente/Beneficiário";
             this.tollStripADM.Click += new System.EventHandler(this.tollStripADM_Click);
             this.tollStripADM.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
@@ -160,7 +161,8 @@ namespace AssistentePessoal
             this.tollStripPORT.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tollStripPORT.Margin = new System.Windows.Forms.Padding(1);
             this.tollStripPORT.Name = "tollStripPORT";
-            this.tollStripPORT.Size = new System.Drawing.Size(36, 36);
+            this.tollStripPORT.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.tollStripPORT.Size = new System.Drawing.Size(56, 36);
             this.tollStripPORT.Text = "Portifólio/Carteira";
             this.tollStripPORT.Click += new System.EventHandler(this.tollStripPORT_Click);
             this.tollStripPORT.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
@@ -174,7 +176,8 @@ namespace AssistentePessoal
             this.tollStripMOV.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tollStripMOV.Margin = new System.Windows.Forms.Padding(1);
             this.tollStripMOV.Name = "tollStripMOV";
-            this.tollStripMOV.Size = new System.Drawing.Size(36, 36);
+            this.tollStripMOV.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.tollStripMOV.Size = new System.Drawing.Size(56, 36);
             this.tollStripMOV.Text = "Movimentações";
             this.tollStripMOV.Click += new System.EventHandler(this.tollStripMOV_Click);
             this.tollStripMOV.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);
@@ -188,7 +191,8 @@ namespace AssistentePessoal
             this.toolStripPagamentos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripPagamentos.Margin = new System.Windows.Forms.Padding(1);
             this.toolStripPagamentos.Name = "toolStripPagamentos";
-            this.toolStripPagamentos.Size = new System.Drawing.Size(36, 36);
+            this.toolStripPagamentos.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.toolStripPagamentos.Size = new System.Drawing.Size(56, 36);
             this.toolStripPagamentos.Text = "Contas a Pagar";
             this.toolStripPagamentos.Click += new System.EventHandler(this.toolStripPagamentos_Click);
             this.toolStripPagamentos.MouseEnter += new System.EventHandler(this.tollStripADM_MouseEnter);

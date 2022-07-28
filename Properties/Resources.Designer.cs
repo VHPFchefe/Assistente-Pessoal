@@ -83,6 +83,16 @@ namespace AssistentePessoal.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap campos_adicionais16x16 {
+            get {
+                object obj = ResourceManager.GetObject("campos_adicionais16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancelar_NFe16x16 {
             get {
                 object obj = ResourceManager.GetObject("cancelar_NFe16x16", resourceCulture);

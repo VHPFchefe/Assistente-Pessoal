@@ -72,6 +72,12 @@
     <Compile Include="Entities\Senders.cs" />
     <Compile Include="Entities\Account\Transact.cs" />
     <Compile Include="Extras\Consultas.cs" />
+    <Compile Include="SystForms\FormDialogDuplicar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystForms\FormDialogDuplicar.Designer.cs">
+      <DependentUpon>FormDialogDuplicar.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystForms\FormCadastroCarteira.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     <EmbeddedResource Include="SystForms\FormCadastroPagamento.resx">
       <DependentUpon>FormCadastroPagamento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SystForms\FormDialogDuplicar.resx">
+      <DependentUpon>FormDialogDuplicar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SystForms\FormRegistrosCarteira.resx">
       <DependentUpon>FormRegistrosCarteira.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +200,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\campos_adicionais16x16.png" />
     <None Include="README.md" />
     <None Include="Resources\editar16x16.png" />
     <None Include="Resources\apply.png" />

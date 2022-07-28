@@ -12,7 +12,9 @@ namespace AssistentePessoal.Entities.Account
         public DateTime vencimento { get; private set; }
         public PaymentStatus status { get; private set; }
 
-        public Parcel(int id, double value, DateTime data_pagamento, DateTime vencimento)
+        public Parcel() { }
+
+        public Parcel(int id, double value, DateTime vencimento)
         {
             this.id = id;
             this.value = value;
