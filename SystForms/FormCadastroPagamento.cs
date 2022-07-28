@@ -234,30 +234,37 @@ namespace AssistentePessoal
 
         private void DuplicarPacerlas(DataGridViewRow duplicada)
         {
-            FormDialogDuplicar form = new FormDialogDuplicar();
-            form.ShowDialog();
-            if (form.close)
+            try
             {
-                int indexROW = last_row.Index;
-                string dmy = form.DMY;
-                int num_dupl = Convert.ToInt32(form.num_duplicatas);
-                int num_rein = Convert.ToInt32(form.num_reincidencia);
-                for (int i = 1+indexROW; i <= num_dupl+ indexROW; i++)
+                FormDialogDuplicar form = new FormDialogDuplicar();
+                form.ShowDialog();
+                if (form.close)
                 {
-                    this.grid.Rows.Add(1);
-                    DataGridViewRow row = this.grid.Rows[last_row.Index - 1];
-                    row.Cells["number"].Value = i;
-                    row.Cells["value"].Value = duplicada.Cells["value"].Value;
-                    row.Cells["vencimento"].Value = duplicada.Cells["vencimento"].Value;
+                    int indexROW = last_row.Index;
+                    string dmy = form.dmy;
+                    int num_dupl = Convert.ToInt32(form.num_duplicatas);
+                    int num_rein = Convert.ToInt32(form.num_reincidencia);
+                    DateTime data_anterior = DateTime.Parse(duplicada.Cells["vencimento"].Value.ToString());
+                    for (int i = 1 + indexROW; i <= num_dupl + indexROW; i++)
+                    {
+                        this.grid.Rows.Add(1);
+                        DataGridViewRow row = this.grid.Rows[last_row.Index - 1];
 
-                    // Optado por não duplicar as parcelas como pagas, o user deve pagar individualmente ou em massa após a duplicação
+                        double value = double.Parse(duplicada.Cells["value"].Value.ToString());
+                        DateTime dataVencimento = IncrementarData(data_anterior, dmy, num_rein);
+                        data_anterior = dataVencimento;
 
-                    double value = double.Parse(row.Cells["value"].Value.ToString());
-                    DateTime dataVencimento = DateTime.Parse(row.Cells["vencimento"].Value.ToString());
-                    this.payment.AddParcel(new Parcel(i, value, dataVencimento));
+                        row.Cells["number"].Value = i;
+                        row.Cells["value"].Value = value;
+                        row.Cells["vencimento"].Value = dataVencimento;
+
+                        // Optado por não duplicar as parcelas como pagas, o user deve pagar individualmente ou em massa após a duplicação
+                        this.payment.AddParcel(new Parcel(i, value, dataVencimento));
+                    }
+                    LoadRows();
                 }
-                LoadRows();
             }
+            catch (Exception e) { MessageBox.Show(e.Message); }
         }
 
         private void GravarConta()
@@ -298,6 +305,25 @@ namespace AssistentePessoal
             }
         }
 
+        private DateTime IncrementarData(DateTime date, String dmy, int reincidencia)
+        {
+            DateTime newDate = date;
+
+            switch (dmy)
+            {
+                case "Dia":
+                    newDate = newDate.AddDays(reincidencia);
+                    break;
+                case "Mês":
+                    newDate = newDate.AddMonths(1);
+                    break;
+                case "Ano":
+                    newDate = newDate.AddYears(reincidencia);
+                    break;
+            }
+
+            return newDate;
+        }
 
         #endregion
 

@@ -17,18 +17,19 @@ namespace AssistentePessoal
             InitializeComponent();
         }
 
-        public string DMY;
+        public string dmy;
         public int num_reincidencia;
         public int num_duplicatas;
         public bool close = false;
 
         private void ok_Click(object sender, EventArgs e)
         {
+            num_reincidencia = Convert.ToInt32(numeric_reincidencia.Value);
+            num_duplicatas = Convert.ToInt32(numeric_duplicatas.Value);
+            if (num_duplicatas == 0 || num_reincidencia == 0 || cb_DMY.Text.Length < 1) throw new Exception("Nenhum campo pode ficar em branco ou ser igual a zero!");
+            dmy = cb_DMY.SelectedItem.ToString();
             if (MessageBox.Show("Você deseja Salvar?", "Salvar", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                DMY = cb_DMY.SelectedText.ToString();
-                num_reincidencia = Convert.ToInt32(numeric_reincidencia.Value);
-                num_duplicatas = Convert.ToInt32(numeric_duplicatas.Value);
                 close = true;
                 this.Close();
             }

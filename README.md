@@ -8,9 +8,8 @@ Bugs:
 Backlog Itens:
 ----------------------------------------------  
 Parcelas
-1 - Duplicar Parcelas com incremental de dia, mês ou ano;
-2 - Adicionar Legenda nos btn de parcelas
-3 - Adicionar btn de Info com a legenda dos btn disponiveis em parcelas
+1 - Adicionar Legenda nos btn de parcelas
+2 - Adicionar btn de Info com a legenda dos btn disponiveis em parcelas
 
 Contas a Pagar
 1 - Quando anexar algum arquivo criar um log no banco de dados
