@@ -83,13 +83,17 @@ namespace AssistentePessoal
 
         private void Anexar()
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                string fileName = openFileDialog1.FileName;
-                string localPath = ConfigurationManager.AppSettings["localPath"] + @"\Arquivos\" + openFileDialog1.SafeFileName;
-                File.Copy(fileName, localPath);
-                MessageBox.Show("Registrar no banco !!!\n\n" + fileName + "\npara =>\n" + localPath);
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = openFileDialog1.FileName;
+                    string localPath = ConfigurationManager.AppSettings["localPath"] + @"\Arquivos\" + openFileDialog1.SafeFileName;
+                    File.Copy(fileName, localPath);
+                    MessageBox.Show("Registrar no banco !!!\n\n" + fileName + "\npara =>\n" + localPath);
+                }
             }
+            catch (Exception e) { MessageBox.Show(e.Message); }
         }
         #endregion
 
