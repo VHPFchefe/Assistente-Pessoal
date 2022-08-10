@@ -1,4 +1,5 @@
-﻿using AssistentePessoal.Entities.Account;
+﻿using AssistentePessoal.Entities;
+using AssistentePessoal.Entities.Account;
 using AssistentePessoal.Extras;
 using System;
 using System.Data;
@@ -17,11 +18,12 @@ namespace AssistentePessoal
         private bool is_edit = false;
         DataGridViewRow last_row;
 
-        public FormCadastroPagamento(int edit_transact)
+        public FormCadastroPagamento(int edit_payment)
         {
             this.BringToFront();
             InitializeComponent();
             is_edit = true;
+            payment = new Payments(edit_payment);
             LoadFormRegister();
         }
 
@@ -46,6 +48,7 @@ namespace AssistentePessoal
         }
 
         #region Geral
+
 
         private void LoadBeneficiario()
         {
@@ -90,7 +93,7 @@ namespace AssistentePessoal
                     string fileName = openFileDialog1.FileName;
                     string localPath = ConfigurationManager.AppSettings["localPath"] + @"\Arquivos\" + openFileDialog1.SafeFileName;
                     File.Copy(fileName, localPath);
-                    MessageBox.Show("Registrar no banco !!!\n\n" + fileName + "\npara =>\n" + localPath);
+                    payment.payment_document_path = fileName;
                 }
             }
             catch (Exception e) { MessageBox.Show(e.Message); }
@@ -193,47 +196,61 @@ namespace AssistentePessoal
 
         private void RemoveRow()
         {
-            if (this.grid.CurrentRow == null) return;
-            foreach (DataGridViewRow item in this.grid.SelectedRows)
+            if (MessageBox.Show("Você realmente deseja deletar as parcelas selecionadas ?", "Remover Parcelas", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (item.Index != this.last_row.Index)
+                if (this.grid.CurrentRow == null) return;
+                foreach (DataGridViewRow item in this.grid.SelectedRows)
                 {
-                    this.payment.RemoveParcel(item.Index);
-                    this.grid.Rows.RemoveAt(item.Index);
+                    if (item.Index != this.last_row.Index)
+                    {
+                        this.payment.RemoveParcel(item.Index);
+                        this.grid.Rows.RemoveAt(item.Index);
+                    }
                 }
+                LoadRows();
             }
-            LoadRows();
         }
 
         private void PagarPacerlas()
         {
-            try
+            if (MessageBox.Show("Você realmente deseja pagar as parcelas selecionadas ?", "Pagar Parcelas", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                List<Parcel> parcelasPagas = new List<Parcel>();
-                string showParcel = "As parcelas:";
-                foreach (DataGridViewRow dr in this.grid.SelectedRows)
+                try
                 {
-                    if (dr.Index != this.last_row.Index && dr.Cells["pago"].Value is null)
+                    List<Parcel> parcelasPagas = new List<Parcel>();
+                    string showParcel = "As parcelas:";
+                    foreach (DataGridViewRow dr in this.grid.SelectedRows)
                     {
-                        int id = Convert.ToInt32(dr.Cells["number"].Value.ToString());
-                        foreach (Parcel item in this.payment.parcelas)
+                        if (dr.Index != this.last_row.Index && dr.Cells["pago"].Value is null)
                         {
-                            if (id == item.id)
+                            int id = Convert.ToInt32(dr.Cells["number"].Value.ToString());
+                            foreach (Parcel item in this.payment.parcelas)
                             {
-                                item.PagarParcela();
-                                parcelasPagas.Add(item);
-                                showParcel += "\nN° " + item.id + ".";
-                                dr.Cells["pago"].Value = true;
-                                dr.Cells["pagamento"].Value = DateTime.Now.ToString("dd/MM/yyyy");
+                                if (id == item.id)
+                                {
+                                    item.PagarParcela();
+                                    parcelasPagas.Add(item);
+                                    showParcel += "\nN° " + item.id + ".";
+                                    dr.Cells["pago"].Value = true;
+                                    dr.Cells["pagamento"].Value = DateTime.Now.ToString("dd/MM/yyyy");
+                                }
                             }
                         }
                     }
+                    if (parcelasPagas.Count == 0) throw new Exception("Nenhuma parcela pôde ser paga!");
+                    showParcel += "\nForam pagas com sucesso!";
+                    if(parcelasPagas.Count > 12)
+                    {
+                        MessageBox.Show($"Foram pagas {parcelasPagas.Count} parcelas!");
+                    }
+                    else
+                    {
+                        MessageBox.Show(showParcel);
+                    }
+                    LoadRows();
                 }
-                if (parcelasPagas.Count == 0) throw new Exception("Nenhuma parcela pôde ser paga!");
-                MessageBox.Show(showParcel + "\nForam pagas com sucesso!");
-                LoadRows();
+                catch (Exception ex) { MessageBox.Show("Erro ao pagar as parcelas: " + ex.Message); }
             }
-            catch (Exception ex) { MessageBox.Show("Erro ao pagar as parcelas: " + ex.Message); }
         }
 
         private void DuplicarPacerlas(DataGridViewRow duplicada)
@@ -273,7 +290,43 @@ namespace AssistentePessoal
 
         private void GravarConta()
         {
-
+            /*try
+            {*/
+                /* Realizar validações */
+                /*if (cb_carteira.Text == "Selecione uma carteira" || cb_remetente.Text == "Selecione um remetente" || double.Parse(TexBoxValues.Text) == 0)
+                {
+                    MessageBox.Show("Verifique os campos e preencha novamente");
+                }
+                else if (register_date.Value > DateTime.Now)
+                {
+                    MessageBox.Show("A data de movimentação não pode ser maior que hoje!");
+                }
+                else
+                */
+                {
+                    if (is_edit)
+                    {
+                     /*   Transact transact = new Transact(transact_edit.TransactNumber, register_date.Value, (Movimentation)Enum.Parse(typeof(Movimentation), cb_movimentacao.Text), Double.Parse(TexBoxValues.Text), cb_carteira.Text, textBox1.Text, cb_remetente.Text);
+                        transact.RegisterTransactEdit();
+                        MessageBox.Show("Transação Editada.");*/
+                    }
+                    else
+                    {
+                        payment.sender = new Senders(c_beneficiado.Text);
+                        payment.payment_name = c_nome.Text;
+                        payment.payment_description = c_description.Text ?? "";
+                        payment.emission_date = c_data_emissao.Value;
+                        payment.progress = c_progresso.Value;
+                        payment.RegisterPaymentAdd();
+                    }
+                    //AtualizaFormPai();
+                    this.Close();
+                }
+            /*}
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }*/
         }
 
         private void StatusEditar()

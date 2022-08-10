@@ -54,7 +54,7 @@ namespace AssistentePessoal
                     count_while++;
                 }
                 reader.Close();
-
+                
                 reader = command2.ExecuteReader();
                 count_while = 0;
                 while (reader.Read())
@@ -133,6 +133,7 @@ namespace AssistentePessoal
         private void FormSystem_Load(object sender, EventArgs e)
         {
             LoadGraficos();
+            grafico_lucro.Enabled = false;
         }
 
 

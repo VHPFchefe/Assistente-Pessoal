@@ -406,8 +406,9 @@ namespace AssistentePessoal
                     dr.Cells[3].Value.ToString() + ";" +
                     dr.Cells[4].Value.ToString() + ";" +
                     dr.Cells[5].Value.ToString() + ";" +
-                    dr.Cells[6].Value.ToString() + ";" +
-                    dr.Cells[7].Value.ToString();
+                    dr.Cells[6].Value.ToString() 
+                    /*+ ";" + dr.Cells[7].Value.ToString()
+                    */;
                 a++;
             }
             try

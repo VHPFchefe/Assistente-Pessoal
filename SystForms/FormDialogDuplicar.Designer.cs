@@ -57,6 +57,11 @@ namespace AssistentePessoal
             // 
             this.numeric_duplicatas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.numeric_duplicatas.Location = new System.Drawing.Point(143, 40);
+            this.numeric_duplicatas.Maximum = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
             this.numeric_duplicatas.Name = "numeric_duplicatas";
             this.numeric_duplicatas.Size = new System.Drawing.Size(39, 20);
             this.numeric_duplicatas.TabIndex = 36;

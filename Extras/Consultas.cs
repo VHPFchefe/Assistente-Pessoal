@@ -13,11 +13,11 @@ namespace AssistentePessoal.Extras
         public string sql_GraficoEntrada { get; private set; } =
         " with " +
         " cte_calendar as ( " +
-        " select Data_completa from calendar " +
+        " select Data from calendar " +
         " where " +
-        " cast(Data_completa as date) >= cast(DATEFROMPARTS(datepart(YEAR, GETDATE()),datepart(MONTH, datediff(m,6, GETDATE())),01) as date)  " +
+        " cast(Data as date) >= cast(DATEFROMPARTS(datepart(YEAR, GETDATE()),datepart(MONTH, datediff(m,6, GETDATE())),01) as date)  " +
         " and " +
-        " cast(Data_completa as date) <= cast(DATEADD(D,-1, DATEFROMPARTS(datepart(YEAR, GETDATE()),datepart(MONTH, DATEADD(M,1, GETDATE())),01)) as date)  " +
+        " cast(Data as date) <= cast(DATEADD(D,-1, DATEFROMPARTS(datepart(YEAR, GETDATE()),datepart(MONTH, GETDATE()),01)) as date)  " +
         " ),  " +
         " cte_entrada	as (select " +
         " transact_value, " +
@@ -31,10 +31,10 @@ namespace AssistentePessoal.Extras
         " ),  " +
         " cte_result as ( " +
         " select distinct " +
-        " datepart(MONTH, c.Data_completa) as 'Mês', coalesce(ct.Valor,0) as Valor, " +
-        " ROW_NUMBER() over(partition by datepart(MONTH, c.Data_completa) order by ct.Valor desc) as linha " +
+        " datepart(MONTH, c.Data) as 'Mês', coalesce(ct.Valor,0) as Valor, " +
+        " ROW_NUMBER() over(partition by datepart(MONTH, c.Data) order by ct.Valor desc) as linha " +
         " from cte_calendar c " +
-        " left join cte_soma_entrada ct on(cast(ct.date_transact as date) = cast(c.Data_completa as date))  " +
+        " left join cte_soma_entrada ct on(cast(ct.date_transact as date) = cast(c.Data as date))  " +
         " )  " +
         " select ct.Mês , max(ct.Valor) from cte_result ct " +
         " where linha = 1 " +

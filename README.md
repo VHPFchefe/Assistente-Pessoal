@@ -24,6 +24,9 @@ Integrar Parcelas com Movimentações
 1 - Pagar parcela -> Adiciona movimentação de saída;
 2 - Remover parcela paga -> Seta 0 na movimentação;
 
+Movimentações
+1 - Limitar seleção de data da movimentação para no máximo o dia atual
+
 ==============================================
 Coming soon:
 ----------------------------------------------

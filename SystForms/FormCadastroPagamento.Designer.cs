@@ -33,6 +33,8 @@ namespace AssistentePessoal
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroPagamento));
             this.tabParcelas = new System.Windows.Forms.TabPage();
+            this.btn_cancelar_conta = new System.Windows.Forms.Button();
+            this.btn_gravar_conta = new System.Windows.Forms.Button();
             this.btn_duplicar_selecionado = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
             this.btn_pagar = new System.Windows.Forms.Button();
@@ -52,7 +54,7 @@ namespace AssistentePessoal
             this.c_data_emissao = new System.Windows.Forms.DateTimePicker();
             this.c_nome = new System.Windows.Forms.TextBox();
             this.lab_progress = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.c_description = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,8 +64,6 @@ namespace AssistentePessoal
             this.c_progresso = new System.Windows.Forms.ProgressBar();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btn_cancelar_conta = new System.Windows.Forms.Button();
-            this.btn_gravar_conta = new System.Windows.Forms.Button();
             this.tabParcelas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.tabGeral.SuspendLayout();
@@ -87,6 +87,30 @@ namespace AssistentePessoal
             this.tabParcelas.Size = new System.Drawing.Size(633, 373);
             this.tabParcelas.TabIndex = 2;
             this.tabParcelas.Text = "Parcelas";
+            // 
+            // btn_cancelar_conta
+            // 
+            this.btn_cancelar_conta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btn_cancelar_conta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_cancelar_conta.Location = new System.Drawing.Point(468, 342);
+            this.btn_cancelar_conta.Name = "btn_cancelar_conta";
+            this.btn_cancelar_conta.Size = new System.Drawing.Size(75, 23);
+            this.btn_cancelar_conta.TabIndex = 18;
+            this.btn_cancelar_conta.Text = "Cancelar";
+            this.btn_cancelar_conta.UseVisualStyleBackColor = false;
+            this.btn_cancelar_conta.Click += new System.EventHandler(this.btn_cancelar_conta_Click);
+            // 
+            // btn_gravar_conta
+            // 
+            this.btn_gravar_conta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_gravar_conta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_gravar_conta.Location = new System.Drawing.Point(549, 342);
+            this.btn_gravar_conta.Name = "btn_gravar_conta";
+            this.btn_gravar_conta.Size = new System.Drawing.Size(75, 23);
+            this.btn_gravar_conta.TabIndex = 17;
+            this.btn_gravar_conta.Text = "Ok";
+            this.btn_gravar_conta.UseVisualStyleBackColor = false;
+            this.btn_gravar_conta.Click += new System.EventHandler(this.btn_gravar_conta_Click);
             // 
             // btn_duplicar_selecionado
             // 
@@ -226,7 +250,7 @@ namespace AssistentePessoal
             this.tabGeral.Controls.Add(this.c_data_emissao);
             this.tabGeral.Controls.Add(this.c_nome);
             this.tabGeral.Controls.Add(this.lab_progress);
-            this.tabGeral.Controls.Add(this.textBox1);
+            this.tabGeral.Controls.Add(this.c_description);
             this.tabGeral.Controls.Add(this.label7);
             this.tabGeral.Controls.Add(this.label6);
             this.tabGeral.Controls.Add(this.label5);
@@ -267,11 +291,11 @@ namespace AssistentePessoal
             this.value_label.AutoSize = true;
             this.value_label.BackColor = System.Drawing.Color.Gainsboro;
             this.value_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.value_label.Location = new System.Drawing.Point(443, 68);
-            this.value_label.MaximumSize = new System.Drawing.Size(167, 20);
+            this.value_label.Location = new System.Drawing.Point(443, 66);
+            this.value_label.MinimumSize = new System.Drawing.Size(165, 0);
             this.value_label.Name = "value_label";
-            this.value_label.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.value_label.Size = new System.Drawing.Size(54, 17);
+            this.value_label.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.value_label.Size = new System.Drawing.Size(165, 19);
             this.value_label.TabIndex = 17;
             this.value_label.Text = "R$ 0,00";
             this.value_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -317,13 +341,13 @@ namespace AssistentePessoal
             this.lab_progress.TabIndex = 9;
             this.lab_progress.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // textBox1
+            // c_description
             // 
-            this.textBox1.Location = new System.Drawing.Point(22, 159);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(588, 176);
-            this.textBox1.TabIndex = 7;
+            this.c_description.Location = new System.Drawing.Point(22, 159);
+            this.c_description.Multiline = true;
+            this.c_description.Name = "c_description";
+            this.c_description.Size = new System.Drawing.Size(588, 176);
+            this.c_description.TabIndex = 7;
             // 
             // label7
             // 
@@ -425,30 +449,6 @@ namespace AssistentePessoal
             this.tabControl.Size = new System.Drawing.Size(641, 399);
             this.tabControl.TabIndex = 0;
             // 
-            // btn_cancelar_conta
-            // 
-            this.btn_cancelar_conta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btn_cancelar_conta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_cancelar_conta.Location = new System.Drawing.Point(468, 342);
-            this.btn_cancelar_conta.Name = "btn_cancelar_conta";
-            this.btn_cancelar_conta.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancelar_conta.TabIndex = 18;
-            this.btn_cancelar_conta.Text = "Cancelar";
-            this.btn_cancelar_conta.UseVisualStyleBackColor = false;
-            this.btn_cancelar_conta.Click += new System.EventHandler(this.btn_cancelar_conta_Click);
-            // 
-            // btn_gravar_conta
-            // 
-            this.btn_gravar_conta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btn_gravar_conta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_gravar_conta.Location = new System.Drawing.Point(549, 342);
-            this.btn_gravar_conta.Name = "btn_gravar_conta";
-            this.btn_gravar_conta.Size = new System.Drawing.Size(75, 23);
-            this.btn_gravar_conta.TabIndex = 17;
-            this.btn_gravar_conta.Text = "Ok";
-            this.btn_gravar_conta.UseVisualStyleBackColor = false;
-            this.btn_gravar_conta.Click += new System.EventHandler(this.btn_gravar_conta_Click);
-            // 
             // FormCadastroPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,7 +472,7 @@ namespace AssistentePessoal
 
         private System.Windows.Forms.TabPage tabParcelas;
         private System.Windows.Forms.TabPage tabGeral;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox c_description;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;

@@ -2,6 +2,9 @@
 using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using AssistentePessoal.Extras;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace AssistentePessoal
 {
@@ -16,20 +19,61 @@ namespace AssistentePessoal
         {
             this.BringToFront();
             InitializeComponent();
+            loadPortfolio();
             this.TexBoxValues.Text = parcel.value.ToString("F2");
             this.Data_vencimento.Value = parcel.vencimento;
             this.is_edit = true;
             this.id = id;
-            data_pagamento.Enabled = false;
+            this.cb_carteira.Text = parcel.portfolio.name;
         }
 
         public FormCadastroParcela(int id)
         {
             InitializeComponent();
+            loadPortfolio();
             TexBoxValues.Text = string.Format("{0:#,##0.00}", 0d);
             is_edit = false;
             data_pagamento.Enabled = false;
+            cb_carteira.Enabled = false;
+            c_comment.Enabled = false;
         }
+
+
+        void loadPortfolio()
+        {
+            Db_connection db = new Db_connection();
+            try
+            {
+                cb_carteira.Items.Clear();
+                string sql =
+                        " Select " +
+                        " id_portfolio as id, " +
+                        " name_portfolio as name " +
+                        " from portfolio  where removed = 0";
+
+                SqlCommand command = new SqlCommand(sql, db.con);
+                db.con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var teste = (IDataRecord)reader;
+                    cb_carteira.Items.Add(teste[1]);
+                    //MessageBox.Show(String.Format("{0}, {1}", teste[0], teste[1]));
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar o Formulário.\n" + ex.ToString());
+            }
+            finally
+            {
+                db.con.Close();
+            }
+        }
+
 
         private void cancelar_Click(object sender, EventArgs e)
         {
@@ -46,10 +90,11 @@ namespace AssistentePessoal
                 double value = double.Parse(TexBoxValues.Text);
                 DateTime vencimento = Data_vencimento.Value;
                 DateTime pagamento = data_pagamento.Value;
-                parcel = new Parcel(this.id, value, vencimento);
+                parcel = new Parcel(this.id, value, vencimento, c_comment.Text ?? "");
                 if (is_pago.Checked)
                 {
                     parcel.PagarParcela(pagamento);
+                    parcel.portfolio = new Entities.Portfolio(cb_carteira.Text);
                 }
                 close = true;
                 this.Close();
@@ -96,7 +141,12 @@ namespace AssistentePessoal
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            data_pagamento.Enabled = is_pago.Checked;
+            if (is_pago.Checked)
+            {
+                data_pagamento.Enabled = true;
+                cb_carteira.Enabled = true;
+                c_comment.Enabled = true;
+            }
         }
     }
 }

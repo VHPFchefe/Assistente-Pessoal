@@ -125,7 +125,12 @@ namespace AssistentePessoal
             Db_connection db = new Db_connection();
             try
             {
-                string sql = "select t.transact_number as 'Número da Transação', t.transact_value as 'Valor da Transação', it.name_transact_type as 'Movimentação', s.sender_name as 'Remetente',	p.name_portfolio as 'Portifólio', 	t.transact_comment as 'Comentário',	format(t.date_transact, 'dd/MM/yyyy') as 'Data de Transação', t.id_transact_type as 'id_transact_type' from transact t inner join transact_type it on (it.id_transact_type = t.id_transact_type) inner join sender s on (s.id_sender = t.id_sender) inner join portfolio p on (p.id_portfolio = t.id_portfolio) where t.removed = 0 order by date_transact desc";
+                string sql =
+                    " select pm.id_payment as 'Número do Pagamento', pm.payment_value as 'Valor', pm.payment_parcelas as 'N° Parcelas', s.sender_name as 'Beneficiário', pm.payment_emission_date as 'Data de Emissão' " +
+                    " , case when pm.payment_progress = 100 then 'Pago' else 'À Pagar' end as 'Status' " +
+                    " from payments pm " +
+                    " inner join sender s on (s.id_sender = pm.id_sender) ";
+
                 db.con.Open();
                 using (SqlDataAdapter da = new SqlDataAdapter(sql, db.con))
                 {
@@ -137,8 +142,8 @@ namespace AssistentePessoal
                     }
                     AtualizaGrafico(); ;
                 }
-                this.grid.Columns["id_transact_type"].Visible = false;
-                this.grid.Columns["Remetente"].Width = 110;
+                //this.grid.Columns["id_transact_type"].Visible = false;
+                //this.grid.Columns["Remetente"].Width = 110;
                 label_total.Text = "Saldo Total: " + AtualizaSaldoTotal();
                 label_selecionado.Text = "Saldo Selecionado: " + AtualizaSaldoSelecionado();
             }
@@ -193,8 +198,8 @@ namespace AssistentePessoal
                         this.grid.DataSource = dt;
                     }
                 }
-                this.grid.Columns["id_transact_type"].Visible = false;
-                this.grid.Columns["Remetente"].Width = 110;
+                /*this.grid.Columns["id_transact_type"].Visible = false;*/
+                /*this.grid.Columns["Remetente"].Width = 110;*/
                 label_total.Text = "Saldo Total: " + AtualizaSaldoTotal();
                 label_selecionado.Text = "Saldo Selecionado: " + AtualizaSaldoSelecionado();
             }
@@ -277,7 +282,7 @@ namespace AssistentePessoal
             int[] id = new int[grid.SelectedRows.Count];
             foreach (DataGridViewRow item in grid.SelectedRows)
             {
-                id[i] = int.Parse(item.Cells["Número da Transação"].Value.ToString());
+                id[i] = int.Parse(item.Cells[0].Value.ToString());
                 i++;
             }
             return id;
@@ -312,13 +317,13 @@ namespace AssistentePessoal
             double value = 0;
             foreach (DataGridViewRow row in grid.Rows)
             {
-                if (int.Parse(row.Cells["id_transact_type"].Value.ToString()) == 1)
+                /*if (int.Parse(row.Cells["id_transact_type"].Value.ToString()) == 1)
                 {
                     value += double.Parse(row.Cells["Valor da Transação"].Value.ToString());
                 }
-                else
+                else*/
                 {
-                    value -= double.Parse(row.Cells["Valor da Transação"].Value.ToString());
+                    value -= double.Parse(row.Cells["Valor"].Value.ToString());
                 }
             }
             return value.ToString("C2");
@@ -329,13 +334,13 @@ namespace AssistentePessoal
             double value = 0;
             foreach (DataGridViewRow row in grid.SelectedRows)
             {
-                if (int.Parse(row.Cells["id_transact_type"].Value.ToString()) == 1)
+                /*if (int.Parse(row.Cells["id_transact_type"].Value.ToString()) == 1)
                 {
                     value += double.Parse(row.Cells["Valor da Transação"].Value.ToString());
                 }
-                else
+                else*/
                 {
-                    value -= double.Parse(row.Cells["Valor da Transação"].Value.ToString());
+                    value -= double.Parse(row.Cells["Valor"].Value.ToString());
                 }
             }
             return value.ToString("C2");

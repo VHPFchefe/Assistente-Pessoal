@@ -22,10 +22,20 @@ namespace AssistentePessoal.Extras
             SqlCommand cmd = new SqlCommand(sql, con);
             for (int i = 0; i < param_nome.Length; i++)
             {
-                cmd.Parameters.AddWithValue(param_sql_nome[i], param_nome[i]);
+                if (string.IsNullOrEmpty(param_nome[i]) || param_nome[i] == "null")
+                {
+                    cmd.Parameters.AddWithValue(param_sql_nome[i], DBNull.Value);
+                    /*MessageBox.Show(param_sql_nome[i] + " Entrou nulo: " + param_nome[i]);*/
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue(param_sql_nome[i], param_nome[i]);
+                    /*MessageBox.Show(param_sql_nome[i] +" entrou Com parametro: " + param_nome[i]);*/
+                }
             }
 
             cmd.CommandType = CommandType.Text;
+
             con.Open();
 
             try

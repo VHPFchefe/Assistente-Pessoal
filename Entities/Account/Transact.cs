@@ -40,7 +40,7 @@ namespace AssistentePessoal.Entities
 
                 SqlCommand command = new SqlCommand(sql, db.con);
                 command.Parameters.AddWithValue("@transact_number", TransactNumber);
-                
+
                 db.con.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -50,7 +50,7 @@ namespace AssistentePessoal.Entities
                     this.value = double.Parse(String.Format("{0}", teste[0]));
                     this.comment = String.Format("{0}", teste[1]);
                     this.sender = new Senders(String.Format("{0}", teste[2]));
-                    this.movimentation = (int.Parse(String.Format("{0}", teste[3])) == 1 ? Movimentation.Entrada: Movimentation.Saída);
+                    this.movimentation = (int.Parse(String.Format("{0}", teste[3])) == 1 ? Movimentation.Entrada : Movimentation.Saída);
                     this.portfolio = new Portfolio(String.Format("{0}", teste[4]));
                     this.date = DateTime.Parse(String.Format("{0}", teste[5]));
                     this.TransactNumber = TransactNumber;
@@ -61,16 +61,16 @@ namespace AssistentePessoal.Entities
             finally { db.con.Close(); }
         }
 
-        public Transact(DateTime date, Movimentation movimentation, double value, string portfolio, string comment, string sender)
+        public Transact(DateTime date, Movimentation movimentation, double value, string portfolio_name, string comment, string sender_name)
         {
             this.date = date;
             this.movimentation = movimentation;
             this.value = value;
-            this.portfolio = new Portfolio(portfolio);
+            this.portfolio = new Portfolio(portfolio_name);
             this.comment = comment;
-            this.sender = new Senders(sender);
+            this.sender = new Senders(sender_name);
         }
-        
+
         public Transact(int transact_number, DateTime date, Movimentation movimentation, double value, string portfolio, string comment, string sender) : this(date, movimentation, value, portfolio, comment, sender)
         {
             this.TransactNumber = transact_number;
@@ -79,6 +79,7 @@ namespace AssistentePessoal.Entities
         public void RegisterTransactAdd()
         {
             Insert();
+            GerarID();
         }
 
         public void RegisterTransactEdit()
@@ -131,6 +132,35 @@ namespace AssistentePessoal.Entities
             string[] p2 = { this.TransactNumber.ToString(), this.value.ToString("F2", CultureInfo.InvariantCulture), this.comment, this.sender.id.ToString(), (this.movimentation == Movimentation.Entrada ? "1" : "2"), this.portfolio.id.ToString(), this.date.ToString("yyyy-MM-dd HH:mm:ss.fff") };
             Db_connection db = new Db_connection();
             db.SqlScript(sql, p1, p2);
+        }
+
+        private void GerarID()
+        {
+            Db_connection db = new Db_connection();
+
+            try
+            {
+                // Gabiarra pra pegar o último criado kkk
+                string sql =
+                " Select top 1" +
+                " t.transact_number" +
+                " from transact t  " +
+                " order by transact_number desc";
+
+                SqlCommand command = new SqlCommand(sql, db.con);
+
+                db.con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var teste = (IDataRecord)reader;
+                    this.TransactNumber = int.Parse(String.Format("{0}", teste[0]));
+                }
+                reader.Close();
+            }
+            catch (Exception ex) { throw new Exception(ex.ToString()); }
+            finally { db.con.Close(); }
         }
     }
 }
